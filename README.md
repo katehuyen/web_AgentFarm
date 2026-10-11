@@ -4,7 +4,7 @@
 
 The website of **Agent Farm**, mission control for AI agents in VS Code (publisher Muvusoft, extension id `muvusoft.agent-farm`).
 
-One long landing page, built as a static site with [Astro](https://astro.build). Every screen on it is rebuilt from real screenshots of the extension and runs on demo data. Every number it states comes from the extension's source or a real screen, and `src/data/facts.js` says where.
+A long landing page and, behind it, the feature pages (plan v0.8): `/features/` with all 65 things, and one page per district of the board as each is written. Built as a static site with [Astro](https://astro.build). Every screen on it is rebuilt from real screenshots of the extension and runs on demo data. Every number it states comes from the extension's source or a real screen, and `src/data/facts.js` says where.
 
 ## Commands
 
@@ -15,21 +15,21 @@ One long landing page, built as a static site with [Astro](https://astro.build).
 | `npm run deploy` | Build, then replace the contents of the `main` branch with `dist/` and push it |
 | `npm run check` | Astro and TypeScript diagnostics |
 
-To look at a build, open `dist/index.html` straight from disk; no server is needed.
+To look at a build, open `dist/index.html` straight from disk; no server is needed. Links between pages are written as folders (`features/`); a host serves the folder's `index.html`, and opened from disk a small script in each page's head goes to the `index.html` itself.
 
 ## Branches
 
 - **`source`**: this code. Every change happens here.
-- **`main`**: only the finished site (`index.html`, `favicon.svg`, `robots.txt`, `assets/`), written by `npm run deploy`. It is what Hostinger serves, by upload to `public_html` or through Hostinger's Git deployment. Never edit it by hand: the next deploy replaces it.
+- **`main`**: only the finished site (`index.html`, the page folders such as `features/`, `favicon.svg`, `robots.txt`, `assets/`), written by `npm run deploy`. It is what Hostinger serves, by upload to `public_html` or through Hostinger's Git deployment. Never edit it by hand: the next deploy replaces it.
 
 ## The finished site
 
 `scripts/finish.mjs` turns Astro's output into a plain site:
 
-- every path is relative, so `index.html` works from disk and in any folder on any host;
-- all scripts are bundled from `src/scripts/main.js` into one plain script, `assets/site.js` (module scripts do not run from disk);
-- all styles are in `assets/site.css`, fonts in `assets/fonts/`, sounds in `assets/sounds/`;
-- `index.html` stays readable, and its links to `site.css` and `site.js` carry `?v=<site version>` so browsers fetch the new files after a deploy.
+- every path is relative, worked out from each page's folder, so every page works from disk and in any folder on any host;
+- each page has one plain script (module scripts do not run from disk): the landing's is bundled from `src/scripts/main.js` into `assets/site.js`, another page's from `src/scripts/pages/<name>.js` into `assets/<name>.js`, named by the page's `script`;
+- all pages share one stylesheet, `assets/site.css`; fonts are in `assets/fonts/`, sounds in `assets/sounds/`;
+- the pages stay readable, and their links to the stylesheet and script carry `?v=<site version>` so browsers fetch the new files after a deploy.
 
 ## The page, in order
 
@@ -54,27 +54,40 @@ The order lives in `src/data/page.js` (plan v0.7 §5); section numbers and the s
 | 15 | IX Yours alone | Local: nothing goes to us, and the proof | `s-local` | the v2.1 proof block |
 | 16 | | Start: straight answers and the closing band | `s-close` | v2.3 closing band |
 
+## The feature pages
+
+| Address | Page | Made from |
+|---|---|---|
+| `/features/` | All 65 things as cards in their nine districts; search and district buttons, kept in the address (`?q=…&d=…`) | `src/pages/features/index.astro`, `src/data/features.js` |
+| `/features/never-stops/` | District I: the landing's Days and Rules demos, then each feature: what it solves, how it works, its settings and defaults, where to see it; questions; the next district | `src/pages/features/never-stops.astro`, `src/components/District.astro`, `src/data/deep/relay.js` |
+
+A district gets its page by a page file, a `data/deep/<district id>.js` with its words, a `scripts/pages/<slug>.js` with its demos' scripts, and its id in `PAGES` (`src/data/features.js`). Until then its links go to its chapter on the landing. The words on a district page were checked in the extension's source; the citations are comments in its `data/deep` file.
+
 ## Structure
 
 ```
 src/
-  pages/index.astro            the page: composes the sections in order
+  pages/index.astro            the landing: composes the sections in order
+  pages/features/              /features/ and the district pages
   layouts/Base.astro           <head>, self-hosted fonts, global styles
-  components/                  Header, SideIndex, Chapter (a chapter opener), Footer (markup only)
+  components/                  Header, SideIndex, Chapter (a chapter opener), District (a district's page), Footer (markup only)
   components/sections/         Relay … Close, one file per section (markup only)
   styles/base.css              tokens, header, buttons, shared section heading, footer
   styles/chapter.css           the chapter openers
+  styles/pages/*.css           the feature pages
   styles/sections/*.css        one file per section, every rule scoped by the section id
   scripts/main.js              the page's one script: imports the others in page order
   scripts/state.js             the shared demo farm: accounts, relay leg, backlog queue, version, event bus
   scripts/*.js                 one script per section, plus header, side index, chapters and sound
   scripts/film.js              the Studio demo's short film, painted on a canvas
+  scripts/pages/*.js           the script of each page but the landing
   scripts/soundpage.js         the Sound page under Never waits: events, sessions, and answers read aloud with the browser's on-device voice
   data/facts.js                every stated figure, with its source
   data/page.js                 the page order and which chapter each section belongs to
   data/backlog.js              the demo backlog: project, the family the chain works, the queue, captures; the other projects and their tracks
   data/features.js             every capability (65), its district, where the page shows it, and the story steps: the board, the chapter openers, later /features and /pricing
-  data/site.js                 links, the call to action, the site version
+  data/site.js                 links, the call to action, the site version, rootOf (the way back to the top folder from a page)
+  data/deep/*.js               what a district's page says beyond its tiles, with the source of each fact
 public/
   assets/sounds/               the extension's own tones (media/sounds)
 scripts/

@@ -55,6 +55,13 @@ Screenshots are in the extension repo under `info/screenshots` and `info/Mserisi
 | The bridge chat | no screenshot: the ops, their arguments and the notification text are the extension's own (`_REF/bridge.md`, `extension.ts`) |
 | The whole farm: what each tile claims | the extension's source and `info/KURALLAR`, and the owner's Mserisi screenshots (`info/Mserisi`: Studio, Sessions, Tasks, Engines, Accounts, Secrets, Capability Matrix, Track, Gatekeeper); each line's check is in `src/data/features.js` (`src`) |
 
+## Feature pages
+
+- `/features/` and the district pages wear the landing's clothes: the district's colour (`--c`), its numeral in Big Shoulders, tiles and buttons with a square border, mono labels.
+- A district page reuses the landing's demos for that chapter as they are (the same components and scripts) and hides their landing section numbers.
+- Each feature block reads in the same order: what it solves, how it works (numbered steps), its settings (the key a user can search in VS Code, the default, one line), a note where the code has a catch, and where to see it.
+- Settings are named by their key, not by a Settings page label, because only the key is certain to match what a user can search.
+
 ## Motion
 
 - A section animates only while it is on screen (`vis` in `scripts/state.js`).

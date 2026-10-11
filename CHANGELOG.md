@@ -2,6 +2,15 @@
 
 All notable changes to agentfarm.space. The site follows [semantic versioning](https://semver.org).
 
+## Unreleased (0.6.0)
+
+The site has pages behind the landing (plan v0.8).
+
+- New page Features (`/features/`): all 65 things as cards in their nine districts, with search and district buttons. A filtered list keeps its words in the address, so it can be shared.
+- New page Never stops (`/features/never-stops/`), district I in depth: the landing's Days and Rules demos, then each of its seven features with what it solves, how it works step by step, the settings that steer it and their defaults, and where to see it; questions; the next district. Every default and every quoted line was read in the extension's source.
+- The header and the footer link to Features; chapter I's opener links to its page.
+- The build makes any number of pages, each in its own folder with relative paths and its own script, sharing one stylesheet. The site still opens from disk.
+
 ## 0.5.0 · 2026-10-11
 
 The page is now read in nine chapters, one per district of the board, and every chapter shows its part of the farm working.

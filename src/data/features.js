@@ -19,7 +19,7 @@ export const districts = [
 ];
 
 /* the districts whose own page is built (plan v0.8 §6); the others' links go to their chapter on the landing until theirs is */
-const PAGES = new Set([]);   // 'relay' joins when its page is filled in (pages/features/_never-stops.astro, underscore = not built yet)
+const PAGES = new Set(['relay']);
 export const hasPage = D => PAGES.has(D.id);
 
 export const features = [
