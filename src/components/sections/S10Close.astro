@@ -32,9 +32,3 @@ const FAQ = [
     </div>
   </div>
 </section>
-<script>
-  import { S, on } from '../../scripts/state.js';
-  const leg = document.getElementById('x-leg');
-  const show = () => { leg.textContent = '⑂ ' + S.leg; };
-  show(); on('pass', show);
-</script>

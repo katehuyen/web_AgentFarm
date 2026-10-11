@@ -1,4 +1,6 @@
-# agentfarm.space
+# agentfarm.space · source
+
+> **Türkçe not:** Bu dal sitenin kaynak kodu. Yüklenecek bitmiş site `main` dalında; açmak ve Hostinger'a yüklemek için oradaki README'ye bak.
 
 The website of **Agent Farm**, mission control for AI coding agents in VS Code ([extension repo](https://github.com/katehuyen/vsc_AgentFarm)).
 
@@ -9,12 +11,25 @@ One long landing page, built as a static site with [Astro](https://astro.build).
 | Command | What it does |
 |---|---|
 | `npm install` | Install dependencies (Node 22 or newer) |
-| `npm run dev` | Local dev server at `http://localhost:4321` |
-| `npm run build` | Static build into `dist/` |
-| `npm run preview` | Serve the built `dist/` locally |
+| `npm run build` | Build the finished site into `dist/`: `astro build`, then `scripts/finish.mjs` |
+| `npm run deploy` | Build, then replace the contents of the `main` branch with `dist/` and push it |
 | `npm run check` | Astro and TypeScript diagnostics |
 
-Deploy: any static host. For Cloudflare Pages the build command is `npm run build` and the output directory is `dist`.
+To look at a build, open `dist/index.html` straight from disk; no server is needed.
+
+## Branches
+
+- **`source`**: this code. Every change happens here.
+- **`main`**: only the finished site (`index.html`, `favicon.svg`, `robots.txt`, `assets/`), written by `npm run deploy`. It is what Hostinger serves, by upload to `public_html` or through Hostinger's Git deployment. Never edit it by hand: the next deploy replaces it.
+
+## The finished site
+
+`scripts/finish.mjs` turns Astro's output into a plain site:
+
+- every path is relative, so `index.html` works from disk and in any folder on any host;
+- all scripts are bundled from `src/scripts/main.js` into one plain script, `assets/site.js` (module scripts do not run from disk);
+- all styles are in `assets/site.css`, fonts in `assets/fonts/`, sounds in `assets/sounds/`;
+- `index.html` stays readable, and its links to `site.css` and `site.js` carry `?v=<site version>` so browsers fetch the new files after a deploy.
 
 ## The page, in order
 
@@ -39,16 +54,21 @@ The order was agreed with the product owner: the three v2 prototype heroes first
 src/
   pages/index.astro            the page: composes the sections in order
   layouts/Base.astro           <head>, self-hosted fonts, global styles
-  components/                  Header, SideIndex, Footer
-  components/sections/         S01Relay … S10Close, one file per section
+  components/                  Header, SideIndex, Footer (markup only)
+  components/sections/         S01Relay … S10Close, one file per section (markup only)
   styles/base.css              tokens, header, buttons, shared section heading, footer
   styles/sections/*.css        one file per section, every rule scoped by the section id
+  scripts/main.js              the page's one script: imports the others in page order
   scripts/state.js             the shared demo farm: accounts, relay leg, version, event bus
-  scripts/*.js                 one script per section, plus sound.js
+  scripts/*.js                 one script per section, plus header, side index and sound
   data/facts.js                every stated figure, with its source
   data/site.js                 links, the call to action, the site version
 public/
-  sounds/                      the extension's own tones (media/sounds, MIT)
+  assets/sounds/               the extension's own tones (media/sounds, MIT)
+scripts/
+  finish.mjs                   second half of the build: makes dist/ a plain site
+  deploy-main.sh               npm run deploy: puts dist/ on the main branch
+  main-README.md               the README main carries (Turkish: how to open and upload the site)
 docs/DESIGN.md                 palette, type, motion and demo-data rules
 ```
 
@@ -64,5 +84,6 @@ docs/DESIGN.md                 palette, type, motion and demo-data rules
 
 ## Open decisions
 
+- Hosting: Hostinger (decided 2026-10-11).
 - Where the call to action goes (plan §5.11): an early access list or the Marketplace listing. Until then it points at the extension's public repository; change it in `src/data/site.js`.
 - An Open Graph image and the extra product pages (plan §6).

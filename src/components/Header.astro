@@ -4,7 +4,7 @@ import { facts } from '../data/facts.js';
 ---
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="/" aria-label="Agent Farm home">
+    <a class="brand" href="#top" aria-label="Agent Farm, back to the top">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="2.6"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><line x1="6.5" y1="6.5" x2="10.1" y2="10.1"/><line x1="17.5" y1="6.5" x2="13.9" y2="10.1"/><line x1="6.5" y1="17.5" x2="10.1" y2="13.9"/><line x1="17.5" y1="17.5" x2="13.9" y2="13.9"/></svg>
       Agent Farm
     </a>
@@ -15,9 +15,3 @@ import { facts } from '../data/facts.js';
     <a class="cta" href="#s-close">Join early access</a>
   </header>
 </div>
-<script>
-  import { on } from '../scripts/state.js';
-  const chip = document.getElementById('af-ver');
-  on('reloading', () => { if (chip) chip.textContent = 'reloading…'; });
-  on('ver', v => { if (chip) chip.textContent = v; });
-</script>

@@ -1,4 +1,4 @@
-// The extension's own tones (media/sounds in the extension repo, MIT), served from /sounds.
+// The extension's own tones (media/sounds in the extension repo, MIT), served from assets/sounds (a relative path, so it also works from disk).
 // Nothing plays until a person clicks: a play button, or the sound switch in Never waits.
 const FILE = {
   crystal: 'af_crystal_turn', knock: 'af_intercom_knock', sonar: 'af_deep_sonar', marimba: 'af_marimba_success',
@@ -8,7 +8,7 @@ const cache = {};
 
 export function play(tone) {
   if (!FILE[tone]) return Promise.resolve();
-  const a = cache[tone] || (cache[tone] = new Audio(`/sounds/${FILE[tone]}.wav`));
+  const a = cache[tone] || (cache[tone] = new Audio(`assets/sounds/${FILE[tone]}.wav`));
   a.volume = 0.5; a.currentTime = 0;
   return a.play().catch(() => {});
 }

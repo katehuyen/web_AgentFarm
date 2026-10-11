@@ -1,9 +1,11 @@
 ---
-// Page shell: meta, self-hosted fonts (no request to a font CDN), global styles.
+// Page shell: meta, self-hosted fonts (no request to a font CDN), global styles, the page script.
+// Paths are relative (favicon.svg, assets/…), so the built site also works when index.html is opened from disk.
 import '@fontsource-variable/big-shoulders-display';
 import '@fontsource-variable/geist';
 import '@fontsource-variable/geist-mono';
 import '../styles/base.css';
+import { site } from '../data/site.js';
 
 interface Props { title: string; description: string; }
 const { title, description } = Astro.props;
@@ -17,13 +19,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="theme-color" content="#090a07" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary" />
+    <script is:inline defer src={`assets/site.js?v=${site.version}`}></script>
   </head>
   <body>
     <slot />
