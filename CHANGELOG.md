@@ -2,7 +2,7 @@
 
 All notable changes to agentfarm.space. The site follows [semantic versioning](https://semver.org).
 
-## Unreleased (0.6.0)
+## 0.6.0 · 2026-10-11
 
 The site has pages behind the landing (plan v0.8).
 
