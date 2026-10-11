@@ -1,6 +1,7 @@
-// 03 The whole farm: tiles on one map, a desk that reads out the focused tile, and stories that light a path across
+// The whole farm: tiles on one map, a desk that reads out the focused tile, and stories that light a path across
 // districts. A story plays by itself while the section is on screen; clicking a tile stops it, clicking a story plays it.
-// Some tile figures are live: they follow the relay chain, the accounts and the backlog the rest of the page runs on.
+// Some tile figures are live: they follow the relay chain, the accounts and the backlog the rest of the page runs on,
+// here and on the same tiles in the chapter openers below.
 import { S, ACCT, BL, reduce, on, vis } from './state.js';
 import { districts, features, stories } from '../data/features.js';
 
@@ -14,7 +15,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 async function hold(ms) { await sleep(ms); while (!vis['s-atlas'] || document.hidden) await sleep(400); }
 
 /* ---------- live figures ---------- */
-const sig = (id, v) => { const e = map.querySelector(`[data-sig="${id}"]`); if (e && e.textContent !== v) e.textContent = v; };
+const sig = (id, v) => { for (const e of document.querySelectorAll(`[data-sig="${id}"]`)) if (e.textContent !== v) e.textContent = v; };
 function live() {
   const a = ACCT[S.acc];
   sig('relay', `⑂ ${S.leg}`);
@@ -26,7 +27,7 @@ function live() {
 }
 live();
 ['pass', 'rotate', 'ver', 'item', 'filed'].forEach(e => on(e, live));
-setInterval(() => { if (vis['s-atlas']) live(); }, 1000);
+setInterval(live, 1000);
 
 /* ---------- desk ---------- */
 function desk(code, title, sub, at, next) {
@@ -45,12 +46,13 @@ function clear() {
   chips.forEach(c => { c.classList.remove('on'); c.style.removeProperty('--p'); });
 }
 
-/* a tile clicked: stop any story and read the tile out */
+/* a tile clicked: stop any story and read the tile out; it leads to the section that shows it, else to its chapter */
 function focus(id) {
   token++; cur = -1; clear();
   const f = F[id], d = districts[f.d], t = tiles[id];
   t.classList.add('on');
-  desk(t.dataset.code, f.n + '.', `${f.s} · ${d.r} ${d.n}`, f.at, false);
+  const at = [f.at, 'ch-' + d.id].find(x => x && document.getElementById(x));
+  desk(t.dataset.code, f.n + '.', `${f.s} · ${d.r} ${d.n}`, at, false);
 }
 for (const [id, t] of Object.entries(tiles)) t.addEventListener('click', () => focus(id));
 

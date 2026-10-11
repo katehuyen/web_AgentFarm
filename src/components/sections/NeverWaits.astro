@@ -1,12 +1,13 @@
 ---
-// 08 · Never waits (plan §5.4): a question card with an auto-answer countdown, a tool permission that waits for you,
+// Never waits (plan §5.4): a question card with an auto-answer countdown, a tool permission that waits for you,
 // the Now page on a phone (screenshot 023, three tabs from screenshot 021) and the sound events (screenshot 060).
 // The quota chip lights when the relay hero makes a quota handover, so the whole page shows one farm.
 import '../../styles/sections/waits.css';
+import { no } from '../../data/page.js';
 ---
 <section id="s-waits" class="gap" aria-label="Never waits: question cards, permissions and the phone">
   <div class="wrap">
-    <p class="sx"><b>08</b> Never waits</p>
+    <p class="sx"><b>{no('s-waits')}</b> Never waits</p>
     <div class="sh">
       <div><p class="pre">Question cards · your phone · sound</p><h2>Away from the desk. <em>Never in the way.</em></h2></div>
       <p class="lead">An agent with a question doesn't sit idle for hours. A countdown runs, and when it ends the recommended answer goes in. Permissions are different: they wait for you, ring, and show up on your phone.</p>

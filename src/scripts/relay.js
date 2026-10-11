@@ -1,4 +1,4 @@
-// 01 Relay hero: boot log, rolling leg counter, relay track, context / quota / console instruments, self-update glitch.
+// Relay hero: boot log, rolling leg counter, relay track, context / quota / console instruments, self-update glitch.
 // This script runs the relay simulation for the whole page (see state.js).
 import { ACCT, S, BQ, reduce, wait, hex, emit, emptiest, vis, canOuro, startOuro, nextVer, finishOuro, legDone } from './state.js';
 

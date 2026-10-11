@@ -1,6 +1,7 @@
 ---
-// 07 · Rules (from prototype v2.3): the relay's real defaults, read from the extension's package.json (see data/facts.js).
+// Rules (from prototype v2.3): the relay's real defaults, read from the extension's package.json (see data/facts.js).
 import { relay } from '../../data/facts.js';
+import { no } from '../../data/page.js';
 const RULES = [
   { n: `${relay.contextConvergePct}%`, c: 'var(--yellow)', h: 'Converge', p: 'The session is told once to start nothing new and finish the step in flight.', code: 'contextConvergePct' },
   { n: `${relay.contextHandoverPct}%`, c: 'var(--lime)', h: 'Hand over', p: 'It stops, commits, writes its handover note and ends the run. The next leg opens with that note.', code: 'contextHandoverPct' },
@@ -14,7 +15,7 @@ const RULES = [
 ---
 <section id="s-rules" class="gap" aria-label="The rules of the relay">
   <div class="wrap">
-    <p class="sx"><b>07</b> The rules of the relay</p>
+    <p class="sx"><b>{no('s-rules')}</b> The rules of the relay</p>
     <div class="sh">
       <div><p class="pre">Real defaults · every one is a setting</p><h2>Runs <em>without you.</em> Braked so it never runs away.</h2></div>
       <p class="lead">Every number below is a setting you can change. These are the defaults the extension ships with.</p>

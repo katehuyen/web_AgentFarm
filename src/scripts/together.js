@@ -1,4 +1,4 @@
-// 09 Together: one mission played round by round. The lead plans, tasks fly out to the team (lime),
+// Together: one mission played round by round. The lead plans, tasks fly out to the team (lime),
 // results come back (cyan), and after the last round the verdict says done · partial. The live row of the
 // Missions table follows the same rounds, tasks and tokens. Plays only while the section is on screen.
 import { reduce, wait, vis } from './state.js';

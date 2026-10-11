@@ -1,4 +1,4 @@
-/* 04 Console (#s-console): the real Console rebuilt, as a scroll-driven exploded view; 11 Local (#s-local) facts grid.
+/* Console (#s-console): the real Console rebuilt, as a scroll-driven exploded view; the Local (#s-local) facts grid.
    Origin: prototype v2.1 Command Deck. Layout of the window follows screenshots 004 and 035. */
 :is(#s-console,#s-local) .hero{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:end;padding-block:0}
 :is(#s-console,#s-local) .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);display:flex;gap:12px;align-items:center}

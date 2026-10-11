@@ -1,9 +1,10 @@
 ---
-// 12 · Start (plan §5.12–5.13): straight answers, then the closing band from prototype v2.3.
+// Start (plan §5.12–5.13): straight answers, then the closing band from prototype v2.3.
 // Every answer is a limit or a default stated in the extension's README or package.json; none is softened.
 import '../../styles/sections/close.css';
 import { relay } from '../../data/facts.js';
 import { site } from '../../data/site.js';
+import { no } from '../../data/page.js';
 const FAQ = [
   { q: 'Where does the work come from?', a: 'From each project\'s backlog: a plain Backlog.md you write and put in order. Every session starts with the top of the queue in its brief, agents tick off what they finish, and anything waiting on an unfinished item is held back.' },
   { q: 'Which engines does it run?', a: 'Claude Code, Codex, Gemini, Antigravity and OpenCode. A session, a task, a schedule, a workflow step or a mission delegation can run on any of them, and Agent Farm reads each CLI\'s own history on disk.' },
@@ -16,7 +17,7 @@ const FAQ = [
 ---
 <section id="s-close" class="gap" aria-label="Straight answers and how to start">
   <div class="wrap">
-    <p class="sx"><b>12</b> Start</p>
+    <p class="sx"><b>{no('s-close')}</b> Start</p>
     <div class="sh">
       <div><p class="pre">Straight answers</p><h2>What it does, <em>and where it stops.</em></h2></div>
       <p class="lead">The limits are stated, not hidden. They follow from what the engines themselves offer.</p>

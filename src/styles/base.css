@@ -21,7 +21,7 @@ body{font-family:var(--sans);font-size:16px;line-height:1.5;overflow-x:hidden}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--lime);outline-offset:3px}
 .wrap{max-width:1440px;margin:0 auto;padding-inline:clamp(16px,3vw,40px)}
-section[id^="s-"]{scroll-margin-top:12px}
+section[id^="s-"],[data-shows]{scroll-margin-top:12px}
 
 /* header */
 .top{display:flex;align-items:center;gap:24px;padding-block:18px;border-bottom:1px solid var(--rule)}
@@ -52,8 +52,8 @@ section[id^="s-"]{scroll-margin-top:12px}
 .snav a span{opacity:0;transform:translateX(6px);transition:opacity .2s,transform .2s;background:rgba(9,10,7,.85);padding:1px 6px;white-space:nowrap}
 .snav a i{width:14px;height:2px;background:#3a3b33;transition:width .25s,background .25s}
 .snav a:hover span{opacity:1;transform:none}
-.snav a.on{color:var(--lime)}
-.snav a.on i{width:26px;background:var(--lime)}
+.snav a.on{color:var(--c,var(--lime))}
+.snav a.on i{width:26px;background:var(--c,var(--lime))}
 @media (max-width:1180px){.snav{display:none}}
 
 /* self-update glitch (relay hero); the relay script toggles body.af-glitch */
@@ -80,5 +80,5 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
 .sh .lead{margin:0;color:#b9baa9;font-size:16px;max-width:520px}
 .pre{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0 0 10px}
 .eng{font-size:10.5px;border:1px solid var(--claude);color:var(--claude);border-radius:9px;padding:0 7px;line-height:16px;white-space:nowrap;font-family:var(--ui)}
-.eng.a{border-color:var(--agy);color:var(--agy)}.eng.x{border-color:#9ad;color:#9ad}.eng.o{border-color:var(--teal);color:var(--teal)}
+.eng.a{border-color:var(--agy);color:var(--agy)}.eng.x{border-color:#9ad;color:#9ad}.eng.o{border-color:var(--teal);color:var(--teal)}.eng.g{border-color:#7fa0f8;color:#7fa0f8}
 @media (max-width:860px){.sh{grid-template-columns:minmax(0,1fr)}}

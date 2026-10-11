@@ -1,4 +1,4 @@
-// 02 Fleet: a control-room wall of six Agent Farm pages (Live Timeline, Console, Accounts, Dashboard, Now, Chains).
+// Fleet: a control-room wall of six Agent Farm pages (Live Timeline, Console, Accounts, Dashboard, Now, Chains).
 // Layouts follow screenshots 032/035, 004, 075, 010/011, 023 and the Chains panel; data is demo data from state.js.
 import { ACCT, S, reduce, on, emptiest, vis } from './state.js';
 

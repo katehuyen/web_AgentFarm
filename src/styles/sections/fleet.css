@@ -1,4 +1,4 @@
-/* 02 Fleet (#s-fleet): the control-room wall of six live Agent Farm pages.
+/* Fleet (#s-fleet): the control-room wall of six live Agent Farm pages.
    Origin: prototype v2.2 Control Room. Monitors use container query units (cqw) so they scale as one picture. */
 #s-fleet .band{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;padding-block:0 clamp(16px,2vw,26px)}
 #s-fleet .pre{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0 0 6px}

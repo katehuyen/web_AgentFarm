@@ -1,4 +1,4 @@
-// 08 Never waits: a question card that answers itself when its countdown runs out, a tool permission that never does,
+// Never waits: a question card that answers itself when its countdown runs out, a tool permission that never does,
 // and the Now page on a phone that mirrors both. Auto-answer covers questions only; permissions wait for a person.
 // The countdown is shortened for the demo (12 seconds).
 import { ACCT, S, reduce, on, vis } from './state.js';

@@ -1,4 +1,4 @@
-/* 03 The whole farm (#s-atlas): nine districts of tiles on one dark board, a story bar above and a desk below.
+/* The whole farm (#s-atlas): nine districts of tiles on one dark board, a story bar above and a desk below.
    The board borrows the fleet wall's frame; a lit tile uses the fleet's lime "on" state. Each district has its own accent (--c). */
 #s-atlas .sh .lead b{color:var(--ink);font-weight:500}
 #s-atlas .abar{display:flex;align-items:center;gap:14px;margin-bottom:10px;flex-wrap:wrap}

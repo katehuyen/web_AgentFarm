@@ -1,4 +1,4 @@
-// Everything Agent Farm does, in one place: the 03 Atlas tiles come from here, and so will the /features pages and the
+// Everything Agent Farm does, in one place: the Atlas tiles and the chapter openers come from here, and so will the /features pages and the
 // /pricing rows (plan v0.7 §6), so a name changes once and changes everywhere. Each line was checked against the
 // extension's source, its settings and the owner's screenshots (notes: AF-WEB_NOTES_features_v1.0, AF-WEB_NOTES_mserisi_v1.0).
 //
@@ -13,7 +13,7 @@ export const districts = [
   { id: 'automation', r: 'IV', n: 'Recipes and triggers', k: 'Work that starts on time, on an event, or from one sentence.', c: 'var(--violet)' },
   { id: 'team', r: 'V', n: 'Works as a team', k: 'Agents on different engines plan, split and check each other.', c: 'var(--cyan)' },
   { id: 'memory', r: 'VI', n: 'Never forgets', k: 'Every session is kept, and what matters becomes a wiki.', c: 'var(--agy)' },
-  { id: 'engines', r: 'VII', n: 'Any brain', k: 'Five engines, and any model you can route them to.', c: '#7fa0f8' },
+  { id: 'engines', r: 'VII', n: 'Any brain', k: 'Five engines, and through routes, almost any model.', c: '#7fa0f8' },
   { id: 'bridge', r: 'VIII', n: 'Just ask', k: 'You never have to learn the farm. Tell an agent, it sets it up.', c: 'var(--ink)' },
   { id: 'privacy', r: 'IX', n: 'Yours alone', k: 'It runs on your machine and keeps its numbers honest.', c: 'var(--dim)' },
 ];
@@ -38,22 +38,22 @@ export const features = [
   { id: 'cost', d: 1, n: 'Cost and analysis', s: 'Weeks, rhythm, how long an item takes from open to closed, and where the money went.', sig: 'per item', src: 'Projects → Cost, Analysis tabs' },
 
   // III · Beyond code
-  { id: 'studio', d: 2, n: 'Studio', s: 'Agents work as a production team: idea, research, script, shots, edit, judgement. You get assets, not chat.', sig: '13 assets', src: 'Studio page (M1a, M1b); studio.*' },
-  { id: 'crecipes', d: 2, n: 'Content recipes', s: 'Long video to shorts, a weekly channel rhythm, a video edited in parts: install one and run it.', sig: '3 ready-made', src: 'workflows.recipes / workflows.addRecipe' },
-  { id: 'judge', d: 2, n: 'Judge and triage', s: 'Every output is judged. What fails waits in Triage with Re-run, Vary and Feedback.', sig: '15 in triage', src: 'Studio → Triage, Assets (M1a)' },
-  { id: 'premiere', d: 2, n: 'Straight to Premiere', s: 'The scene matrix becomes an Adobe Premiere sequence, ready to finish by hand.', sig: '→ sequence', src: 'src/core/sequenceExport.ts' },
-  { id: 'inbox', d: 2, n: 'Media inbox', s: 'Drop files in a folder. Agents look at each one, file it by stage and fill in its card; anything unsure is asked, not guessed.', sig: 'all_in', src: 'media.allin' },
-  { id: 'calendar', d: 2, n: 'Content calendar', s: 'What gets made lands on a calendar and goes out after your approval.', sig: 'Mon 07:00', src: 'contentCalendar, publishStep' },
-  { id: 'briefing', d: 2, n: 'Spoken briefing', s: 'The daily digest read aloud: by this computer for free, or by a voice model you choose.', sig: 'daily', src: 'CHANGELOG 3.878.0' },
+  { id: 'studio', d: 2, n: 'Studio', s: 'Agents work as a production team: idea, research, script, shots, edit, judgement. You get assets, not chat.', sig: '6 scenes', at: 's-studio', src: 'Studio page (M1a, M1b); studio.*; production.json scenes' },
+  { id: 'crecipes', d: 2, n: 'Content recipes', s: 'Long video to shorts, a weekly channel rhythm, a video edited in parts: install one and run it.', sig: '3 ready-made', at: 's-studio', src: 'workflows.recipes / workflows.addRecipe; contentRecipes.ts' },
+  { id: 'judge', d: 2, n: 'Judge and triage', s: 'Give a step its criteria and a vision model checks every shot; a FAIL is made again with the critique. You keep or drop the rest in Triage.', sig: '2 to triage', at: 's-studio', src: 'tasks.ts vision QA gate; judgeEngines.ts; Studio → Triage (M1a)' },
+  { id: 'premiere', d: 2, n: 'Straight to Premiere', s: 'The scenes become a sequence. Export it as XML and EDL, import it into Adobe Premiere and finish by hand.', sig: 'XML + EDL', at: 's-studio', src: 'src/core/premiere.ts (xmeml v4 + CMX3600); Studio → Assemble' },
+  { id: 'inbox', d: 2, n: 'Media inbox', s: 'Drop files in a folder. Agents look at each one, file it by stage and fill in its card; anything unsure is asked, not guessed.', sig: 'all_in', at: 's-studio', src: 'allInIntake.ts' },
+  { id: 'calendar', d: 2, n: 'Content calendar', s: 'What gets made lands on a calendar in your vault. Once you approve, the publish step hands it to your own upload flow.', sig: 'Mon 07:00', at: 's-studio', src: 'contentCalendar.ts; publishStep.ts (webhook, approval ask)' },
+  { id: 'briefing', d: 2, n: 'Spoken briefing', s: 'The daily digest read aloud: by this computer for free, or by a voice model you choose.', sig: 'daily', at: 's-studio', src: 'briefing.ts; digestTtsModel' },
 
   // IV · Recipes and triggers
   { id: 'flows', d: 3, n: 'Workflows', s: 'A chain where each step gets the last one\'s output. A step can be an agent, an API call, a render, a browser, or a stop to ask you.', sig: '8 saved', src: 'Tasks → Edit workflow (M7-8-c)' },
   { id: 'schedules', d: 3, n: 'Schedules', s: 'Daily, weekly or once at a date and hour. A missed run can run late, be skipped, or ask you.', sig: '13 on', src: 'schedules.add (missed: skip | run | ask)' },
   { id: 'triggers', d: 3, n: 'Watch triggers', s: 'A file lands in a folder and an agent wakes up. Hooks and webhooks work the same way.', sig: '2 watching', src: 'triggers.add (watch | hook | webhook)' },
   { id: 'gatekeeper', d: 3, n: 'Gatekeeper', s: 'Before anyone wakes, Jev, a model that never chats and only decides, says whether there is real work. Off, watching in the shadow, or on.', sig: 'shadow', src: 'Settings → Gatekeeper (M15); src/core/kapici/providers/jev.ts; owner (12:18); agentFarm.kapici.*' },
-  { id: 'words', d: 3, n: 'Say it in words', s: 'Type "run the filing batch on manager now" and the farm does it.', sig: 'Runs tab', src: 'Tasks → Runs (M7-8-d)' },
+  { id: 'words', d: 3, n: 'Say it in words', s: 'Type "run the filing batch on manager now". A cheap model turns it into a task, a schedule or a workflow and shows it to you before anything runs.', sig: 'Runs tab', src: 'Tasks → Runs (M7-8-d); commandbar.ts' },
   { id: 'queue', d: 3, n: 'Queue and limits', s: 'Runs wait their turn under concurrency ceilings, and the next one starts as one finishes.', sig: '1/5 running', src: 'agentFarm.maxConcurrentTasks; Automation strip' },
-  { id: 'retries', d: 3, n: 'Retries and rounds', s: 'A failed run retries with growing pauses; a big job runs in rounds that keep their state.', sig: 'backoff', src: 'retry supervisor, multi-round tasks' },
+  { id: 'retries', d: 3, n: 'Retries and rounds', s: 'A run stopped by a session limit tries again by itself, every 40 minutes or on a growing pause. A big job runs in rounds inside one conversation.', sig: '6 × 40 min', src: 'retry.ts defaults; taskRounds.ts' },
   { id: 'forecast', d: 3, n: 'Forecast', s: 'How long the next run should take and how likely it is to pass, from the last 30 days.', sig: '30 days', src: 'schedules.forecast' },
 
   // V · Works as a team
@@ -72,26 +72,26 @@ export const features = [
   { id: 'wiki', d: 5, n: 'Wiki from sessions', s: 'Mark a whole session or only the answers that matter. An agent compiles them into wiki pages, one concept per page.', sig: 'compile', src: 'wiki.candidates.*, wiki.compile; _REF/wiki.md' },
   { id: 'dropbox', d: 5, n: 'Drop box', s: 'Save a chat from any browser into the drop folder and it becomes wiki material by itself.', sig: '_RAW_', src: '_REF/wiki.md (drop box)' },
   { id: 'obsidian', d: 5, n: 'Obsidian, the second brain', s: 'Obsidian is the IDE, the model is the programmer, the wiki is the codebase. You curate, agents write.', sig: 'vault', src: 'vault rules (M5)' },
-  { id: 'search', d: 5, n: 'Search everything', s: 'Search every transcript of every engine, and follow the links between concepts.', sig: 'all engines', src: 'search.transcripts; memory graph' },
+  { id: 'search', d: 5, n: 'Search everything', s: 'Search every transcript of every engine. A memory graph shows how each agent\'s notes link up, and which it actually recalled.', sig: 'all engines', src: 'search.transcripts; memgraph.ts' },
   { id: 'reports', d: 5, n: 'Reports and digests', s: 'Daily and weekly digests and fleet reports, written into your vault.', sig: 'weekly', src: 'settings → Reports' },
 
   // VII · Any brain
-  { id: 'engines', d: 6, n: 'Five engines', s: 'Claude Code, Codex, Gemini, Antigravity and OpenCode, each tested with a real call before it counts as ready.', sig: '5', at: 's-more', src: 'Engines page (073, 074)' },
-  { id: 'routes', d: 6, n: 'Plug-in brains', s: 'Claude Code and OpenCode can run other models through a route: free or paid, cloud or local. Five engines, any number of brains.', sig: '3 routes', src: 'Engines → Providers (M9, M9b)' },
-  { id: 'radar', d: 6, n: 'Free-model radar', s: 'A morning schedule checks which models are free today and adds the new ones as routes.', sig: '04:30 daily', src: 'Tasks → OpenRouter Free Model Radar schedule (M7-8-a)' },
+  { id: 'engines', d: 6, n: 'Five engines', s: 'Claude Code, Codex, Gemini, Antigravity and OpenCode. What is read off disk says so; only one real test call proves an engine works.', sig: '5', at: 's-more', src: 'Engines page (073, 074); engineTest.ts' },
+  { id: 'routes', d: 6, n: 'Plug-in brains', s: 'Claude Code and OpenCode can run other models through a route: free or paid, from a provider or an address on your own machine. Five engines, any number of brains.', sig: '3 routes', src: 'Engines → Providers (M9, M9b); routeEngines.ts; providerProfiles.ts (loopback)' },
+  { id: 'radar', d: 6, n: 'Free-model radar', s: 'Set it up once as a schedule: every morning an agent checks which models are free today and adds new ones as routes, over the bridge.', sig: '04:30 daily', src: 'owner\'s schedule (M7-8-a); secretBinds.ts example; not shipped as a feature' },
   { id: 'health', d: 6, n: 'Route health', s: 'What each route offers is checked for free. A real, paid turn is only spent when you press for it.', sig: 'free check', src: 'Engines → Route health (M9)' },
   { id: 'vault', d: 6, n: 'Secret vault', s: 'Keys live in your OS keychain, open only to the agents you choose. A key\'s value never crosses the bridge.', sig: 'keychain', src: 'Secrets page (Mz2); _REF/bridge.md §C' },
-  { id: 'spares', d: 6, n: 'Warm spares', s: 'Sessions wait started and ready; one that closes comes back with the same settings.', sig: '2 warm', src: 'spare sessions' },
+  { id: 'accounts', d: 6, n: 'Many sign-ins', s: 'Several sign-ins of Claude Code or Codex side by side, without signing out. An account is a config folder, not a copied credential.', sig: '4 accounts', src: 'Engines → Accounts (Mz3a); engineAccounts.ts' },
   { id: 'switch', d: 6, n: 'Switch the model', s: 'Change the model, effort or account of a session from the Console, between turns.', sig: 'mid-session', at: 's-console', src: 'Console model and effort pickers (M11)' },
 
   // VIII · Just ask
   { id: 'bridge', d: 7, n: 'Just ask', s: 'Say "make me a weekly video recipe" in a chat. The agent sets it up through the bridge; you never open a form.', sig: 'in chat', at: 's-more', src: '_REF/bridge.md' },
   { id: 'ops', d: 7, n: '~560 operations', s: 'Anything you can click, an agent can call. It reads the list from farm.ops, so new abilities show up by themselves.', sig: 'farm.ops', at: 's-more', src: 'Technical DNA: ~560 ops in ~75 namespaces' },
-  { id: 'mcp', d: 7, n: 'MCP and CLI', s: 'Agents outside the farm can ask what it can do, and use it.', sig: 'af.js', src: 'MCP server, af.js' },
+  { id: 'mcp', d: 7, n: 'One command line', s: 'The bridge is a single shell command, so any agent that can run a command can use the farm. Gatekeeper also comes as an MCP server.', sig: 'af.js', src: 'src/service/af.ts; src/mcp/kapici' },
   { id: 'matrix', d: 7, n: 'Capability Matrix', s: 'Which agent has which skill, MCP server and memory file, and which of them were actually used in 30 days.', sig: '30 days', src: 'Toolbox → Capability Matrix (Mz1)' },
   { id: 'phone', d: 7, n: 'Phone and Telegram', s: 'Start a session, approve with a button and watch the fleet from your pocket. Android too.', sig: 'anywhere', at: 's-waits', src: 'Mobile page; Telegram bot; Android' },
   { id: 'sound', d: 7, n: 'Sound', s: 'A tone for every event, quiet hours, and which agent finished, said out loud.', sig: '10 tones', at: 's-more', src: 'alertVoices, media/sounds' },
-  { id: 'move', d: 7, n: 'Take it with you', s: 'Export the whole farm as an .agentpack, move it to a new machine, or run two machines on one network.', sig: '.agentpack', src: 'agentpack export' },
+  { id: 'move', d: 7, n: 'Take it with you', s: 'Pack an agent as an .agentpack: its rules, tools, workflows and schedules, never its memory or secrets. Unpack it on another machine.', sig: '.agentpack', src: 'agentpack.ts; agents.pack.export / import' },
 
   // IX · Yours alone
   { id: 'local', d: 8, n: 'On your machine', s: 'No server of ours. The live hooks listen on 127.0.0.1 only.', sig: '127.0.0.1', at: 's-local', src: 'agentFarm.livePort 8377' },
@@ -109,8 +109,8 @@ export const stories = [
       { f: 'triggers', t: '03:12', x: 'interview-take-4.mp4 lands in the watched folder. The trigger fires.' },
       { f: 'gatekeeper', t: '03:12', x: 'Gatekeeper asks Jev before anyone wakes: a real video, real work. Wake the studio.' },
       { f: 'crecipes', t: '03:13', x: 'The Long video to shorts recipe starts, with the file as its input.' },
-      { f: 'studio', t: '03:20', x: 'A transcript, then the editor agent picks the six strongest moments.' },
-      { f: 'judge', t: '03:41', x: 'Six subtitled vertical shorts are cut and judged. One fails and waits in Triage.' },
+      { f: 'studio', t: '03:20', x: 'Whisper writes the transcript; the editor agent picks the six strongest moments.' },
+      { f: 'judge', t: '03:41', x: 'Six subtitled vertical shorts are cut on this machine, in one pass each. They wait in Triage for you to keep or drop.' },
       { f: 'sessions', t: '03:42', x: 'Every step\'s session is kept, so tomorrow anyone can see how each cut was chosen.' },
       { f: 'phone', t: '07:40', x: 'On your phone: five shorts ready, one needs a look.' },
     ],
@@ -152,9 +152,9 @@ export const stories = [
       { f: 'bridge', t: 'You', x: '"Every Monday, make a short video on a new topic."' },
       { f: 'ops', t: 'Agent', x: 'The agent asks farm.ops what the farm can do.' },
       { f: 'crecipes', t: 'Agent', x: 'It installs the Weekly channel rhythm recipe: idea, script, shots, your approval, a publishing package.' },
-      { f: 'schedules', t: 'Agent', x: 'It schedules the recipe for Monday 07:00.' },
+      { f: 'schedules', t: 'Agent', x: 'It adds a schedule for Monday 07:00 whose agent starts the recipe.' },
       { f: 'calendar', t: 'Mon 07:00', x: 'The week\'s idea comes from the content calendar.' },
-      { f: 'phone', t: 'Mon 07:40', x: 'The video waits for your approval on your phone.' },
+      { f: 'phone', t: 'Mon 07:40', x: 'The finished video waits for your approval, and you can give it from your phone.' },
     ],
   },
 ];

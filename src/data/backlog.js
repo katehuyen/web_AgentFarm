@@ -7,7 +7,7 @@ export const project = { name: 'orbit-app', sessions: 412, open: 38, done: 214 }
 /* Areas come from the file's own headings. Counts are the open items in each; they add up to project.open. */
 export const AREAS = [['P', 1], ['K', 4], ['S', 2], ['M', 0], ['N', 0], ['B', 0], ['A', 0], ['U', 9], ['X', 22]];
 
-/* The whole the chain in 05 Days works through, then its twelve parts in queue order.
+/* The whole the chain in Days works through, then its twelve parts in queue order.
    legs: how many relay legs each part took in the demo chain (they add up to 92; the last one is still open). */
 export const family = { c: 'X-40', t: 'Timeline export, end to end', s: 'XL', k: 'feat' };
 export const parts = [

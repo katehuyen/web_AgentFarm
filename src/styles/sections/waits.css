@@ -1,4 +1,4 @@
-/* 08 Never waits (#s-waits): question card, permission card, sound events, phone with the Now page.
+/* Never waits (#s-waits): question card, permission card, sound events, phone with the Now page.
    Card language follows the Console (screenshot 004); the phone follows the Now page (screenshot 023). */
 #s-waits .wgrid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:clamp(20px,4vw,60px);align-items:start}
 #s-waits .cards{display:grid;gap:14px;min-width:0}

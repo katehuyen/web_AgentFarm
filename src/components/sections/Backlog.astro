@@ -1,5 +1,5 @@
 ---
-// 05 · Backlog: project management runs over a work list. The panel rebuilds the Projects page, Backlog tab
+// Backlog: project management runs over a work list. The panel rebuilds the Projects page, Backlog tab
 // (owner's screenshots of 11 Oct 2026: project tabs, capture box, area chips, Next up strip, rows with codes, families,
 // sizes and #byAI / #byREQ) with the demo backlog in data/backlog.js. Statements come from the extension's
 // BLUEPRINT ("The backlog — the standing pile of work") and package.json (Add to Backlog on Ctrl+Alt+B).
@@ -7,11 +7,12 @@
 // and the item the live relay leg is working closes when the hero's leg closes it.
 import '../../styles/sections/backlog.css';
 import { project, AREAS } from '../../data/backlog.js';
+import { no } from '../../data/page.js';
 const TABS = ['Home', 'Work', 'Timeline', 'Sessions', 'Plan', 'Backlog', 'Track', 'Docs', 'People', 'Cost', 'Analysis', 'Code'];
 ---
 <section id="s-backlog" class="gap" aria-label="Backlog: every project runs on a work list that agents work through">
   <div class="wrap">
-    <p class="sx"><b>05</b> Backlog</p>
+    <p class="sx"><b>{no('s-backlog')}</b> Backlog</p>
     <div class="sh">
       <div><p class="pre">Projects · the work list</p><h2>You write the work down. <em>The fleet works it off.</em></h2></div>
       <p class="lead">Every project has its own page: plan, backlog, track, docs, people, cost. The backlog is where the work waits, in one plain Backlog.md file. You put it in order; agents take the top of it, item by item, and tick off what they finish.</p>

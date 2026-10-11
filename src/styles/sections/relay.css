@@ -1,4 +1,4 @@
-/* Relay story: 01 hero (#s-relay), 06 days strip (#s-days), 07 rules (#s-rules), 12 close (#s-close).
+/* Relay story: the hero (#s-relay), the days strip (#s-days), the rules (#s-rules) and the close (#s-close).
    Origin: prototype v2.3 Relay Launch (agentfarm-web/03_prototypes/v2). Colours measured from the real app. */
 :is(#s-relay,#s-days,#s-rules,#s-close) .pre{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0 0 10px}
 :is(#s-relay,#s-days,#s-rules,#s-close) em{font-style:normal;color:var(--lime)}
@@ -157,7 +157,7 @@
 :is(#s-relay,#s-days,#s-rules,#s-close) .stats div:nth-child(even){border-right:0}
 :is(#s-relay,#s-days,#s-rules,#s-close) .railhd span:last-child{display:none}}
 
-/* 05 Days: the strip with the backlog it worked through beside it (data/backlog.js, demo items) */
+/* Days: the strip with the backlog it worked through beside it (data/backlog.js, demo items) */
 #s-days .dgrid{display:grid;grid-template-columns:minmax(0,1fr) 300px}
 #s-days .dbl{border:1px solid var(--rule);border-left:0;background:#0d0e0a;padding:14px 16px 12px;font-family:var(--mono);font-size:12px;color:#b9baa9;min-width:0;display:flex;flex-direction:column}
 #s-days .dbh{display:flex;justify-content:space-between;gap:10px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}

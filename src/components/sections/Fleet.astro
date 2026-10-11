@@ -1,10 +1,11 @@
 ---
-// 02 · Fleet (from prototype v2.2): a control-room wall of six live Agent Farm pages, rebuilt from real screenshots.
+// Fleet (from prototype v2.2): a control-room wall of six live Agent Farm pages, rebuilt from real screenshots.
 import '../../styles/sections/fleet.css';
+import { no } from '../../data/page.js';
 ---
 <section id="s-fleet" class="gap" aria-label="The fleet: six Agent Farm pages on one wall">
   <div class="wrap">
-    <p class="sx"><b>02</b> The fleet</p>
+    <p class="sx"><b>{no('s-fleet')}</b> The fleet</p>
     <div class="band">
       <div><p class="pre">Don't just talk to one agent.</p><h2 class="h1">Command an <em>entire fleet.</em></h2></div>
       <div class="side"><p><b>Claude Code, Codex, Gemini, Antigravity and OpenCode</b> on one wall. Agents work through your backlog, sessions pass the baton day and night, accounts rotate before they run dry, and nothing leaves your machine.</p><a class="ghost" href="#s-console"><i></i>Open the console</a></div>
