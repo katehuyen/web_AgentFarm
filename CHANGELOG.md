@@ -2,7 +2,7 @@
 
 All notable changes to agentfarm.space. The site follows [semantic versioning](https://semver.org).
 
-## 0.4.0 · 2026-10-11 (preview, not yet on main)
+## 0.4.0 · 2026-10-11
 
 The page now shows everything the farm does, not only the relay.
 

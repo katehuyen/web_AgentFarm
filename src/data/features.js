@@ -50,7 +50,7 @@ export const features = [
   { id: 'flows', d: 3, n: 'Workflows', s: 'A chain where each step gets the last one\'s output. A step can be an agent, an API call, a render, a browser, or a stop to ask you.', sig: '8 saved', src: 'Tasks → Edit workflow (M7-8-c)' },
   { id: 'schedules', d: 3, n: 'Schedules', s: 'Daily, weekly or once at a date and hour. A missed run can run late, be skipped, or ask you.', sig: '13 on', src: 'schedules.add (missed: skip | run | ask)' },
   { id: 'triggers', d: 3, n: 'Watch triggers', s: 'A file lands in a folder and an agent wakes up. Hooks and webhooks work the same way.', sig: '2 watching', src: 'triggers.add (watch | hook | webhook)' },
-  { id: 'gatekeeper', d: 3, n: 'Gatekeeper', s: 'Before anyone wakes, a small classifier decides whether there is real work. Off, watching in the shadow, or on.', sig: 'shadow', src: 'Settings → Gatekeeper (M15); agentFarm.kapici.*' },
+  { id: 'gatekeeper', d: 3, n: 'Gatekeeper', s: 'Before anyone wakes, Jev, a model that never chats and only decides, says whether there is real work. Off, watching in the shadow, or on.', sig: 'shadow', src: 'Settings → Gatekeeper (M15); src/core/kapici/providers/jev.ts; owner (12:18); agentFarm.kapici.*' },
   { id: 'words', d: 3, n: 'Say it in words', s: 'Type "run the filing batch on manager now" and the farm does it.', sig: 'Runs tab', src: 'Tasks → Runs (M7-8-d)' },
   { id: 'queue', d: 3, n: 'Queue and limits', s: 'Runs wait their turn under concurrency ceilings, and the next one starts as one finishes.', sig: '1/5 running', src: 'agentFarm.maxConcurrentTasks; Automation strip' },
   { id: 'retries', d: 3, n: 'Retries and rounds', s: 'A failed run retries with growing pauses; a big job runs in rounds that keep their state.', sig: 'backoff', src: 'retry supervisor, multi-round tasks' },
@@ -107,7 +107,7 @@ export const stories = [
   {
     n: '03:12 · A long video lands', steps: [
       { f: 'triggers', t: '03:12', x: 'interview-take-4.mp4 lands in the watched folder. The trigger fires.' },
-      { f: 'gatekeeper', t: '03:12', x: 'Gatekeeper checks before anyone wakes: a real video, real work. Wake the studio.' },
+      { f: 'gatekeeper', t: '03:12', x: 'Gatekeeper asks Jev before anyone wakes: a real video, real work. Wake the studio.' },
       { f: 'crecipes', t: '03:13', x: 'The Long video to shorts recipe starts, with the file as its input.' },
       { f: 'studio', t: '03:20', x: 'A transcript, then the editor agent picks the six strongest moments.' },
       { f: 'judge', t: '03:41', x: 'Six subtitled vertical shorts are cut and judged. One fails and waits in Triage.' },
