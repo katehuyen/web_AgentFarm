@@ -1,6 +1,8 @@
 // Never waits: a question card that answers itself when its countdown runs out, a tool permission that never does,
 // and the Now page on a phone that mirrors both. Auto-answer covers questions only; permissions wait for a person.
-// The countdown is shortened for the demo (12 seconds). Under the sound strip, all ten tones play on ▶.
+// The countdown is shortened for the demo (12 seconds). The phone switches between the app and a Telegram chat; the chat
+// shows the same two asks as the bot's cards (src/core/telegramDigest.ts) and a tap on a card's button answers them.
+// The Sound page under the grid is scripts/soundpage.js.
 import { ACCT, S, reduce, on, vis, emit } from './state.js';
 import { play, sound } from './sound.js';
 
@@ -9,14 +11,14 @@ const SECS = 12, RING = 97.4;
 
 /* questions an agent asks mid-task; the first option is the recommended one */
 const QUESTIONS = [
-  { q: 'Which export format should the timeline use?', o: ['CSV', 'JSON lines', 'Both'] },
-  { q: 'The old export writer is still imported in two places. Remove it, or keep a shim?', o: ['Remove it', 'Keep a shim'] },
-  { q: 'What should the new row limit setting be called?', o: ['<code>timelineExportMaxRows</code>', '<code>exportRowCap</code>'] },
+  { q: 'Which export format should the timeline use?', o: ['CSV', 'JSON lines', 'Both'], done: 'The exporter streams rows now, 64k at a time. Before I wire the button I need the format.' },
+  { q: 'The old export writer is still imported in two places. Remove it, or keep a shim?', o: ['Remove it', 'Keep a shim'], done: 'Two files still import the old writer: export/legacy.ts and test_export.js.' },
+  { q: 'What should the new row limit setting be called?', o: ['<code>timelineExportMaxRows</code>', '<code>exportRowCap</code>'], done: 'The row cap is a setting now, read once per export. It needs a name.' },
 ];
 const PERMS = ['git push origin main', 'rm -rf dist/vsix'];
 
 const card = $('q'), perm = $('perm');
-let qi = 0, left = SECS, answered = false, permOpen = true, permSince = Math.max(1, S.longest - 2), pi = 0, tick = 0, reminders = 0;
+let qi = 0, qAt = Date.now(), left = SECS, answered = false, permOpen = true, permSince = Math.max(1, S.longest - 2), pi = 0, tick = 0, reminders = 0;
 
 /* sound events light their chip for a moment, and play the extension's tone when the sound is switched on */
 const TONE = { card: 'pulse', ask: 'knock', done: 'crystal', quota: 'ticks' };
@@ -33,7 +35,7 @@ sound.watch(v => { snd.setAttribute('aria-pressed', v); snd.textContent = v ? 'S
 
 function showQuestion(quiet) {
   const Q = QUESTIONS[qi % QUESTIONS.length];
-  answered = false; left = SECS;
+  answered = false; left = SECS; qAt = Date.now();
   card.classList.remove('done');
   $('qq').innerHTML = Q.q;
   $('opts').innerHTML = Q.o.map((t, i) => `<button type="button" data-i="${i}">${t}${i === 0 ? '<em>Recommended</em>' : ''}</button>`).join('');
@@ -60,12 +62,13 @@ function clock() {
   $('ring').style.strokeDashoffset = (RING * (1 - Math.max(0, left) / SECS)).toFixed(1);
 }
 
-function decide(allow) {
+function decide(allow, from = 'your phone') {
   if (!permOpen) return;
   permOpen = false;
+  perm.dataset.d = allow ? 'allow' : 'deny';
   perm.classList.add('ok');
   $('since').textContent = allow ? 'allowed' : 'denied';
-  $('pf').textContent = allow ? 'Allowed from your phone. reviewer goes ahead.' : 'Denied from your phone. reviewer is told no and finds another way.';
+  $('pf').textContent = allow ? `Allowed from ${from}. reviewer goes ahead.` : `Denied from ${from}. reviewer is told no and finds another way.`;
   phone();
   setTimeout(() => {
     pi++; permOpen = true; permSince = 0; reminders = 0;
@@ -85,7 +88,70 @@ function phone() {
   $('pwl').innerHTML = items.length ? items.join('') : '<span class="none">Nothing is waiting for you.</span>';
   $('pw').textContent = items.length;
   $('psub').textContent = `${items.length} waiting · 3 running · $${S.cost.toFixed(2)} today`;
+  chat();
 }
+
+/* ---------- Telegram: a chat bound to developer, with the bot's turn cards ---------- */
+const RULE = '──────────', strip = t => t.replace(/<[^>]+>/g, '');
+const hm = ms => new Date(ms).toTimeString().slice(0, 5);
+const tgl = $('tgl'), sentAt = Date.now() - 95000;
+function tcard(c) {
+  const kb = c.kb.map(row => `<div class="kr">${row.map(([t, a]) => `<button type="button" data-a="${a}">${t}</button>`).join('')}</div>`).join('');
+  return `<div class="bi card"><pre>${[c.head, RULE, '📝 DONE\n' + c.done, RULE, c.status, RULE, c.fig].join('\n')}</pre><time>${hm(c.at)}</time></div>${kb ? `<div class="kb">${kb}</div>` : ''}`;
+}
+function chat() {
+  const Q = QUESTIONS[qi % QUESTIONS.length], cmd = PERMS[pi % PERMS.length], gest = [['⏸ Cancel', 'x'], ['📄 Diff', 'x'], ['📊 Status', 'x']];
+  const rev = {
+    head: '🤖 reviewer · 📁 orbit-app · 🎯 review X-51 before it ships · Turn 6', at: Date.now() - permSince * 60000,
+    done: 'Review done: two nits fixed, and every test passes.',
+    status: permOpen ? `❓ WAITING ON YOU\nPermission: Bash\n${cmd}` : perm.dataset.d === 'deny' ? `❓ WAITING ON YOU\nPermission refused: ${cmd}` : '❓ STATUS\nStill working.',
+    fig: '⏱ 48s · 61k tok', kb: permOpen ? [[['✅ Allow', 'allow'], ['🚫 Deny', 'deny']], gest] : [gest],
+  };
+  const dev = {
+    head: '🤖 developer · 📁 orbit-app · 🎯 X-52 clean up the old writer · Turn 14', at: qAt,
+    done: Q.done,
+    status: answered ? '❓ STATUS\nStill working.' : `❓ WAITING ON YOU\n${strip(Q.q)}\n${Q.o.map(o => '   · ' + strip(o)).join('\n')}\n⏳ Auto-answer at ${hm(qAt + SECS * 1000)} — then "${strip(Q.o[0])}" is chosen for you.`,
+    fig: '⏱ 3m 41s · 412k tok', kb: answered ? [gest] : [...Q.o.map((o, i) => [[strip(o), 'q' + i]]), gest],
+  };
+  tgl.innerHTML = tcard(rev)
+    + `<div class="bo">also put the account each leg ran on in the export<time>${hm(sentAt)} ✓✓</time></div>`
+    + `<div class="bi">⏸ developer is working (turn 14). Queued — it goes in when this turn ends.<time>${hm(sentAt + 2000)}</time></div>`
+    + tcard(dev);
+  tgl.scrollTop = tgl.scrollHeight;
+}
+tgl.addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  devUser = true;
+  const a = b.dataset.a;
+  if (a[0] === 'q') answer(+a.slice(1), false);
+  else if (a === 'allow' || a === 'deny') decide(a === 'allow', 'Telegram');
+  else { b.classList.add('hit'); setTimeout(() => b.classList.remove('hit'), 500); }
+});
+
+/* the phone app or Telegram; on first sight the phone shows Telegram once, until the visitor picks */
+const CAP = {
+  app: 'The farm on your phone, in three tabs: Now, Web and Devices.',
+  tg: 'A Telegram chat bound to an agent: a card when a turn ends or asks, answered with a tap. A message sent mid-turn waits for the turn to end. Remote work stops at a daily budget shared with the phone app.',
+};
+let dev = 'app', devUser = false;
+function setDev(d) {
+  dev = d;
+  for (const b of $('dev').querySelectorAll('button')) { const on = b.dataset.dev === d; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); }
+  $('app').hidden = d !== 'app'; $('tg').hidden = d !== 'tg';
+  $('cap').textContent = CAP[d];
+  if (d === 'tg') chat();
+  emit('showing', d === 'tg' ? 'telegram' : 'phone');
+}
+$('dev').addEventListener('click', e => { const b = e.target.closest('[data-dev]'); if (b) { devUser = true; setDev(b.dataset.dev); } });
+on('device', d => { devUser = true; setDev(d); });
+(async () => {
+  const wait = async ms => { await new Promise(r => setTimeout(r, ms)); while (!vis['s-waits'] || document.hidden) await new Promise(r => setTimeout(r, 400)); return !devUser; };
+  while (!vis['s-waits']) await new Promise(r => setTimeout(r, 500));
+  if (reduce || !await wait(9000)) return;
+  setDev('tg');
+  if (!await wait(16000)) return;
+  setDev('app');
+})();
 function money() {
   $('pc').textContent = '$' + S.cost.toFixed(2);
   $('pacc').innerHTML = ACCT.map(a => `<div class="acc"><span>${a.n}</span><u><i style="width:${Math.round(a.h)}%;background:${a.c}"></i></u><span>${Math.round(a.h)}%</span></div>`).join('');
@@ -99,18 +165,10 @@ $('pwl').addEventListener('click', e => {
   else decide(b.dataset.a === 'allow');
 });
 
-/* all ten tones: ▶ plays one, and the row shows an equalizer while it plays. The Sound tile opens the list. */
-const tones = $('tones');
-$('tl').addEventListener('click', async e => {
-  const b = e.target.closest('button'); if (!b) return;
-  const li = b.closest('li');
-  li.classList.add('play');
-  await play(b.dataset.t);
-  setTimeout(() => li.classList.remove('play'), 1400);
-});
+/* the chapter VIII tiles for the phone and Telegram; Sound and Read aloud are soundpage.js's */
 on('feature', id => {
-  if (id === 'sound') { tones.open = true; emit('showing', 'sound'); }
-  else if (id === 'phone') emit('showing', 'phone');
+  if (id === 'phone') { devUser = true; setDev('app'); }
+  else if (id === 'telegram') { devUser = true; setDev('tg'); }
 });
 
 on('pass', p => { if (p.why === 'q') ring('quota'); money(); });

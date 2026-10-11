@@ -41,7 +41,9 @@ Screenshots are in the extension repo under `info/screenshots` and `info/Mserisi
 | Console, session cards, transcript, restart notice | 004, 035, 080 |
 | Now page on the phone, three tabs | 021, 023 |
 | Missions page and the Sentry block | 043 |
-| Sound page: events, tones, quiet hours (Never waits) | 060 |
+| Sound page: events, tones, quiet hours (Never waits) | 060, Mz4 |
+| Sound page, Sessions and Voice tabs: per session sound, Say who, read aloud | Mz4; the settings `agentFarm.alerts.*`, `speech.ts`, `readingPrefs.ts`, `reader.ts` |
+| Telegram chat on the phone | Mz5 (Settings, Remote access); the card is `telegramDigest.ts`'s own layout |
 | Projects page, Backlog tab: tabs, capture, areas, Next up, rows | the owner's two screenshots of 2026-10-11 (not in `info/screenshots`) |
 | Projects page, Track tab | M14 |
 | Studio page: Pipeline, Assets, Triage, Assemble | M1a, M1b |
@@ -65,5 +67,7 @@ Screenshots are in the extension repo under `info/screenshots` and `info/Mserisi
 No real emails, Windows paths, account names, session titles or spending from the screenshots appear on the site, and UI strings the extension still has in Turkish are shown in English. Account names are `acct-a` to `acct-d`, the chain is `chn_7f3a`, the project is `orbit-app`, and the chain works the backlog family `X-40 Timeline export, end to end` (twelve parts) before the queue in `src/data/backlog.js`. The stories on the whole-farm board use invented files and ids (`interview-take-4.mp4`, session `7c41d2e9`).
 
 The chapters share one second demo world, so a session met in one chapter is the same in the next: the documentary "The last keeper" (Studio makes its film; session `7c41e2a0`, "Storm shots keep losing the beam", is kept for the wiki in Memory, picked up by its id in the bridge chat, and closes item S-6 on the Track tab), a thesis on lighthouse keepers' logbooks, and a spring campaign. The other projects on the Projects page are `The last keeper`, `Thesis` and `Spring launch`.
+
+The Telegram chat is bound to an invented bot, "Agent Farm", with no chat id shown. The Read aloud demo speaks with the browser's speech and only with a voice on the device (`localService`), so nothing it reads is sent anywhere; in the app the voice is the system's own (Windows speech, `say`, `spd-say`).
 
 The film the Studio demo makes is painted frame by frame on a canvas (`scripts/film.js`): six scenes of five seconds, no video file, labelled as a demo. In the app each shot would come from the model its step names.

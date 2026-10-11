@@ -17,5 +17,6 @@ import './memory.js';
 import './brains.js';
 import './bridge.js';
 import './waits.js';
+import './soundpage.js';
 import './local.js';
 import './close.js';

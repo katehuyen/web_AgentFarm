@@ -50,7 +50,7 @@ The order lives in `src/data/page.js` (plan v0.7 §5); section numbers and the s
 | 11 | VI Never forgets | Memory: sessions, a turn kept, the wiki compiled, the vault in Obsidian | `s-memory` | M3, M4, M5, the extension's `_REF/wiki.md` |
 | 12 | VII Any brain | Brains: engines, routes, route health, accounts, secrets | `s-brains` | M9, M9b, M13, Mz2, Mz3a, Mz3b, 073, 074 |
 | 13 | VIII Just ask | The bridge: an agent sets the farm up from one sentence | `s-bridge` | the extension's `_REF/bridge.md` and source |
-| 14 | VIII | Never waits: question card, permission, phone, all ten tones | `s-waits` | screenshots 004, 021, 023, 060 |
+| 14 | VIII | Never waits: question card, permission, phone app and Telegram, the Sound page (events, sessions, voice) | `s-waits` | screenshots 004, 021, 023, 060, Mz4, Mz5 |
 | 15 | IX Yours alone | Local: nothing goes to us, and the proof | `s-local` | the v2.1 proof block |
 | 16 | | Start: straight answers and the closing band | `s-close` | v2.3 closing band |
 
@@ -69,10 +69,11 @@ src/
   scripts/state.js             the shared demo farm: accounts, relay leg, backlog queue, version, event bus
   scripts/*.js                 one script per section, plus header, side index, chapters and sound
   scripts/film.js              the Studio demo's short film, painted on a canvas
+  scripts/soundpage.js         the Sound page under Never waits: events, sessions, and answers read aloud with the browser's on-device voice
   data/facts.js                every stated figure, with its source
   data/page.js                 the page order and which chapter each section belongs to
   data/backlog.js              the demo backlog: project, the family the chain works, the queue, captures; the other projects and their tracks
-  data/features.js             every capability (63), its district, where the page shows it, and the story steps: the board, the chapter openers, later /features and /pricing
+  data/features.js             every capability (65), its district, where the page shows it, and the story steps: the board, the chapter openers, later /features and /pricing
   data/site.js                 links, the call to action, the site version
 public/
   assets/sounds/               the extension's own tones (media/sounds)
@@ -85,12 +86,12 @@ docs/DESIGN.md                 palette, type, motion and demo-data rules
 
 ## Conventions
 
-- **One farm.** All sections read `scripts/state.js`. The relay hero is the only writer of leg, context and quota, and it closes the front backlog item when its leg finishes it; other sections listen for `pass`, `rotate`, `item`, `filed`, `ver` and `reloading`. A chapter tile clicked sends `feature` with the tile's id; a demo that shows that tile switches to it and answers with `showing`. `data-shows="<tile ids>"` on an element with an id is where a tile's "See it" goes. The leg, the accounts, the backlog queue, the cost and the running version agree everywhere on the page.
+- **One farm.** All sections read `scripts/state.js`. The relay hero is the only writer of leg, context and quota, and it closes the front backlog item when its leg finishes it; other sections listen for `pass`, `rotate`, `item`, `filed`, `ver` and `reloading`; the Sound page's "Also sent to" sends `device` to turn the phone to its app or its Telegram screen. A chapter tile clicked sends `feature` with the tile's id; a demo that shows that tile switches to it and answers with `showing`. `data-shows="<tile ids>"` on an element with an id is where a tile's "See it" goes. The leg, the accounts, the backlog queue, the cost and the running version agree everywhere on the page.
 - **Scoping.** Section styles are plain CSS files scoped by the section id (`#s-waits …`), so they also reach markup that scripts create. Element ids carry a section prefix (`r-`, `f-`, `a-`, `d-`, `b-`, `st-`, `au-`, `c-`, `t-`, `me-`, `br-`, `bg-`, `w-`, `l-`, `x-`). Keyframes are named `<section>-<name>`.
 - **Facts.** A figure the page states goes into `src/data/facts.js` with a comment naming its source. Re-check them when the extension ships a release that changes them.
 - **Demo data.** Screens are rebuilt, never pasted: no real emails, paths, account names or spending from the screenshots appear on the site.
-- **Motion.** Every section pauses its animation while it is off screen and respects `prefers-reduced-motion`. Sound never plays without a click.
-- **Privacy.** Fonts are self-hosted; the page makes no third-party request.
+- **Motion.** Every section pauses its animation while it is off screen and respects `prefers-reduced-motion`. Sound never plays and nothing is read aloud without a click.
+- **Privacy.** Fonts are self-hosted; the page makes no third-party request. Read aloud uses only a voice that runs on the visitor's device (`localService`); with none, the demo says so and stays quiet.
 - **Versions.** The site follows semver in `package.json`, `src/data/site.js` and `CHANGELOG.md`. Design prototypes and the plan are versioned outside this repo (`AF-WEB_PLAN_v0.7`, `AF-WEB_PROTO v1.x / v2.x`).
 
 ## Open decisions
