@@ -8,3 +8,6 @@ export const site = {
   get: { label: 'Get Agent Farm', href: 'https://marketplace.visualstudio.com/items?itemName=muvusoft.agent-farm' },
   maker: { name: 'Muvusoft', href: 'https://muvusoft.uk/' },
 };
+
+/** the way back to the site's top folder from a page: '' on the landing, '../' on /features/, '../../' below it */
+export const rootOf = url => '../'.repeat(url.pathname.split('/').filter(Boolean).length);

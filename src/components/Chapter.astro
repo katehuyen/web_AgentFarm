@@ -2,8 +2,9 @@
 // A chapter opener (plan v0.7 §2, layer 3): one district of the whole-farm board becomes a chapter of the page.
 // It shows the district's numeral, name and pitch, and its tiles from data/features.js, the same tiles as the board.
 // Clicking a tile reads it out under the row (scripts/chapters.js); a demo in the chapter that can show the tile switches to it.
+// Once the district has its own page (plan v0.8), the opener links to it.
 import '../styles/chapter.css';
-import { districts, features } from '../data/features.js';
+import { districts, features, hasPage } from '../data/features.js';
 const { d } = Astro.props;
 const D = districts[d], F = features.filter(f => f.d === d);
 const WORDS = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
@@ -17,6 +18,7 @@ const WORDS = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight
         <p class="ct">{D.n}</p>
         <p class="cp">{D.k}</p>
       </div>
+      {hasPage(D) && <a class="cmore" href={`features/${D.slug}/`}>Everything about it <i></i></a>}
     </div>
     <ul class="ctl">
       {F.map((f, j) => <li><button type="button" class="ctile" data-f={f.id} data-code={`${D.r}·${j + 1}`}><span class="n">{f.n}</span><span class="sg" data-sig={f.id}>{f.sig}</span></button></li>)}

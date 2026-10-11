@@ -1,0 +1,43 @@
+/* /features/ (pages/features/index.astro): the whole farm's tiles as cards in their districts, with search and district
+   buttons in a bar that stays at the top while the list scrolls. A district's colour is --c, as on the board. */
+.fhub{padding-block:28px 40px}
+.fhub .fbar{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:minmax(240px,280px) minmax(0,1fr);gap:10px 20px;align-items:center;padding:12px 0 16px;background:linear-gradient(var(--void) 82%,transparent)}
+.fhub .fq{display:flex;align-items:center;gap:10px;border:1px solid #33342b;background:#11120d;padding:0 12px}
+.fhub .fq:focus-within{border-color:var(--lime)}
+.fhub .fq span{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.fhub .fq input{flex:1;min-width:0;background:none;border:0;color:var(--ink);font:inherit;font-size:14.5px;padding:10px 0;outline:none}
+.fhub .fds{display:flex;gap:5px}
+.fhub .fds button{font:inherit;font-size:12.5px;color:#b9baa9;background:#151610;border:1px solid #2a2b23;padding:5px 9px;cursor:pointer;white-space:nowrap;transition:border-color .2s,background .2s,color .2s}
+.fhub .fds button b{font-family:var(--display);font-weight:800;color:var(--c,var(--lime));margin-right:2px}
+.fhub .fds button:hover{border-color:var(--c,var(--lime));color:var(--ink)}
+.fhub .fds button.on{border-color:var(--c,var(--lime));color:var(--ink);background:color-mix(in srgb,var(--c,var(--lime)) 14%,#151610)}
+.fhub .fq .fn{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:none;color:var(--faint);white-space:nowrap}
+.fhub .fd{margin-top:clamp(36px,4vw,56px);scroll-margin-top:90px}
+.fhub .fd[hidden],.fhub .fc[hidden]{display:none}
+.fhub .fdh{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:0 22px;align-items:end;border-top:1px solid var(--rule);padding-top:16px}
+.fhub .fdh::before{content:"";position:absolute;left:0;top:-1px;width:min(200px,30%);height:2px;background:var(--c)}
+.fhub .fr{font-family:var(--display);font-weight:900;font-size:clamp(56px,6vw,92px);line-height:.78;color:var(--c)}
+.fhub .fdh h2{margin:0;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(28px,3vw,44px);line-height:.9}
+.fhub .fdh p{margin:6px 0 0;color:#b9baa9;font-size:15px}
+.fhub .fgo{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--ink);border:1px solid #4b4c44;padding:7px 12px;white-space:nowrap}
+.fhub .fgo:hover{border-color:var(--c)}
+.fhub .fgo i{width:0;height:0;border-left:7px solid var(--c);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
+.fhub .fcs{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+.fhub .fc a{display:grid;grid-template-columns:minmax(0,1fr) auto;align-content:start;gap:4px 12px;height:100%;padding:12px 14px 14px;background:#141510;border:1px solid #26271f;text-decoration:none;transition:border-color .2s,background .2s}
+.fhub .fc a:hover{border-color:var(--c);background:color-mix(in srgb,var(--c) 7%,#141510)}
+.fhub .fc .n{font-weight:600;font-size:15px;color:var(--ink)}
+.fhub .fc .sg{align-self:center;font-family:var(--mono);font-size:10.5px;color:var(--faint);white-space:nowrap}
+.fhub .fc a:hover .sg{color:var(--c)}
+.fhub .fc .s{grid-column:1/-1;color:#a9aa9b;font-size:13.5px;line-height:1.5}
+.fhub .fnone{margin:48px 0;color:var(--dim)}
+.fhub .fnone[hidden]{display:none}
+.fhub .fnone button{font:inherit;color:var(--lime);background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+@media (max-width:1360px){
+  .fhub .fbar{grid-template-columns:minmax(0,420px)}
+  .fhub .fds{overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1 * clamp(16px,3vw,40px));padding-inline:clamp(16px,3vw,40px)}
+}
+@media (max-width:620px){
+  .fhub .fdh{grid-template-columns:auto minmax(0,1fr);gap:0 14px}
+  .fhub .fgo{grid-column:1/-1;justify-self:start;margin-top:14px}
+  .fhub .fr{font-size:54px}
+}

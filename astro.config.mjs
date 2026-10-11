@@ -10,4 +10,5 @@ export default defineConfig({
     assets: 'assets',                // one folder for styles, scripts, fonts and sounds
     inlineStylesheets: 'never',      // styles stay in assets/site.css
   },
+  vite: { build: { cssCodeSplit: false } },   // every page shares the one assets/site.css
 });

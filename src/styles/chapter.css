@@ -3,6 +3,10 @@
 .chap{padding-top:clamp(90px,11vw,170px)}
 .chap .chd{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 clamp(18px,2.6vw,40px);align-items:end;border-top:1px solid var(--rule);padding-top:24px}
 .chap .chd::before{content:"";position:absolute;left:0;top:-1px;width:min(240px,32%);height:2px;background:var(--c)}
+.chap .chd:has(.cmore){grid-template-columns:auto minmax(0,1fr) auto}
+.chap .cmore{display:inline-flex;align-items:center;gap:8px;align-self:end;margin-bottom:4px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--ink);border:1px solid #4b4c44;padding:8px 13px;white-space:nowrap}
+.chap .cmore:hover{border-color:var(--c)}
+.chap .cmore i{width:0;height:0;border-left:7px solid var(--c);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
 .chap .cr{font-family:var(--display);font-weight:900;font-size:clamp(84px,11vw,176px);line-height:.76;color:var(--c);letter-spacing:-.01em}
 .chap .ck{display:flex;flex-wrap:wrap;gap:4px 16px;margin:0 0 8px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim)}
 .chap .ck span+span{color:var(--faint)}
@@ -26,7 +30,8 @@
 /* the chapter's first section sits close under its opener */
 .chap + section.gap{padding-top:clamp(44px,5vw,76px)}
 @media (max-width:620px){
-  .chap .chd{grid-template-columns:minmax(0,1fr)}
+  .chap .chd,.chap .chd:has(.cmore){grid-template-columns:minmax(0,1fr)}
+  .chap .cmore{justify-self:start;margin-top:14px}
   .chap .cr{font-size:76px;margin-bottom:10px}
   .chap .ctile{font-size:12.5px;padding:6px 9px}
   .chap .ctile .sg{display:none}

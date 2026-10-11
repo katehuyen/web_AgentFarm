@@ -2,21 +2,25 @@
 // /pricing rows (plan v0.7 §6), so a name changes once and changes everywhere. Each line was checked against the
 // extension's source, its settings and the owner's screenshots (notes: AF-WEB_NOTES_features_v1.0, AF-WEB_NOTES_mserisi_v1.0).
 //
-// district: id, roman numeral, name, one-line pitch, accent colour (a token from base.css), the future page.
+// district: id, slug (its page: /features/<slug>/), roman numeral, name, one-line pitch, accent colour (a token from base.css).
 // feature:  id, district index, name, one sentence, sig = the small figure on the tile (demo data; atlas.js makes
 //           some of them live), at = the section of this page that shows it today, src = where it was checked.
 
 export const districts = [
-  { id: 'relay', r: 'I', n: 'Never stops', k: 'Work keeps going through full contexts, full accounts and its own updates.', c: 'var(--yellow)' },
-  { id: 'projects', r: 'II', n: 'Any project', k: 'One backlog per project, and the project can be anything.', c: 'var(--teal)' },
-  { id: 'studio', r: 'III', n: 'Beyond code', k: 'Agents work as a production team and hand you finished media.', c: 'var(--claude)' },
-  { id: 'automation', r: 'IV', n: 'Recipes and triggers', k: 'Work that starts on time, on an event, or from one sentence.', c: 'var(--violet)' },
-  { id: 'team', r: 'V', n: 'Works as a team', k: 'Agents on different engines plan, split and check each other.', c: 'var(--cyan)' },
-  { id: 'memory', r: 'VI', n: 'Never forgets', k: 'Every session is kept, and what matters becomes a wiki.', c: 'var(--agy)' },
-  { id: 'engines', r: 'VII', n: 'Any brain', k: 'Five engines, and through routes, almost any model.', c: '#7fa0f8' },
-  { id: 'bridge', r: 'VIII', n: 'Just ask', k: 'You never have to learn the farm. Tell an agent, it sets it up.', c: 'var(--ink)' },
-  { id: 'privacy', r: 'IX', n: 'Yours alone', k: 'It runs on your machine and keeps its numbers honest.', c: 'var(--dim)' },
+  { id: 'relay', slug: 'never-stops', r: 'I', n: 'Never stops', k: 'Work keeps going through full contexts, full accounts and its own updates.', c: 'var(--yellow)' },
+  { id: 'projects', slug: 'any-project', r: 'II', n: 'Any project', k: 'One backlog per project, and the project can be anything.', c: 'var(--teal)' },
+  { id: 'studio', slug: 'beyond-code', r: 'III', n: 'Beyond code', k: 'Agents work as a production team and hand you finished media.', c: 'var(--claude)' },
+  { id: 'automation', slug: 'recipes-and-triggers', r: 'IV', n: 'Recipes and triggers', k: 'Work that starts on time, on an event, or from one sentence.', c: 'var(--violet)' },
+  { id: 'team', slug: 'works-as-a-team', r: 'V', n: 'Works as a team', k: 'Agents on different engines plan, split and check each other.', c: 'var(--cyan)' },
+  { id: 'memory', slug: 'never-forgets', r: 'VI', n: 'Never forgets', k: 'Every session is kept, and what matters becomes a wiki.', c: 'var(--agy)' },
+  { id: 'engines', slug: 'any-brain', r: 'VII', n: 'Any brain', k: 'Five engines, and through routes, almost any model.', c: '#7fa0f8' },
+  { id: 'bridge', slug: 'just-ask', r: 'VIII', n: 'Just ask', k: 'You never have to learn the farm. Tell an agent, it sets it up.', c: 'var(--ink)' },
+  { id: 'privacy', slug: 'yours-alone', r: 'IX', n: 'Yours alone', k: 'It runs on your machine and keeps its numbers honest.', c: 'var(--dim)' },
 ];
+
+/* the districts whose own page is built (plan v0.8 §6); the others' links go to their chapter on the landing until theirs is */
+const PAGES = new Set([]);   // 'relay' joins when its page is filled in (pages/features/_never-stops.astro, underscore = not built yet)
+export const hasPage = D => PAGES.has(D.id);
 
 export const features = [
   // I · Never stops

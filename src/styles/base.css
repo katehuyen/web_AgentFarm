@@ -23,6 +23,12 @@ a{color:inherit}
 .wrap{max-width:1440px;margin:0 auto;padding-inline:clamp(16px,3vw,40px)}
 section[id^="s-"],[data-shows]{scroll-margin-top:12px}
 
+/* the way back on a page other than the landing: Agent Farm / Features / … */
+.crumb{display:flex;flex-wrap:wrap;gap:6px 10px;margin:0 0 clamp(36px,5vw,64px);font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.crumb a{color:var(--dim);text-decoration:none}
+.crumb a:hover{color:var(--ink)}
+.crumb > *+*::before{content:"/";margin-right:10px;color:var(--faint)}
+
 /* header */
 .top{display:flex;align-items:center;gap:24px;padding-block:18px;border-bottom:1px solid var(--rule)}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:.06em;text-transform:uppercase}
@@ -30,7 +36,7 @@ section[id^="s-"],[data-shows]{scroll-margin-top:12px}
 .verchip{font-family:var(--mono);font-size:11.5px;color:var(--dim);border:1px solid var(--rule);padding:3px 9px;display:flex;align-items:center;gap:7px;white-space:nowrap}
 .verchip i{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime)}
 .nav{display:flex;gap:24px;margin-left:auto;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
-.nav a{text-decoration:none}.nav a:hover{color:var(--ink)}
+.nav a{text-decoration:none}.nav a:hover,.nav a[aria-current]{color:var(--ink)}
 
 /* buttons */
 .cta{display:inline-block;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:#0f1709;background:var(--lime);padding:12px 18px;transition:box-shadow .25s;white-space:nowrap}
@@ -75,8 +81,8 @@ footer nav{display:flex;flex-wrap:wrap;gap:18px}
 
 /* section heading shared by the scenes added in v3 (06 to 10); the relay sections carry their own copy in sections/relay.css */
 .sh{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px 48px;align-items:end;margin-bottom:28px}
-.sh h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(40px,5vw,78px);line-height:.9;margin:0;text-wrap:balance}
-.sh h2 em{font-style:normal;color:var(--lime)}
+.sh h1,.sh h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(40px,5vw,78px);line-height:.9;margin:0;text-wrap:balance}
+.sh :is(h1,h2) em{font-style:normal;color:var(--lime)}
 .sh .lead{margin:0;color:#b9baa9;font-size:16px;max-width:520px}
 .pre{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0 0 10px}
 .eng{font-size:10.5px;border:1px solid var(--claude);color:var(--claude);border-radius:9px;padding:0 7px;line-height:16px;white-space:nowrap;font-family:var(--ui)}

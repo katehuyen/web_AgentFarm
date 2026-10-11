@@ -1,0 +1,54 @@
+---
+// /features/: everything Agent Farm does, the 65 tiles of the whole-farm board as cards in their nine districts (plan v0.8 §2).
+// Search and the district buttons filter the cards (scripts/pages/features.js). A card leads to its district's page once
+// that page is built, and to the district's chapter on the landing until then.
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import '../../styles/pages/features.css';
+import { districts, features, hasPage } from '../../data/features.js';
+
+const total = features.length;
+const href = (D, f) => hasPage(D) ? `${D.slug}/${f ? '#' + f.id : ''}` : `../#ch-${D.id}`;
+---
+<Base
+  title="Features · Agent Farm"
+  description={`Everything Agent Farm does: ${total} things in nine districts, from relay chains that never stop to agents that make films, each one checked against the extension's source.`}
+  script="features"
+>
+  <Header />
+  <main class="fhub">
+    <div class="wrap">
+      <nav class="crumb" aria-label="You are here"><a href="../">Agent Farm</a><span>Features</span></nav>
+      <div class="sh">
+        <h1>Everything<br /><em>the farm does.</em></h1>
+        <p class="lead">{total} things in nine districts. Each one is something Agent Farm does today, checked against its source. Search them, or pick a district.</p>
+      </div>
+      <div class="fbar">
+        <label class="fq"><span>Search</span><input type="search" id="fh-q" placeholder="relay, Telegram, Premiere, quota…" autocomplete="off" spellcheck="false" /><span class="fn" id="fh-n" aria-live="polite">{total} shown</span></label>
+        <div class="fds" role="group" aria-label="Districts">
+          <button type="button" data-d="" class="on" aria-pressed="true">All</button>
+          {districts.map((D, i) => <button type="button" data-d={i} style={`--c:${D.c}`} aria-pressed="false"><b>{D.r}</b> {D.n}</button>)}
+        </div>
+      </div>
+      {districts.map((D, i) => (
+        <section class="fd" id={D.slug} data-d={i} style={`--c:${D.c}`} aria-labelledby={`fd-${D.id}`}>
+          <header class="fdh">
+            <span class="fr" aria-hidden="true">{D.r}</span>
+            <div><h2 id={`fd-${D.id}`}>{D.n}</h2><p>{D.k}</p></div>
+            <a class="fgo" href={href(D)}>{hasPage(D) ? 'Read the district' : 'See it on the home page'} <i></i></a>
+          </header>
+          <ul class="fcs">
+            {features.filter(f => f.d === i).map(f => (
+              <li class="fc" data-q={`${f.n} ${f.s} ${f.sig} ${D.n}`.toLowerCase()}>
+                <a href={href(D, f)}><span class="n">{f.n}</span><span class="sg">{f.sig}</span><span class="s">{f.s}</span></a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+      <p class="fnone" id="fh-none" hidden>Nothing matches that. Try a shorter word, or <button type="button" id="fh-clear">show all {total}</button>.</p>
+    </div>
+  </main>
+  <Footer />
+</Base>
