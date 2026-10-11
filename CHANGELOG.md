@@ -2,6 +2,22 @@
 
 All notable changes to agentfarm.space. The site follows [semantic versioning](https://semver.org).
 
+## 0.5.0 · 2026-10-11
+
+The page is now read in nine chapters, one per district of the board, and every chapter shows its part of the farm working.
+
+- Chapter openers: each district of the board opens its chapter with its numeral, name and tiles. Click a tile to read it; "See it" goes to the part of the chapter that shows it, and a demo that can show the tile switches to it. The side index lists the chapters.
+- New chapter III, Beyond code: the Studio page rebuilt. A production makes a short film, "The last keeper": a vision model fails the first storm take and it is made again with the critique, Triage keeps what passed, Assemble lines the scenes up for a Premiere sequence, and the player beside the page plays the film. The film is drawn on a canvas, not a video file.
+- New chapter IV, Recipes and triggers: the Tasks page rebuilt (plan, runs, "tell the farm what to do, in words"), and a file landing in a watched folder that Gatekeeper checks before a recipe runs.
+- New chapter VI, Never forgets: the Sessions page, one session's turns, a turn kept for the wiki, the compile that writes a wiki page, and the vault in Obsidian with its graph.
+- New chapter VII, Any brain: the Engines page with a test turn, routes that plug other models into Claude Code and OpenCode (a route made from a template, saved and tested), route health, the free-model radar, accounts with their policies, and the secret vault.
+- New chapter VIII, Just ask: a chat in which an agent sets the farm up over the bridge, one command at a time: a weekly video recipe and its schedule, a session picked up by its id, a new route, an agent packed for another machine.
+- Chapter II, Any project: the Projects page now lists a documentary, a thesis and a campaign next to the app, with their own backlogs, and has the Track tab: which session and which turn worked each item, and what an agent tried that did not work.
+- Section More is gone: its ten tones are under Never waits, its engines card became chapter VII, its platform card the bridge chat, and its figures are under the board.
+- Copy: the fleet band says "nothing is sent to us" (engines talk to their own providers, so "nothing leaves your machine" was not exact); the hero says code is one kind of work; the bridge counts are recounted from the extension's source.
+- The extension's repository is closing, so the page no longer links to it or calls the source public. The call to action goes to the extension's Marketplace listing; the footer links there too.
+- Sections renumbered 01–16.
+
 ## 0.4.0 · 2026-10-11
 
 The page now shows everything the farm does, not only the relay.
