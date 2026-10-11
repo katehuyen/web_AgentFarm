@@ -1,4 +1,4 @@
-/* 08 More (#s-more): bento cards, the numbers row and the density wall. */
+/* 09 More (#s-more): bento cards, the numbers row and the density wall. */
 #s-more .bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
 #s-more .card{position:relative;background:linear-gradient(180deg,#14150f,#101109);border:1px solid var(--rule);padding:20px 20px 18px;min-width:0;overflow:hidden}
 #s-more .card::before{content:"";position:absolute;inset:0 0 auto 0;height:1px;background:linear-gradient(90deg,transparent,rgba(168,240,53,.5),transparent);opacity:0;transition:opacity .4s}

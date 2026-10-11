@@ -1,11 +1,11 @@
 // 01 Relay hero: boot log, rolling leg counter, relay track, context / quota / console instruments, self-update glitch.
 // This script runs the relay simulation for the whole page (see state.js).
-import { ACCT, S, reduce, wait, hex, emit, emptiest, vis, canOuro, startOuro, nextVer, finishOuro } from './state.js';
+import { ACCT, S, BQ, reduce, wait, hex, emit, emptiest, vis, canOuro, startOuro, nextVer, finishOuro, legDone } from './state.js';
 
 const $ = id => document.getElementById('r-' + id);
 const pick = a => a[(Math.random() * a.length) | 0];
-const STEPS = ['index the transcripts', 'stream rows into the exporter', 'wire the export button', 'write the CSV schema test',
-  'handle a 1M-row transcript', 'add the progress notice', 'document the export path', 'clean up the old writer'];
+/* the backlog item the live leg is working (state.js BQ) */
+const item = () => `${BQ[0].c} ${BQ[0].t}`;
 const note = () => (0.9 + Math.random() * 0.9).toFixed(1);
 
 /* ---------- odometer ---------- */
@@ -34,7 +34,7 @@ function fillCard(el, leg, kind, d) {
   }
   el.style.setProperty('--ac', ACCT[d.acc].c);
   if (kind === 'live') {
-    el.innerHTML = `<div class="lh"><b>⑂ ${leg}</b><span class="why">● live</span></div><div class="lm"><code>${d.sid}</code> · ${ACCT[d.acc].n}</div><div class="lm">working · ${STEPS[S.step % STEPS.length]}</div><div class="lb"><i data-r="b" style="width:${S.ctx}%"></i>${marks}</div>`;
+    el.innerHTML = `<div class="lh"><b>⑂ ${leg}</b><span class="why">● live</span></div><div class="lm"><code>${d.sid}</code> · ${ACCT[d.acc].n}</div><div class="lm">working · ${item()}</div><div class="lb"><i data-r="b" style="width:${S.ctx}%"></i>${marks}</div>`;
     return;
   }
   el.innerHTML = `<div class="lh"><b>⑂ ${leg}</b><span class="why${d.why === 'q' ? ' q' : ''}">${d.why === 'q' ? '5H 90%' : '40% ✓'}</span></div><div class="lm"><code>${d.commit}</code> · ${ACCT[d.acc].n}</div><div class="lm">${d.min}m · note ${d.note}k</div><div class="lb"><i style="width:${d.ctx}%"></i>${marks}</div>`;
@@ -101,8 +101,11 @@ async function pass(why) {
   setState('baton.pass', 'pass');
   line('farm', why === 'q' ? `QUOTA HANDOVER · ${A.n} at 90% of its 5-hour window` : 'CONTEXT HANDOVER · 40% · stop, commit, write the handover note');
   await wait(650);
-  line('tool', `git commit -m "export: ${STEPS[S.step % STEPS.length]}" <b>✓ ${commit}</b>`);
+  const it = BQ[0];
+  line('tool', `git commit -m "${it.c}: ${it.t}" <b>✓ ${commit}</b>`);
   await wait(650);
+  const closed = legDone();
+  if (closed) { line('tool', `projects.backlog.check ${closed.c} <b>✓ closed</b>`); await wait(650); }
   line('tool', `baton.pass note=${n}k tokens <b>✓</b>`);
   /* fly the baton from the live card to the queued one */
   const rr = rail.getBoundingClientRect(), a = cards[cur].getBoundingClientRect(), q = cards[cur + 1].getBoundingClientRect();
@@ -118,7 +121,7 @@ async function pass(why) {
   const prevAcc = S.acc, from = S.leg;
   fillCard(cards[cur], S.leg, 'done', { acc: prevAcc, commit, min: mins(), note: n, ctx: Math.min(40, S.ctx), why });
   const next = why === 'q' || A.h >= 70 ? emptiest(prevAcc) : prevAcc;
-  S.acc = next; S.leg++; S.passes++; S.sid = hex(8); S.ctx = 3.1; S.step++;
+  S.acc = next; S.leg++; S.passes++; S.sid = hex(8); S.ctx = 3.1;
   fillCard(cards[cur + 1], S.leg, 'live', { acc: S.acc, sid: S.sid });
   const qd = card(S.leg + 1, 'next'); cards.push(qd); trk.appendChild(qd);
   cur++; layout(true); odo(S.leg); accDraw();
@@ -126,10 +129,11 @@ async function pass(why) {
   $('qState').className = 'state' + (next !== prevAcc ? ' q' : '');
   line('farm', `fresh session ${S.sid} · ⑂ ${S.leg} on ${ACCT[S.acc].n}${next !== prevAcc ? ' (@emptiest)' : ''}`);
   emit('pass', { from, to: S.leg, commit, note: n, why, acc: prevAcc, next });
+  if (closed) emit('item', { closed, next: BQ[0], leg: from });
   if (next !== prevAcc) emit('rotate', { from: prevAcc, to: next, why });
   if (cards.length > 18) setTimeout(() => { cards.shift().remove(); cur--; layout(false); }, 1100);
   await wait(1100);
-  line('agent', `Handover note from ⑂ ${S.leg - 1} read. Picking up: ${STEPS[S.step % STEPS.length]}.`);
+  line('agent', closed ? `${closed.c} is closed. Next in the backlog: ${item()}.` : `Handover note from ⑂ ${S.leg - 1} read. Picking up ${item()}.`);
   setState('working');
   S.phase = 'work';
   if (S.passes % 3 === 0) setTimeout(ouroboros, 2600);
@@ -195,7 +199,7 @@ function run() { requestAnimationFrame(t => { last = t; loop(t); }); }
 function start() {
   odo(S.leg); accDraw(); strip(); inst();
   line('farm', `fresh session ${S.sid} · ⑂ ${S.leg} on ${ACCT[S.acc].n}`);
-  line('agent', `Handover note from ⑂ ${S.leg - 1} read. Picking up: ${STEPS[S.step]}.`);
+  line('agent', `Handover note from ⑂ ${S.leg - 1} read. Picking up ${item()}, the last part of ${BQ[0].part}.`);
   line('tool', 'Edit src/export/timelineExport.ts <b>✓</b>');
   line('tool', 'Bash npm test -- export <b>✓ 214 passed</b>');
   const boot = $('boot');

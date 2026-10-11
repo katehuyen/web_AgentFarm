@@ -40,13 +40,14 @@ The order was agreed with the product owner: the three v2 prototype heroes first
 | 01 | Relay hero: live leg counter, relay track, quota shield, console | `s-relay` | prototype v2.3 Relay Launch |
 | 02 | Fleet wall: six live Agent Farm pages | `s-fleet` | prototype v2.2 Control Room |
 | 03 | Console, exploded and assembled on scroll | `s-console` | prototype v2.1 Command Deck |
-| 04 | Days: one chain drawn across days | `s-days` | prototype v2.3 |
-| 05 | The rules of the relay (real defaults) | `s-rules` | prototype v2.3 |
-| 06 | Never waits: question card, permission, phone, sound | `s-waits` | new, screenshots 004, 021, 023, 060 |
-| 07 | Together: a mission with a lead and a team | `s-together` | new, screenshot 043 |
-| 08 | More: sound, engines, memory, platform, settings | `s-more` | new, screenshots 060, 073, 074 |
-| 09 | Local: nothing goes to us, and the proof | `s-local` | new, plus the v2.1 proof block |
-| 10 | Start: straight answers and the closing band | `s-close` | v2.3 closing band |
+| 04 | Backlog: the project's work list, captured, ordered and worked off | `s-backlog` | new, the owner's Projects → Backlog screenshots (2026-10-11) |
+| 05 | Day and night: one chain across three days and four nights, item by item | `s-days` | prototype v2.3 |
+| 06 | The rules of the relay (real defaults) | `s-rules` | prototype v2.3 |
+| 07 | Never waits: question card, permission, phone, sound | `s-waits` | new, screenshots 004, 021, 023, 060 |
+| 08 | Together: a mission with a lead and a team | `s-together` | new, screenshot 043 |
+| 09 | More: sound, engines, memory, platform, settings | `s-more` | new, screenshots 060, 073, 074 |
+| 10 | Local: nothing goes to us, and the proof | `s-local` | new, plus the v2.1 proof block |
+| 11 | Start: straight answers and the closing band | `s-close` | v2.3 closing band |
 
 ## Structure
 
@@ -55,13 +56,14 @@ src/
   pages/index.astro            the page: composes the sections in order
   layouts/Base.astro           <head>, self-hosted fonts, global styles
   components/                  Header, SideIndex, Footer (markup only)
-  components/sections/         S01Relay … S10Close, one file per section (markup only)
+  components/sections/         S01Relay … S11Close, one file per section (markup only)
   styles/base.css              tokens, header, buttons, shared section heading, footer
   styles/sections/*.css        one file per section, every rule scoped by the section id
   scripts/main.js              the page's one script: imports the others in page order
-  scripts/state.js             the shared demo farm: accounts, relay leg, version, event bus
+  scripts/state.js             the shared demo farm: accounts, relay leg, backlog queue, version, event bus
   scripts/*.js                 one script per section, plus header, side index and sound
   data/facts.js                every stated figure, with its source
+  data/backlog.js              the demo backlog: project, the family the chain works, the queue, captures
   data/site.js                 links, the call to action, the site version
 public/
   assets/sounds/               the extension's own tones (media/sounds, MIT)
@@ -74,8 +76,8 @@ docs/DESIGN.md                 palette, type, motion and demo-data rules
 
 ## Conventions
 
-- **One farm.** All sections read `scripts/state.js`. The relay hero is the only writer of leg, context and quota; other sections listen for `pass`, `rotate`, `ver` and `reloading`. The leg, the accounts, the cost and the running version agree everywhere on the page.
-- **Scoping.** Section styles are plain CSS files scoped by the section id (`#s-waits …`), so they also reach markup that scripts create. Element ids carry a section prefix (`r-`, `f-`, `c-`, `d-`, `w-`, `t-`, `m-`, `l-`, `x-`). Keyframes are named `<section>-<name>`.
+- **One farm.** All sections read `scripts/state.js`. The relay hero is the only writer of leg, context and quota, and it closes the front backlog item when its leg finishes it; other sections listen for `pass`, `rotate`, `item`, `filed`, `ver` and `reloading`. The leg, the accounts, the backlog queue, the cost and the running version agree everywhere on the page.
+- **Scoping.** Section styles are plain CSS files scoped by the section id (`#s-waits …`), so they also reach markup that scripts create. Element ids carry a section prefix (`r-`, `f-`, `c-`, `b-`, `d-`, `w-`, `t-`, `m-`, `l-`, `x-`). Keyframes are named `<section>-<name>`.
 - **Facts.** A figure the page states goes into `src/data/facts.js` with a comment naming its source. Re-check them when the extension ships a release that changes them.
 - **Demo data.** Screens are rebuilt, never pasted: no real emails, paths, account names or spending from the screenshots appear on the site.
 - **Motion.** Every section pauses its animation while it is off screen and respects `prefers-reduced-motion`. Sound never plays without a click.

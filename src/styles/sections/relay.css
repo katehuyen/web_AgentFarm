@@ -1,4 +1,4 @@
-/* Relay story: 01 hero (#s-relay), 04 days strip (#s-days), 05 rules (#s-rules), 10 close (#s-close).
+/* Relay story: 01 hero (#s-relay), 05 days strip (#s-days), 06 rules (#s-rules), 11 close (#s-close).
    Origin: prototype v2.3 Relay Launch (agentfarm-web/03_prototypes/v2). Colours measured from the real app. */
 :is(#s-relay,#s-days,#s-rules,#s-close) .pre{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0 0 10px}
 :is(#s-relay,#s-days,#s-rules,#s-close) em{font-style:normal;color:var(--lime)}
@@ -156,3 +156,31 @@
 :is(#s-relay,#s-days,#s-rules,#s-close) .stats div:nth-child(odd){border-right:1px solid var(--rule)}
 :is(#s-relay,#s-days,#s-rules,#s-close) .stats div:nth-child(even){border-right:0}
 :is(#s-relay,#s-days,#s-rules,#s-close) .railhd span:last-child{display:none}}
+
+/* 05 Days: the strip with the backlog it worked through beside it (data/backlog.js, demo items) */
+#s-days .dgrid{display:grid;grid-template-columns:minmax(0,1fr) 300px}
+#s-days .dbl{border:1px solid var(--rule);border-left:0;background:#0d0e0a;padding:14px 16px 12px;font-family:var(--mono);font-size:12px;color:#b9baa9;min-width:0;display:flex;flex-direction:column}
+#s-days .dbh{display:flex;justify-content:space-between;gap:10px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+#s-days .dbh b{color:var(--lime);font-weight:500;letter-spacing:.04em;text-transform:none;font-variant-numeric:tabular-nums}
+#s-days .fam{margin:10px 0 8px;padding:7px 9px;background:#16170f;border:1px solid #2e2f28;color:var(--ink);font-family:var(--ui);font-size:13px;display:flex;align-items:center;gap:8px}
+#s-days code{font-family:var(--mono);font-size:11px;color:#cfd0c4;background:#24251e;padding:0 5px;white-space:nowrap}
+#s-days .sz{margin-left:auto;font-size:10.5px;color:var(--dim);padding-left:6px}
+#s-days ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+#s-days li{display:flex;align-items:center;gap:7px;padding:3px 0 3px 10px;border-left:1px solid #3d6b0a;color:#8f8f84;font-family:var(--ui);font-size:12.5px;white-space:nowrap;min-width:0;transition:color .3s}
+#s-days li code{font-style:italic}
+#s-days li .t{overflow:hidden;text-overflow:ellipsis;min-width:0}
+#s-days .cb{flex:none;width:11px;height:11px;border:1px solid #6c6d63;position:relative}
+#s-days li.doing{color:var(--ink)}
+#s-days li.doing .cb{border-color:var(--lime);background:linear-gradient(90deg,var(--lime) 50%,transparent 50%)}
+#s-days li.doing code{color:#10140a;background:var(--lime)}
+#s-days li.done{color:#7d7e72}
+#s-days li.done .t{text-decoration:line-through;text-decoration-color:#55564c}
+#s-days li.done .cb{border-color:#5a8c09;background:#5a8c09}
+#s-days li.done .cb::after{content:"";position:absolute;left:3px;top:0;width:3px;height:7px;border:solid #10140a;border-width:0 1.6px 1.6px 0;transform:rotate(45deg)}
+#s-days .nx{margin:auto 0 0;padding-top:10px;border-top:1px solid #23241d;font-size:11px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#s-days .legend .nt{background:rgba(132,150,240,.55);height:4px}
+@media (max-width:1180px){#s-days .dgrid{grid-template-columns:minmax(0,1fr)}
+#s-days .dbl{border-left:1px solid var(--rule);border-top:0}
+#s-days ol{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:18px}
+#s-days .nx{margin-top:10px}}
+@media (max-width:620px){#s-days ol{grid-template-columns:minmax(0,1fr)}#s-days li{font-size:13px}}

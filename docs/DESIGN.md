@@ -44,6 +44,7 @@ Screenshots are in the extension repo under `info/screenshots`.
 | Sound page: events, tones, quiet hours | 060 |
 | Engines page and the honesty line | 073, 074 |
 | Accounts | 074, 076 |
+| Projects page, Backlog tab: tabs, capture, areas, Next up, rows | the owner's two screenshots of 2026-10-11 (not in `info/screenshots`) |
 
 ## Motion
 
@@ -54,4 +55,4 @@ Screenshots are in the extension repo under `info/screenshots`.
 
 ## Demo data
 
-No real emails, Windows paths, account names or spending from the screenshots appear on the site. Account names are `acct-a` to `acct-d`, the chain is `chn_7f3a`, and the task is a timeline export.
+No real emails, Windows paths, account names or spending from the screenshots appear on the site. Account names are `acct-a` to `acct-d`, the chain is `chn_7f3a`, the project is `orbit-app`, and the chain works the backlog family `X-40 Timeline export, end to end` (twelve parts) before the queue in `src/data/backlog.js`.

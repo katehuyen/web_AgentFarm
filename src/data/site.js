@@ -2,7 +2,7 @@
 // Open decision (plan §5.11): early access list or Marketplace listing. Until then the CTA points at the public repo.
 
 export const site = {
-  version: '0.2.0',                                        // this website, see CHANGELOG.md
+  version: '0.3.0',                                        // this website, see CHANGELOG.md
   url: 'https://agentfarm.space',
   get: { label: 'Get Agent Farm', href: 'https://github.com/katehuyen/vsc_AgentFarm' },
   repo: 'https://github.com/katehuyen/vsc_AgentFarm',

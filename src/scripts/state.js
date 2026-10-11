@@ -1,6 +1,7 @@
 // Shared demo state. Every section shows the same farm: one relay chain, one set of accounts, one running version.
 // The relay hero (relay.js) is the only writer of leg, context and quota; other sections read the state and listen for events.
 // All data here is demo data shaped like the real app; nothing is fetched.
+import { project, family, live, queue, captures, nextCode } from '../data/backlog.js';
 
 const hex = n => Array.from({ length: n }, () => '0123456789abcdef'[(Math.random() * 16) | 0]).join('');
 
@@ -19,10 +20,33 @@ export const ACCT = [
 /* leg: the live relay leg; ctx: its context in %; acc: index of the standing account; sid: the live session id. */
 export const S = {
   leg: 92, ctx: 26, acc: 2, sid: '3efb20bf', ver: '3.931.0', boot: '7c2e91f4',
-  phase: 'work', busy: false, passes: 0, step: 4, cost: 41.2, tok: 1.8, longest: 6,
+  phase: 'work', busy: false, passes: 0, cost: 41.2, tok: 1.8, longest: 6,
 };
 
-/* tiny event bus: pass, rotate, ver, reloading */
+/* The project's backlog queue, front first (data/backlog.js). BQ[0] is the item the live leg is working.
+   The relay hero closes the front item (closeTop); the Backlog section files new items at the back (file). */
+export const BQ = [{ ...live, part: family.c }, ...queue.map(q => ({ ...q }))];
+export const BL = { open: project.open, done: project.done, left: 1, cap: 0 };
+const codes = { ...nextCode };
+const legsFor = it => (it.s === 'S' || it.s === 'XS' ? 1 : 2);
+/* the next thought to file: the capture text, and the item it becomes once filed under its area */
+export function nextCapture() {
+  const c = captures[BL.cap++ % captures.length];
+  return { ...c, c: `${c.a}-${codes[c.a]++}`, by: c.who === 'agent' ? 'AI' : undefined };
+}
+export function file(it) { BQ.push(it); BL.open++; emit('filed', it); }
+/* the live leg ends: one leg less on the front item; at zero it is closed and the next item comes up */
+export function legDone() {
+  const it = BQ[0];
+  if (--BL.left > 0) return null;
+  BQ.shift(); BL.open--; BL.done++;
+  for (const q of BQ) if (q.wait === it.c) delete q.wait;
+  if (BQ.length < 8) { const n = nextCapture(); BQ.push(n); BL.open++; }
+  BL.left = legsFor(BQ[0]);
+  return it;
+}
+
+/* tiny event bus: pass, rotate, ver, reloading, item (an item closed), filed (an item queued) */
 const subs = {};
 export function on(ev, fn) { (subs[ev] = subs[ev] || []).push(fn); }
 export function emit(ev, data) {

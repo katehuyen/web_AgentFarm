@@ -2,6 +2,16 @@
 
 All notable changes to agentfarm.space. The site follows [semantic versioning](https://semver.org).
 
+## 0.3.0 · 2026-10-11
+
+The page now says where the work comes from: the project backlog.
+
+- New section 04 Backlog: the Projects page, Backlog tab, rebuilt with demo data (project tabs, capture box, area codes, Next up with "agents take 5", families, sizes, `#byAI` / `#byREQ`, ⛔ waits on). A thought is captured and filed while you watch, and the item the relay's live leg is working closes when that leg finishes it.
+- Section 05 (was Days) now shows the chain across three days and four nights, not three nights: nights are shaded and the legs run through them, a band above the legs names the backlog item each leg worked, and the backlog beside the strip ticks off as it plays.
+- One backlog for the whole page (`src/data/backlog.js`, `state.js`): the hero, the console card and the Backlog section all work the same queue.
+- Copy: the hero, the fleet band, the closing line and a new first answer ("Where does the work come from?") speak of the backlog and of day and night, not of nights alone.
+- Sections renumbered 01–11; files renamed to match.
+
 ## 0.2.0 · 2026-10-11
 
 The site can now be opened and uploaded without any tools.

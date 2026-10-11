@@ -1,6 +1,6 @@
 // 03 Console: the real Agent Farm Console rebuilt (screenshots 004, 035) as an exploded view that assembles on scroll.
 // Its working session is the live relay leg from state.js; its own Ouroboros plays when the section is on screen.
-import { ACCT, S, reduce, wait, on, vis, canOuro, startOuro, nextVer, finishOuro } from './state.js';
+import { ACCT, S, BQ, reduce, wait, on, vis, canOuro, startOuro, nextVer, finishOuro } from './state.js';
 
 const $ = id => document.getElementById('c-' + id);
 const flat = () => matchMedia('(max-width: 900px)').matches;
@@ -46,7 +46,7 @@ function ui() {
   $('strip').innerHTML = `<u>session ${S.sid}</u> · ctx ${k}k / 1.0M · ${Math.round(S.ctx)}% · <span class="leg">⑂ ${S.leg}</span> · ~$${(S.tok * 2.7).toFixed(2)} (${S.tok.toFixed(1)}M tokens) this session · 1 turn · 1 running`;
   $('cSid').textContent = `(#${S.sid})`; $('cAcct').textContent = a.n; $('selAcct').textContent = a.n + ' ▾';
   $('cCtx').textContent = k + 'k'; $('cTok').textContent = S.tok.toFixed(1) + 'M tk';
-  $('cLeg').textContent = '⑂ ' + S.leg; $('cTitle').textContent = `chn_7f3a · relay leg ${S.leg} · timeline export`;
+  $('cLeg').textContent = '⑂ ' + S.leg; $('cTitle').textContent = `chn_7f3a · relay leg ${S.leg} · ${BQ[0].c} ${BQ[0].t}`;
   $('sbLeg').textContent = '⑂ ' + S.leg; $('r1').textContent = '⑂ ' + S.leg;
   $('r2').textContent = Math.round(S.ctx) + '%'; $('r3').textContent = Math.round(a.h) + '%';
   $('longest').textContent = 'longest ' + S.longest + 'm'; $('t2').textContent = S.longest + 'm'; $('t3').textContent = Math.max(1, S.longest - 1) + 'm'; $('r4k').textContent = `· longest ${S.longest}m`;

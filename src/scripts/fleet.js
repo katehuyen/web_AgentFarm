@@ -13,7 +13,7 @@ const CAP = [
   ['CH-03', 'The quota shield.', 'Four accounts, 5-hour and weekly windows. At 90% the next leg moves to the emptiest one.'],
   ['CH-04', 'Cost and quota at a glance.', 'API-equivalent cost per agent and model, the 5-hour window and the week, priced from your own transcripts.'],
   ['CH-05', 'The farm on your phone.', 'Now, Web and Devices: answer a waiting agent or start a session from the phone.'],
-  ['CH-06', 'Chains that run for days.', 'Each leg hands over at 40% context with a commit and a handover note. When every account is full, the chain parks and wakes itself.'],
+  ['CH-06', 'Chains that run day and night.', 'Each leg hands over at 40% context with a commit and a handover note, and the chain works down your backlog item by item. When every account is full, it parks and wakes itself.'],
 ];
 const root = document.getElementById('s-fleet');
 const mons = [...root.querySelectorAll('.mon')], dots = $('dots');

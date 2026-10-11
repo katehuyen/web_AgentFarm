@@ -1,4 +1,4 @@
-/* 07 Together (#s-together): the mission graph and the Missions page (screenshot 043). */
+/* 08 Together (#s-together): the mission graph and the Missions page (screenshot 043). */
 #s-together .tgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(20px,3vw,44px);align-items:start}
 
 /* graph */

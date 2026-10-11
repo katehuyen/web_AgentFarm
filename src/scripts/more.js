@@ -1,4 +1,4 @@
-// 08 More: play the extension's tones, run a demo engine test, reveal the tracks output and the namespace bars.
+// 09 More: play the extension's tones, run a demo engine test, reveal the tracks output and the namespace bars.
 import { reduce } from './state.js';
 import { play } from './sound.js';
 

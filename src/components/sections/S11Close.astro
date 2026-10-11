@@ -1,10 +1,11 @@
 ---
-// 10 · Start (plan §5.12–5.13): straight answers, then the closing band from prototype v2.3.
+// 11 · Start (plan §5.12–5.13): straight answers, then the closing band from prototype v2.3.
 // Every answer is a limit or a default stated in the extension's README or package.json; none is softened.
 import '../../styles/sections/close.css';
 import { relay } from '../../data/facts.js';
 import { site } from '../../data/site.js';
 const FAQ = [
+  { q: 'Where does the work come from?', a: 'From each project\'s backlog: a plain Backlog.md you write and put in order. Every session starts with the top of the queue in its brief, agents tick off what they finish, and anything waiting on an unfinished item is held back.' },
   { q: 'Which engines does it run?', a: 'Claude Code, Codex, Gemini, Antigravity and OpenCode. A session, a task, a schedule, a workflow step or a mission delegation can run on any of them, and Agent Farm reads each CLI\'s own history on disk.' },
   { q: 'Is the cost figure a real bill?', a: 'Only Claude Code and OpenCode publish a price per turn. For the others a cost is derived from your pricing rules: good for comparing runs, not a bill. $0.00 is never printed where no price exists.' },
   { q: 'Does every engine show up live, mid-turn?', a: 'Live hooks are Claude Code\'s alone, so its sessions reach the Live Timeline mid-turn. The other engines are mirrored turn by turn from the sessions Agent Farm hosts and launches, and every view that is Claude-only says so.' },
@@ -15,7 +16,7 @@ const FAQ = [
 ---
 <section id="s-close" class="gap" aria-label="Straight answers and how to start">
   <div class="wrap">
-    <p class="sx"><b>10</b> Start</p>
+    <p class="sx"><b>11</b> Start</p>
     <div class="sh">
       <div><p class="pre">Straight answers</p><h2>What it does, <em>and where it stops.</em></h2></div>
       <p class="lead">The limits are stated, not hidden. They follow from what the engines themselves offer.</p>
@@ -24,7 +25,7 @@ const FAQ = [
       {FAQ.map((f, i) => <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>)}
     </div>
     <div class="end">
-      <div><p class="pre">Agent Farm for VS Code</p><h2>Start a chain tonight. <em>Read the commits in the morning.</em></h2><p>Claude Code · Codex · Gemini · Antigravity · OpenCode · 100% local · MIT</p></div>
+      <div><p class="pre">Agent Farm for VS Code</p><h2>Fill the backlog. <em>The fleet works it off, day and night.</em></h2><p>Claude Code · Codex · Gemini · Antigravity · OpenCode · 100% local · MIT</p></div>
       <div class="go">
         <a class="cta" href={site.get.href}>{site.get.label}</a>
         <span class="still"><i></i>The chain on this page is at <b id="x-leg">⑂ 92</b> and still running</span>

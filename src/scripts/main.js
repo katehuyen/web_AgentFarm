@@ -6,6 +6,7 @@ import './sideindex.js';
 import './relay.js';
 import './fleet.js';
 import './console.js';
+import './backlog.js';
 import './days.js';
 import './waits.js';
 import './together.js';
