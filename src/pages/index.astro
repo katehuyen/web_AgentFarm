@@ -1,0 +1,38 @@
+---
+// agentfarm.space, the landing page. Order agreed with the product owner: the v2.3 relay hero, the v2.2 fleet wall,
+// the v2.1 console, then the relay proof and the remaining scenes of the plan (docs/DESIGN.md has the map).
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import SideIndex from '../components/SideIndex.astro';
+import Footer from '../components/Footer.astro';
+import S01Relay from '../components/sections/S01Relay.astro';
+import S02Fleet from '../components/sections/S02Fleet.astro';
+import S03Console from '../components/sections/S03Console.astro';
+import S04Days from '../components/sections/S04Days.astro';
+import S05Rules from '../components/sections/S05Rules.astro';
+import S06NeverWaits from '../components/sections/S06NeverWaits.astro';
+import S07Together from '../components/sections/S07Together.astro';
+import S08More from '../components/sections/S08More.astro';
+import S09Local from '../components/sections/S09Local.astro';
+import S10Close from '../components/sections/S10Close.astro';
+---
+<Base
+  title="Agent Farm · Mission control for AI coding agents in VS Code"
+  description="Run Claude Code, Codex, Gemini, Antigravity and OpenCode from one console. Relay chains hand work from session to session for days, across accounts, and nothing is sent to us."
+>
+  <Header />
+  <SideIndex />
+  <main>
+    <S01Relay />
+    <S02Fleet />
+    <S03Console />
+    <S04Days />
+    <S05Rules />
+    <S06NeverWaits />
+    <S07Together />
+    <S08More />
+    <S09Local />
+    <S10Close />
+  </main>
+  <Footer />
+</Base>

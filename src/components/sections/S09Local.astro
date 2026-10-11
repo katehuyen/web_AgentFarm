@@ -1,0 +1,73 @@
+---
+// 09 · Local (plan §5.10): nothing goes to us, then the engineering proof from prototype v2.1.
+// Statements come from the extension README ("No server, no telemetry"; hooks listener on 127.0.0.1; secrets in the
+// OS keychain), Remote Access settings (web view on this machine or your network) and the Accounts page (screenshot 074: "An account is a config directory, not a copied credential").
+// The proof figures come from data/facts.js; the .proof styles are shared with 03 through console.css.
+import '../../styles/sections/local.css';
+import { facts, relay } from '../../data/facts.js';
+const ENG = [
+  { n: 'Claude Code', c: 'var(--claude)', p: 'Anthropic' },
+  { n: 'Codex', c: '#9ad', p: 'OpenAI' },
+  { n: 'Gemini', c: '#84a9f0', p: 'Google' },
+  { n: 'Antigravity', c: 'var(--agy)', p: 'Google' },
+  { n: 'OpenCode', c: 'var(--teal)', p: 'its providers' },
+];
+---
+<section id="s-local" class="gap" aria-label="Local: nothing leaves for us, and the proof">
+  <div class="wrap">
+    <p class="sx"><b>09</b> Local</p>
+    <div class="lgrid">
+      <div class="stmt">
+        <p class="zero"><b>0</b> bytes</p>
+        <p class="to">sent to us. <em>Ever.</em></p>
+        <ul class="pts">
+          <li><b>No server, no account with us.</b> It runs inside VS Code and reads each CLI's own files on disk.</li>
+          <li><b>No telemetry.</b> Nothing phones home.</li>
+          <li><b>Secrets stay in the OS keychain.</b> An account is a config folder, not a copied credential.</li>
+          <li><b>Live hooks listen on 127.0.0.1 only.</b> The phone page is yours to switch on, on your own network.</li>
+        </ul>
+      </div>
+      <figure class="mach" id="l-mach" aria-label="Your engines talk to their own providers; Agent Farm sends nothing anywhere">
+        <svg viewBox="0 0 560 420" aria-hidden="true">
+          <g class="us">
+            <rect x="380" y="18" width="160" height="56" rx="28" />
+            <text x="460" y="42" text-anchor="middle" class="ut">a server of ours</text>
+            <text x="460" y="60" text-anchor="middle" class="us2">doesn't exist</text>
+          </g>
+          <path class="cut" d="M304,182 L392,62" />
+          <g class="x"><line x1="349" y1="102" x2="365" y2="118" /><line x1="365" y1="102" x2="349" y2="118" /></g>
+          <rect class="box" x="20" y="120" width="300" height="280" />
+          <text x="36" y="146" class="bt">YOUR MACHINE</text>
+          <rect class="af" x="36" y="160" width="268" height="44" />
+          <text x="52" y="187" class="aft">VS Code · Agent Farm</text>
+          {ENG.map((e, i) => (
+            <g class="eng">
+              <rect x="36" y={220 + i * 34} width="128" height="26" style={`stroke:${e.c}`} />
+              <text x="48" y={238 + i * 34} style={`fill:${e.c}`}>{e.n}</text>
+              <path class="wire" d={`M164,${233 + i * 34} L400,${233 + i * 34}`} style={`stroke:${e.c}`} />
+              <text x="410" y={237 + i * 34} class="pv">{e.p}</text>
+            </g>
+          ))}
+        </svg>
+        <figcaption>Your engines talk to their own providers, as they always do. Agent Farm adds no line of its own.</figcaption>
+      </figure>
+    </div>
+
+    <section class="proof" aria-label="The proof">
+      <div><h2>Built like <span>infrastructure.</span></h2><p class="src">Every number stated on this page comes from a real screen of the app or from its source. The moving parts are demos, with demo data.</p></div>
+      <div class="facts">
+        <div class="fact"><b>{facts.tests}</b><span>tests behind {facts.releases} releases</span><small>Technical DNA · CHANGELOG.md</small></div>
+        <div class="fact"><b class="c-l">0</b><span>runtime dependencies, 0 telemetry</span><small>package.json · README</small></div>
+        <div class="fact"><b class="c-y">⑂ {facts.realChainLegs}</b><span>legs in one real relay chain</span><small>Console · session strip</small></div>
+        <div class="fact"><b>{facts.engines.length}</b><span>engines, each measured against a real binary</span><small>Engines page</small></div>
+        <div class="fact"><b>{relay.contextHandoverPct}%</b><span>the context line where a leg hands over</span><small>contextHandoverPct</small></div>
+        <div class="fact"><b>{facts.license}</b><span>licence, and the source is public</span><small>LICENSE · GitHub</small></div>
+      </div>
+    </section>
+  </div>
+</section>
+<script>
+  const m = document.getElementById('l-mach');
+  const io = new IntersectionObserver(es => { if (es[0].isIntersecting) { m.classList.add('on'); io.disconnect(); } }, { threshold: 0.45 });
+  io.observe(m);
+</script>

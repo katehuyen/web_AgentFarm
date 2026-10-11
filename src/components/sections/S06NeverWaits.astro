@@ -1,0 +1,62 @@
+---
+// 06 · Never waits (plan §5.4): a question card with an auto-answer countdown, a tool permission that waits for you,
+// the Now page on a phone (screenshot 023, three tabs from screenshot 021) and the sound events (screenshot 060).
+// The quota chip lights when the relay hero makes a quota handover, so the whole page shows one farm.
+import '../../styles/sections/waits.css';
+---
+<section id="s-waits" class="gap" aria-label="Never waits: question cards, permissions and the phone">
+  <div class="wrap">
+    <p class="sx"><b>06</b> Never waits</p>
+    <div class="sh">
+      <div><p class="pre">Question cards · your phone · sound</p><h2>Away from the desk. <em>Never in the way.</em></h2></div>
+      <p class="lead">An agent with a question doesn't sit idle for hours. A countdown runs, and when it ends the recommended answer goes in. Permissions are different: they wait for you, ring, and show up on your phone.</p>
+    </div>
+    <div class="wgrid">
+      <div class="cards">
+        <div class="qcard" id="w-q">
+          <div class="qh">
+            <span class="who"><i></i>developer</span><span class="eng">Claude</span><span class="kind">question</span>
+            <span class="ring" role="timer" aria-label="Auto-answer countdown"><svg viewBox="0 0 36 36" aria-hidden="true"><circle class="bg" cx="18" cy="18" r="15.5" /><circle class="fg" id="w-ring" cx="18" cy="18" r="15.5" /></svg><b id="w-cd">0:12</b></span>
+          </div>
+          <p class="qq" id="w-qq">Which export format should the timeline use?</p>
+          <div class="opts" id="w-opts"></div>
+          <p class="qf" id="w-qf">Nobody at the desk? When the ring runs out, the recommended option goes in.</p>
+        </div>
+        <div class="qcard perm" id="w-perm">
+          <div class="qh"><span class="who"><i></i>reviewer</span><span class="eng x">Codex</span><span class="kind">permission</span><span class="since" id="w-since">waiting 4m</span></div>
+          <p class="qq" id="w-pq">Run <code>git push origin main</code>?</p>
+          <p class="qf" id="w-pf">A tool permission is never answered for you. It waits, rings, and reaches your phone.</p>
+        </div>
+        <div class="sound" id="w-sound" aria-label="Sound events">
+          <span data-ev="card"><i></i>Question card · Pulse</span>
+          <span data-ev="ask"><i></i>Asking you · Intercom knock</span>
+          <span data-ev="done"><i></i>Turn finished · Crystal</span>
+          <span data-ev="quota"><i></i>Quota running out · Thin ticks</span>
+          <button type="button" class="snd" id="w-snd" aria-pressed="false">Sound off</button>
+        </div>
+      </div>
+      <div class="phone">
+        <div class="frame">
+          <div class="notch"></div>
+          <div class="scr">
+            <div class="tabs"><span class="on">● Now</span><span>● Web</span><span>Devices</span></div>
+            <h4>Now</h4>
+            <p class="psub" id="w-psub">2 waiting · 3 running · $41.20 today</p>
+            <div class="box"><h5>Waiting for you <span id="w-pw">2</span> ›</h5><div id="w-pwl"></div></div>
+            <div class="box"><h5>Running 3 ›</h5>
+              <div class="run"><span class="d on"></span><b>developer</b><span class="eng">Claude</span><em>working</em></div>
+              <div class="run"><span class="d"></span><b>developer</b><span class="eng a">Antigravity</span><em>idle</em></div>
+              <div class="run"><span class="d"></span><b>reviewer</b><span class="eng x">Codex</span><em>waiting</em></div>
+            </div>
+            <div class="box"><h5>Today</h5><div class="cost"><b id="w-pc">$41.20</b> spent today</div><div id="w-pacc"></div></div>
+            <div class="inp"><span>developer · working ▾</span><span>Say something…</span></div>
+          </div>
+        </div>
+        <p class="cap">The farm on your phone, in three tabs: Now, Web and Devices.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  import '../../scripts/waits.js';
+</script>

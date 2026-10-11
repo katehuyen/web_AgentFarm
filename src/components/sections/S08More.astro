@@ -1,0 +1,118 @@
+---
+// 08 · More (plan §4 tier 2 and §5.7–5.9): a bento of the parts people ask about next, then the density wall.
+// Sound rows come from the Sound page (screenshot 060) and play the extension's own tones; engine rows and the
+// honesty line come from the Engines page (screenshots 073, 074); the memory card follows projects.tracks
+// (info/ feature catalogue AF-08, AF-09); the platform card uses real bridge op names and the namespace counts in data/facts.js.
+import '../../styles/sections/more.css';
+import { facts } from '../../data/facts.js';
+
+const SOUNDS = [
+  { ev: 'Turn finished', tone: 'Crystal', id: 'crystal' },
+  { ev: 'Asking you', tone: 'Intercom knock', id: 'knock' },
+  { ev: 'Stalled', tone: 'Deep sonar', id: 'sonar' },
+  { ev: 'Session ended', tone: 'Marimba', id: 'marimba' },
+  { ev: 'Error', tone: 'Bell, urgent', id: 'bell' },
+  { ev: 'New notice', tone: 'Zen bowl', id: 'zen' },
+  { ev: 'Question card', tone: 'Pulse', id: 'pulse', ring: true },
+  { ev: 'Workflow asks you', tone: 'Pop', id: 'pop', ring: true },
+  { ev: 'Quota running out', tone: 'Thin ticks', id: 'ticks' },
+  { ev: 'Mission ended', tone: 'Lullaby', id: 'lullaby' },
+];
+const ENGINES = [
+  { n: 'Claude Code', pill: 'on a plan', p: 'A Claude Pro or Max plan, signed in once in the browser.', ok: true },
+  { n: 'Codex', pill: 'on a plan', p: 'A ChatGPT Plus, Pro, Team or Business plan, signed in once in the browser.', ok: true },
+  { n: 'Gemini', pill: 'not installed', p: 'Not installed on this machine: nothing can start until the gemini command exists.', ok: false },
+  { n: 'Antigravity', pill: 'on a plan', p: 'A Google account signed into the Antigravity app. The CLI borrows that sign-in.', ok: true },
+  { n: 'OpenCode', pill: 'no sign-in needed', p: 'Its own connected provider needs no sign-in at all.', ok: true },
+];
+const SECTIONS = ['Handover & Relay', 'Quota & Cost', 'Engines & Accounts', 'Sentry', 'Gatekeeper', 'Notifications & Sound', 'Remote Access', 'Projects', 'Knowledge', 'Media & Studio', 'Tasks & Queue', 'Monitoring & Health'];
+const top = facts.bridgeTop, max = top[0][1];
+const PAGES = ['Console', 'Dashboard', 'Live Timeline', 'Missions', 'Projects', 'Notices', 'Queue', 'A2A Notes', 'Chains', 'Needs You', 'Now', 'Living', 'Portfolio', 'Engines', 'Accounts', 'Secrets', 'Toolbox', 'Capabilities', 'Memory Graph', 'Search', 'Wiki', 'Studio', 'Airtable', 'Evals', 'Sound', 'Guide'];
+const FEATURES = ['Standing duties', 'Shared memory sync', '.agentpack export', 'Secrets in the OS keychain', 'File, hook and webhook triggers', 'Windows Task Scheduler export', 'Quality scorecard', 'Transcript search', 'Fleet reports into Obsidian', 'Workflow branching', 'Budget alerts', 'MCP inventory', 'Premiere export', 'Provider routes', 'Git worktrees', 'Smart retry', 'Machine migration', 'Superpowers on disk'];
+---
+<section id="s-more" class="gap" aria-label="More of Agent Farm">
+  <div class="wrap">
+    <p class="sx"><b>08</b> More</p>
+    <div class="sh">
+      <div><p class="pre">Sound · engines · memory · platform</p><h2>Everything a fleet <em>needs around it.</em></h2></div>
+      <p class="lead">{facts.commands} commands is too many to list. These are the parts people ask about next.</p>
+    </div>
+
+    <div class="bento">
+      <article class="card b-sound">
+        <p class="kick">Sound</p>
+        <h3>Hear who finished.</h3>
+        <p class="txt">Every event has its own tone, so you know what happened without looking. Press ▶ to hear the extension's own sounds.</p>
+        <p class="bar">🔊 Rings on 2 of 10 events · Say who: off · reminder 3m ×2</p>
+        <ul class="tones" id="m-tones">
+          {SOUNDS.map(s => <li class={s.ring ? 'ring' : ''}><span class="ev">{s.ev}</span><span class="tick" aria-label={s.ring ? 'rings' : 'silent'}>{s.ring ? '✓' : ''}</span><span class="tn">{s.tone}</span><button type="button" data-t={s.id} aria-label={`Play ${s.tone}`}><i></i></button></li>)}
+        </ul>
+        <p class="foot">Quiet hours 23:00 – 08:00 · mute all with one switch</p>
+      </article>
+
+      <article class="card b-eng">
+        <p class="kick">Engines</p>
+        <h3>Five engines. <em>An honest reading.</em></h3>
+        <div class="engs" id="m-engs">
+          {ENGINES.map(e => (
+            <div class={`er${e.ok ? "" : " off"}`}>
+              <div class="eh"><b>{e.n}</b><span class={`pill ${e.ok ? 'ok' : 'no'}`}>{e.pill}</span><button type="button" class="test" data-ok={e.ok ? '1' : ''}>⚡ Test</button></div>
+              <p>{e.p}</p>
+              <p class="nt">Not tested in this window. The reading above is what is on disk — a call is the only thing that proves it works.</p>
+            </div>
+          ))}
+        </div>
+        <p class="foot">Only Claude Code and OpenCode publish a price per turn. Anywhere else a cost is derived from your pricing rules, and the page says so.</p>
+      </article>
+
+      <article class="card b-mem">
+        <p class="kick">Never forgets</p>
+        <h3>Three months later, <em>it knows what failed.</em></h3>
+        <p class="txt">When an agent touches a backlog item and can't finish, it leaves a note. The next agent on that item reads every earlier attempt before it writes a line.</p>
+        <div class="term" id="m-term" aria-label="projects.tracks output">
+          <div class="cmd">› projects.tracks {'{'} code: "U-12" {'}'}</div>
+          <div class="out" data-d="0"><b>U-12</b> · export drops rows past 10k</div>
+          <div class="out" data-d="1"><span class="dt">Jul 3</span> developer · touched · root cause is in rows.ts, ran out of time</div>
+          <div class="out" data-d="2"><span class="dt">Jul 9</span> reviewer · touched · the cap lives in the writer, not the query</div>
+          <div class="out now" data-d="3"><span class="dt">Oct 11</span> developer · starts from there</div>
+        </div>
+        <p class="wiki">Decisions compile into your Obsidian wiki: <span>[[Relay]]</span><span>[[Export format]]</span><span>[[Row cap]]</span><span>[[Quota wall]]</span></p>
+      </article>
+
+      <article class="card b-plat">
+        <p class="kick">Platform</p>
+        <h3>Anything you can click, <em>an agent can call.</em></h3>
+        <p class="txt">Every command, right-click item and panel button maps to one of {facts.bridgeOps} bridge operations in {facts.namespaces} namespaces. A test fails the build if one doesn't.</p>
+        <div class="term small">
+          <div class="cmd">› farm.ops</div><div class="out">every operation, one line each</div>
+          <div class="cmd">› farm.waits</div><div class="out">everything the fleet is waiting for, in one reading</div>
+        </div>
+        <div class="ns" id="m-ns">
+          {top.map(([n, c]) => <div class="nr"><span>{n}</span><u><i style={`--w:${(c / max * 100).toFixed(1)}%`}></i></u><b>{c}</b></div>)}
+        </div>
+      </article>
+
+      <article class="card b-set">
+        <p class="kick">Settings</p>
+        <h3>{facts.settings} settings, <em>one search box.</em></h3>
+        <p class="txt">Every threshold in the relay above is one of them, and every one can be changed.</p>
+        <div class="chips">{SECTIONS.map(s => <span>{s}</span>)}</div>
+      </article>
+    </div>
+
+    <div class="nums" aria-label="Agent Farm in numbers">
+      <div><b>{facts.commands}</b><span>commands</span></div>
+      <div><b>{facts.settings}</b><span>settings</span></div>
+      <div><b>{facts.bridgeOps}</b><span>bridge ops</span></div>
+      <div><b>{facts.pages}</b><span>pages</span></div>
+      <div><b>{facts.engines.length}</b><span>engines</span></div>
+    </div>
+    <div class="wall" aria-label="More features">
+      <div class="row"><div class="belt">{[...PAGES, ...PAGES].map((p, i) => <span aria-hidden={i >= PAGES.length ? 'true' : undefined}>{p}</span>)}</div></div>
+      <div class="row rev"><div class="belt">{[...FEATURES, ...FEATURES].map((p, i) => <span aria-hidden={i >= FEATURES.length ? 'true' : undefined}>{p}</span>)}</div></div>
+    </div>
+  </div>
+</section>
+<script>
+  import '../../scripts/more.js';
+</script>
