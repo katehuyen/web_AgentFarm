@@ -3,7 +3,8 @@
 // extension's notification, "Agent Farm bridge: <op> — ok", and the farm beside the chat changes. When the section
 // first comes into view the asks play one after another until the visitor picks one. The ops and their arguments are
 // the extension's own (_REF/bridge.md, extension.ts, contentRecipes.ts, agentpack.ts); ids, names and outputs are demo data.
-import { vis, reduce, on } from './state.js';
+// The counts in the farm.ops view are the extension's op names per namespace, counted in its source (Oct 2026).
+import { vis, reduce, on, emit } from './state.js';
 
 const $ = id => document.getElementById('bg-' + id);
 const log = $('log'), asks = $('asks'), dview = $('view'), dt = $('dt'), toasts = $('toasts');
@@ -23,7 +24,7 @@ const VIEWS = {
   resume: () => ['Sessions', desk.found ? `<div class="dc nw"><b>Storm shots keep losing the beam</b><span>🤖 showrunner · Claude · 6 turns · 2h ago · $0.84</span><span class="mono">id 7c41e2a0 · transcript found by the bridge</span></div>${desk.read ? '<div class="dc"><b>Read: turns 4 to 6</b><span>4 · It passed. What exactly changed?</span><span>5 · Write that line into the recipe\'s scene step.</span><span>6 · Queue scene 5.</span></div>' : ''}` : '<p class="dim">Looking it up…</p>'],
   route: () => ['Engines · Providers', `<div class="dr"><b>Kimi K2</b><span>kimi · KIMI_KEY · tested</span></div><div class="dr"><b>OpenRouter free</b><span>openrouter · OPENROUTER_FREE · tested 9h ago</span></div>${desk.route ? '<div class="dr nw"><b>OpenRouter free 2</b><span>openrouter · OPENROUTER_FREE · available · never tested</span></div>' : ''}${desk.notice ? '<p class="dn">🔔 Notices · A key name was bound: <b>OPENROUTER_FREE</b> → a route at openrouter.ai</p>' : ''}`],
   pack: () => ['Your desktop', desk.pack ? `<div class="dc nw"><b>📦 showrunner.agentpack</b><span>one file, for another machine or another person</span></div><ul class="pk"><li class="y">its rules and duties</li><li class="y">its tools and skills</li><li class="y">3 workflows, 1 schedule, 1 trigger: they arrive switched off</li><li class="n">its memory: the agent starts fresh</li><li class="n">secrets: only their names travel</li></ul>` : '<p class="dim">Packing…</p>'],
-  ops: () => ['farm.ops', `<p class="dim">~560 operations in ~75 areas. A few of them:</p><div class="ns">${[['projects', 59], ['sessions', 31], ['a2a', 26], ['accounts', 24], ['workflows', 22], ['queue', 20], ['console', 20], ['tasks', 19], ['missions', 19], ['studio', 15], ['memory', 14], ['wiki', 13], ['agents', 13], ['providers', 11], ['notices', 11], ['kapici', 10], ['remote', 10], ['baton', 9], ['schedules', 7], ['triggers', 6], ['telegram', 6], ['evals', 4]].map(([n, c]) => `<span>${n}<i>${c}</i></span>`).join('')}<span class="more">and more</span></div>`],
+  ops: () => ['farm.ops', `<p class="dim">~560 operations in ~75 areas. A few of them:</p><div class="ns">${[['projects', 59], ['sessions', 30], ['a2a', 26], ['workflows', 21], ['alerts', 21], ['queue', 20], ['console', 19], ['accounts', 19], ['tasks', 18], ['missions', 17], ['studio', 15], ['memory', 14], ['wiki', 13], ['agents', 13], ['providers', 11], ['sentry', 11], ['kapici', 10], ['remote', 10], ['baton', 9], ['schedules', 7], ['triggers', 6], ['telegram', 6]].map(([n, c]) => `<span>${n}<i>${c}</i></span>`).join('')}<span class="more">and more</span></div>`],
 };
 let view = 'weekly';
 function drawDesk() { const [t, h] = VIEWS[view](); dt.textContent = t; dview.innerHTML = h; }
@@ -68,7 +69,7 @@ const S = {
   ops: [
     { u: 'What can you do in the farm?' },
     { c: 'farm.ops', o: '{"ok":true,"result":[{"op":"a2a.notes.post",…},{"op":"accounts.list",…}, … 561 ops]}' },
-    { a: 'Anything you can click: about 560 operations. Tasks, schedules, triggers and workflows; missions and the queue; sessions, transcripts and search; the wiki; projects and their backlogs; routes, accounts and Gatekeeper; notices and your phone. I read the list fresh each time, so new abilities show up by themselves. Two things I won\'t do: see a key\'s value, or start paid work you did not ask for.' },
+    { a: 'Nearly anything you can click: about 560 operations. Tasks, schedules, triggers and workflows; missions and the queue; sessions, transcripts and search; the wiki; projects and their backlogs; routes, accounts and Gatekeeper; notices and your phone. I read the list fresh each time, so new abilities show up by themselves. Two things I won\'t do: see a key\'s value, or start paid work you did not ask for.' },
   ],
 };
 function line(it) {
@@ -85,6 +86,7 @@ async function play(id) {
   view = id; desk = { plan: PLAN0() }; drawDesk();
   log.innerHTML = '';
   for (const b of asks.querySelectorAll('[data-ask]')) b.classList.toggle('on', b.dataset.ask === id);
+  emit('showing', { weekly: 'bridge', resume: 'shared', route: 'bridge', pack: 'move', ops: 'ops' }[id]);
   for (const it of S[id]) {
     if (!await hold(it.u ? 300 : 700, me)) return;
     const el = line(it);
@@ -102,7 +104,7 @@ async function play(id) {
 asks.addEventListener('click', e => { const b = e.target.closest('[data-ask]'); if (b) { user = true; play(b.dataset.ask); } });
 
 /* the chapter VIII tiles */
-on('feature', id => { const a = { bridge: 'weekly', ops: 'ops', mcp: 'ops', move: 'pack' }[id]; if (a) { user = true; play(a); } });
+on('feature', id => { const a = { bridge: 'weekly', ops: 'ops', mcp: 'ops', move: 'pack', shared: 'resume' }[id]; if (a) { user = true; play(a); } });
 
 /* first sight: the asks, one after another, until the visitor picks one */
 drawDesk();

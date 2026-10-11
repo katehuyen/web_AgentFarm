@@ -17,6 +17,5 @@ import './memory.js';
 import './brains.js';
 import './bridge.js';
 import './waits.js';
-import './more.js';
 import './local.js';
 import './close.js';

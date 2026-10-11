@@ -17,7 +17,6 @@ export const page = [
   { id: 's-brains', label: 'Brains', d: 6 },
   { id: 's-bridge', label: 'Just ask', d: 7 },
   { id: 's-waits', label: 'Never waits', d: 7 },
-  { id: 's-more', label: 'More' },
   { id: 's-local', label: 'Local', d: 8 },
   { id: 's-close', label: 'Start' },
 ];

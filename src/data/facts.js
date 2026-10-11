@@ -13,10 +13,7 @@ export const facts = {
   pages: 54,                   // info/ Technical DNA: "Pages (54 hosts)"
   engines: ['Claude Code', 'Codex', 'Gemini', 'Antigravity', 'OpenCode'], // Engines page (screenshot 073)
   realChainLegs: 92,           // Console session card and strip show "⑂ 92" (screenshots 004, 035)
-  /* the largest bridge namespaces and their op counts (info/ Technical DNA, Bridge row) */
-  bridgeTop: [['projects', 59], ['sessions', 31], ['a2a', 26], ['workflows', 22], ['queue', 20], ['tasks', 19], ['missions', 19], ['accounts', 19], ['console', 18], ['alerts', 17]],
   livePort: 8377,              // src/extension.ts, setting agentFarm.livePort default
-  license: 'MIT',              // package.json "license"
 };
 
 // Relay defaults, from package.json contributes.configuration.

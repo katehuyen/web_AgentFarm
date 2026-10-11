@@ -1,11 +1,10 @@
 // Site-wide links and the site's own version. One place to change where the call to action goes.
-// Open decision (plan §5.11): early access list or Marketplace listing. Until then the CTA points at the public repo.
+// The extension's source is closing (plan v0.7 §8), so nothing links to its repo: the CTA goes to the Marketplace listing
+// (publisher muvusoft, name agent-farm in the extension's package.json). The changelog gets its own page with the /features pages.
 
 export const site = {
   version: '0.4.0',                                        // this website, see CHANGELOG.md
   url: 'https://agentfarm.space',
-  get: { label: 'Get Agent Farm', href: 'https://github.com/katehuyen/vsc_AgentFarm' },
-  repo: 'https://github.com/katehuyen/vsc_AgentFarm',
-  changelog: 'https://github.com/katehuyen/vsc_AgentFarm/blob/main/CHANGELOG.md',
+  get: { label: 'Get Agent Farm', href: 'https://marketplace.visualstudio.com/items?itemName=muvusoft.agent-farm' },
   maker: { name: 'Muvusoft', href: 'https://muvusoft.uk/' },
 };

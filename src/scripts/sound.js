@@ -1,4 +1,4 @@
-// The extension's own tones (media/sounds in the extension repo, MIT), served from assets/sounds (a relative path, so it also works from disk).
+// The extension's own tones (media/sounds in the extension), served from assets/sounds (a relative path, so it also works from disk).
 // Nothing plays until a person clicks: a play button, or the sound switch in Never waits.
 const FILE = {
   crystal: 'af_crystal_turn', knock: 'af_intercom_knock', sonar: 'af_deep_sonar', marimba: 'af_marimba_success',

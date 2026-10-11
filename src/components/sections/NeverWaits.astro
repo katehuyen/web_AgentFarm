@@ -2,8 +2,22 @@
 // Never waits (plan §5.4): a question card with an auto-answer countdown, a tool permission that waits for you,
 // the Now page on a phone (screenshot 023, three tabs from screenshot 021) and the sound events (screenshot 060).
 // The quota chip lights when the relay hero makes a quota handover, so the whole page shows one farm.
+// All ten tones come from the Sound page (060) and play the extension's own files; the ten events are those of
+// agentFarm.alerts.speak, and quiet hours and Say who are agentFarm.alerts.quietHours and .speak (both off by default).
 import '../../styles/sections/waits.css';
 import { no } from '../../data/page.js';
+const SOUNDS = [
+  { ev: 'Turn finished', tone: 'Crystal', id: 'crystal' },
+  { ev: 'Asking you', tone: 'Intercom knock', id: 'knock' },
+  { ev: 'Stalled', tone: 'Deep sonar', id: 'sonar' },
+  { ev: 'Session ended', tone: 'Marimba', id: 'marimba' },
+  { ev: 'Error', tone: 'Bell, urgent', id: 'bell' },
+  { ev: 'New notice', tone: 'Zen bowl', id: 'zen' },
+  { ev: 'Question card', tone: 'Pulse', id: 'pulse', ring: true },
+  { ev: 'Workflow asks you', tone: 'Pop', id: 'pop', ring: true },
+  { ev: 'Quota running out', tone: 'Thin ticks', id: 'ticks' },
+  { ev: 'Mission ended', tone: 'Lullaby', id: 'lullaby' },
+];
 ---
 <section id="s-waits" class="gap" aria-label="Never waits: question cards, permissions and the phone">
   <div class="wrap">
@@ -35,8 +49,15 @@ import { no } from '../../data/page.js';
           <span data-ev="quota"><i></i>Quota running out · Thin ticks</span>
           <button type="button" class="snd" id="w-snd" aria-pressed="false">Sound off</button>
         </div>
+        <details class="tones" id="w-tones" data-shows="sound">
+          <summary><b>All ten tones</b><span>Rings on 2 of 10 events · press ▶ to hear one</span></summary>
+          <ul id="w-tl">
+            {SOUNDS.map(s => <li class={s.ring ? 'rg' : ''}><span class="ev">{s.ev}</span><span class="tick" aria-label={s.ring ? 'rings' : 'silent'}>{s.ring ? '✓' : ''}</span><span class="tn">{s.tone}</span><button type="button" data-t={s.id} aria-label={`Play ${s.tone}`}><i></i></button></li>)}
+          </ul>
+          <p class="tf">Quiet hours wrap midnight, say 23:00 – 08:00. Say who speaks the agent's name after the tone, on your own machine. One switch mutes it all.</p>
+        </details>
       </div>
-      <div class="phone">
+      <div class="phone" id="w-phone" data-shows="phone">
         <div class="frame">
           <div class="notch"></div>
           <div class="scr">

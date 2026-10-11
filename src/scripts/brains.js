@@ -206,6 +206,7 @@ on('feature', id => {
     radar: () => { hlRadar = true; setTab('routes'); pickEng = 'claude'; pickBrain = 'or-free'; board(); },
     health: () => { hlHealth = true; setTab('routes'); const h = $('health'); if (h) view.scrollTop = h.offsetTop - 20; },
     accounts: () => setTab('accounts'),
+    policies: () => { setTab('accounts'); const p = view.querySelector('.pol'); if (p) view.scrollTop = p.offsetTop - 20; emit('showing', 'policies'); },
     vault: () => setTab('secrets'),
   }[id];
   if (f) { user = true; f(); }

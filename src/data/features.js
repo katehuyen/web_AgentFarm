@@ -76,7 +76,7 @@ export const features = [
   { id: 'reports', d: 5, n: 'Reports and digests', s: 'Daily and weekly digests and fleet reports, written into your vault.', sig: 'weekly', src: 'settings → Reports' },
 
   // VII · Any brain
-  { id: 'engines', d: 6, n: 'Five engines', s: 'Claude Code, Codex, Gemini, Antigravity and OpenCode. What is read off disk says so; only one real test call proves an engine works.', sig: '5', at: 's-more', src: 'Engines page (073, 074); engineTest.ts' },
+  { id: 'engines', d: 6, n: 'Five engines', s: 'Claude Code, Codex, Gemini, Antigravity and OpenCode. What is read off disk says so; only one real test call proves an engine works.', sig: '5', at: 's-brains', src: 'Engines page (073, 074); engineTest.ts' },
   { id: 'routes', d: 6, n: 'Plug-in brains', s: 'Claude Code and OpenCode can run other models through a route: free or paid, from a provider or an address on your own machine. Five engines, any number of brains.', sig: '3 routes', src: 'Engines → Providers (M9, M9b); routeEngines.ts; providerProfiles.ts (loopback)' },
   { id: 'radar', d: 6, n: 'Free-model radar', s: 'Set it up once as a schedule: every morning an agent checks which models are free today and adds new ones as routes, over the bridge.', sig: '04:30 daily', src: 'owner\'s schedule (M7-8-a); secretBinds.ts example; not shipped as a feature' },
   { id: 'health', d: 6, n: 'Route health', s: 'What each route offers is checked for free. A real, paid turn is only spent when you press for it.', sig: 'free check', src: 'Engines → Route health (M9)' },
@@ -85,12 +85,12 @@ export const features = [
   { id: 'switch', d: 6, n: 'Switch the model', s: 'Change the model, effort or account of a session from the Console, between turns.', sig: 'mid-session', at: 's-console', src: 'Console model and effort pickers (M11)' },
 
   // VIII · Just ask
-  { id: 'bridge', d: 7, n: 'Just ask', s: 'Say "make me a weekly video recipe" in a chat. The agent sets it up through the bridge; you never open a form.', sig: 'in chat', at: 's-more', src: '_REF/bridge.md' },
-  { id: 'ops', d: 7, n: '~560 operations', s: 'Anything you can click, an agent can call. It reads the list from farm.ops, so new abilities show up by themselves.', sig: 'farm.ops', at: 's-more', src: 'Technical DNA: ~560 ops in ~75 namespaces' },
+  { id: 'bridge', d: 7, n: 'Just ask', s: 'Say "make me a weekly video recipe" in a chat. The agent sets it up through the bridge; you never open a form.', sig: 'in chat', at: 's-bridge', src: '_REF/bridge.md' },
+  { id: 'ops', d: 7, n: '~560 operations', s: 'What you can do with a click, an agent can do with a call; only the secret vault stays off it, on purpose. It reads the list from farm.ops, so new abilities show up by themselves.', sig: 'farm.ops', at: 's-bridge', src: 'Technical DNA: ~560 ops in ~75 namespaces' },
   { id: 'mcp', d: 7, n: 'One command line', s: 'The bridge is a single shell command, so any agent that can run a command can use the farm. Gatekeeper also comes as an MCP server.', sig: 'af.js', src: 'src/service/af.ts; src/mcp/kapici' },
   { id: 'matrix', d: 7, n: 'Capability Matrix', s: 'Which agent has which skill, MCP server and memory file, and which of them were actually used in 30 days.', sig: '30 days', src: 'Toolbox → Capability Matrix (Mz1)' },
   { id: 'phone', d: 7, n: 'Phone and Telegram', s: 'Start a session, approve with a button and watch the fleet from your pocket. Android too.', sig: 'anywhere', at: 's-waits', src: 'Mobile page; Telegram bot; Android' },
-  { id: 'sound', d: 7, n: 'Sound', s: 'A tone for every event, quiet hours, and which agent finished, said out loud.', sig: '10 tones', at: 's-more', src: 'alertVoices, media/sounds' },
+  { id: 'sound', d: 7, n: 'Sound', s: 'A tone for every event, quiet hours, and which agent finished, said out loud.', sig: '10 tones', at: 's-waits', src: 'alertVoices, media/sounds' },
   { id: 'move', d: 7, n: 'Take it with you', s: 'Pack an agent as an .agentpack: its rules, tools, workflows and schedules, never its memory or secrets. Unpack it on another machine.', sig: '.agentpack', src: 'agentpack.ts; agents.pack.export / import' },
 
   // IX · Yours alone

@@ -1,7 +1,7 @@
 // Never waits: a question card that answers itself when its countdown runs out, a tool permission that never does,
 // and the Now page on a phone that mirrors both. Auto-answer covers questions only; permissions wait for a person.
-// The countdown is shortened for the demo (12 seconds).
-import { ACCT, S, reduce, on, vis } from './state.js';
+// The countdown is shortened for the demo (12 seconds). Under the sound strip, all ten tones play on ▶.
+import { ACCT, S, reduce, on, vis, emit } from './state.js';
 import { play, sound } from './sound.js';
 
 const $ = id => document.getElementById('w-' + id);
@@ -97,6 +97,20 @@ $('pwl').addEventListener('click', e => {
   if (b.dataset.a === 'q') answer(0, false);
   else if (b.dataset.a === 'open') card.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
   else decide(b.dataset.a === 'allow');
+});
+
+/* all ten tones: ▶ plays one, and the row shows an equalizer while it plays. The Sound tile opens the list. */
+const tones = $('tones');
+$('tl').addEventListener('click', async e => {
+  const b = e.target.closest('button'); if (!b) return;
+  const li = b.closest('li');
+  li.classList.add('play');
+  await play(b.dataset.t);
+  setTimeout(() => li.classList.remove('play'), 1400);
+});
+on('feature', id => {
+  if (id === 'sound') { tones.open = true; emit('showing', 'sound'); }
+  else if (id === 'phone') emit('showing', 'phone');
 });
 
 on('pass', p => { if (p.why === 'q') ring('quota'); money(); });

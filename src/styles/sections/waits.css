@@ -46,6 +46,25 @@
 #s-waits .snd{font-family:var(--mono);font-size:11.5px;color:var(--ink);background:none;border:1px dashed #4b4c44;padding:6px 10px;cursor:pointer}
 #s-waits .snd:hover{border-color:var(--lime)}
 #s-waits .snd[aria-pressed="true"]{border-style:solid;border-color:var(--lime);color:var(--lime)}
+/* all ten tones, folded under the strip */
+#s-waits .tones{border:1px solid var(--rule);background:#14150f;font-family:var(--ui)}
+#s-waits .tones summary{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:9px 12px;cursor:pointer;list-style:none;font-size:13px}
+#s-waits .tones summary::-webkit-details-marker{display:none}
+#s-waits .tones summary::before{content:'▸';color:var(--lime);font-size:11px;transition:transform .2s}
+#s-waits .tones[open] summary::before{transform:rotate(90deg)}
+#s-waits .tones summary b{color:var(--ink);font-weight:600}
+#s-waits .tones summary span{font-family:var(--mono);font-size:11px;color:var(--dim)}
+#s-waits .tones ul{list-style:none;margin:0;padding:0 12px;font-size:13px}
+#s-waits .tones li{display:grid;grid-template-columns:minmax(0,1fr) 18px minmax(0,.9fr) 30px;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid #1f2019;color:#cfd0c4}
+#s-waits .tones .tick{color:var(--lime);text-align:center}
+#s-waits .tones .tn{color:#a3a495}
+#s-waits .tones li.rg .ev{color:#f1f1e7}
+#s-waits .tones li button{width:26px;height:22px;display:grid;place-items:center;background:#22231d;border:1px solid #3a3b33;cursor:pointer}
+#s-waits .tones li button:hover{border-color:var(--lime)}
+#s-waits .tones li button i{width:0;height:0;border-left:7px solid var(--lime);border-top:4.5px solid transparent;border-bottom:4.5px solid transparent}
+#s-waits .tones li.play,#s-waits .tones li.play .tn{color:var(--lime)}
+#s-waits .tones li.play button i{width:9px;height:10px;border:0;background:linear-gradient(90deg,var(--lime) 0 2px,transparent 2px 3.5px,var(--lime) 3.5px 5.5px,transparent 5.5px 7px,var(--lime) 7px 9px);animation:waits-eq .45s ease-in-out infinite alternate;transform-origin:bottom}
+#s-waits .tones .tf{margin:0;padding:9px 12px 11px;font-family:var(--mono);font-size:11px;line-height:1.55;color:var(--dim)}
 @keyframes waits-eq{from{transform:scaleY(.35)}to{transform:scaleY(1)}}
 
 /* phone (Now page) */

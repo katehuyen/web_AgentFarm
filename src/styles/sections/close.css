@@ -9,8 +9,8 @@
 #s-close details p{margin:0 0 18px 28px;color:#b9baa9;font-size:15px;max-width:620px}
 #s-close .end{margin-top:clamp(56px,7vw,100px)}
 #s-close .go{display:grid;gap:12px;justify-items:start}
-#s-close .still{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;color:var(--dim)}
-#s-close .still i{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime);animation:close-blink 1.4s steps(2) infinite}
-#s-close .still b{color:var(--yellow);font-weight:500}
+#s-close .still{display:block;font-family:var(--mono);font-size:11.5px;color:var(--dim)}
+#s-close .still i{display:inline-block;vertical-align:middle;margin:0 8px 2px 0;width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime);animation:close-blink 1.4s steps(2) infinite}
+#s-close .still b{color:var(--yellow);font-weight:500;white-space:nowrap}
 @keyframes close-blink{50%{opacity:.25}}
 @media (max-width:860px){#s-close .faq{grid-template-columns:minmax(0,1fr)}}

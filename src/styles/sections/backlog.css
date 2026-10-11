@@ -9,12 +9,26 @@
 #s-backlog .mtabs span{padding:8px 14px;border-right:1px solid #2e2f28}
 #s-backlog .mtabs .on{background:#1f201b;color:#f1f1e7;box-shadow:inset 0 1px 0 var(--blue)}
 #s-backlog .pbody{padding:16px 18px 18px}
+/* the project list (on the real page a column on the left; here a row, to keep the panel's width for the backlog) */
+#s-backlog .plist{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 12px;padding-bottom:12px;border-bottom:1px solid #2e2f28}
+#s-backlog .plist .pl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#a3a495;margin-right:4px}
+#s-backlog .plist button{display:inline-flex;align-items:center;gap:7px;font-family:var(--ui);font-size:12.5px;color:#cfd0c4;background:#24251f;border:1px solid #3a3b33;padding:4px 11px;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+#s-backlog .plist button:hover{border-color:#77786d;color:#f1f1e7}
+#s-backlog .plist button i{width:8px;height:8px;border-radius:50%;background:#3794ff}
+#s-backlog .plist button:nth-of-type(2) i{background:#e3cf5a}
+#s-backlog .plist button:nth-of-type(3) i{background:#4fc1d6}
+#s-backlog .plist button:nth-of-type(4) i{background:#5fbf6a}
+#s-backlog .plist button.on{background:#2f3027;border-color:#8f8f84;color:#fff}
+#s-backlog .pdesc{margin:4px 0 0;font-size:12.5px;color:#b9baa9;line-height:1.45}
 #s-backlog .phead{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px}
 #s-backlog .phead h3{margin:0;font-size:17px;font-weight:600;color:#f1f1e7}
 #s-backlog .phead span{font-size:12.5px;color:#a3a495}
-#s-backlog .ptabs{display:flex;gap:3px;margin:12px 0 0;border-bottom:1px solid #3a3b33;overflow:hidden}
-#s-backlog .ptabs span{flex:none;padding:6px 11px 5px;font-size:12px;color:#d6d6cb;background:color-mix(in srgb,var(--tc) 32%,#1f201b);border-top:3px solid var(--tc);border-radius:4px 4px 0 0}
-#s-backlog .ptabs .on{background:#3a382a;color:#fff;font-weight:600;border-top-color:var(--t5);padding-top:8px;margin-top:-2px}
+#s-backlog .ptabs{display:flex;gap:3px;margin:12px 0 0;border-bottom:1px solid #3a3b33;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+#s-backlog .ptabs::-webkit-scrollbar{display:none}
+#s-backlog .ptabs span,#s-backlog .ptabs button{flex:none;padding:6px 11px 5px;font-family:var(--ui);font-size:12px;color:#d6d6cb;background:color-mix(in srgb,var(--tc) 32%,#1f201b);border:0;border-top:3px solid var(--tc);border-radius:4px 4px 0 0}
+#s-backlog .ptabs button{cursor:pointer;box-shadow:inset 0 -2px 0 rgba(241,241,231,.35)}
+#s-backlog .ptabs button:hover{color:#fff;background:color-mix(in srgb,var(--tc) 48%,#1f201b)}
+#s-backlog .ptabs .on{box-shadow:none;background:#3a382a;color:#fff;font-weight:600;border-top-color:var(--t5);padding-top:8px;margin-top:-2px}
 #s-backlog .bline{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px;margin:14px 0 12px;font-size:13px;color:#cfd0c4}
 #s-backlog .bline b{font-size:17px;color:#f1f1e7;font-weight:600;font-variant-numeric:tabular-nums}
 #s-backlog .bline .file{font-size:12px;color:#a3a495}
@@ -68,6 +82,7 @@
 #s-backlog .k.bug{background:#c2245f;color:#fff}
 #s-backlog .k.feat{background:#2d8f9a;color:#fff}
 #s-backlog .k.ux{background:#6b55a3;color:#fff}
+#s-backlog .k.research{background:#8a6d1f;color:#fff}
 #s-backlog .by{color:#d9d9ce}
 #s-backlog .sz{color:#d9d9ce;min-width:18px;text-align:center}
 #s-backlog .par{color:#a8d86a}
@@ -85,6 +100,56 @@
 #s-backlog .row.filed{border-left-color:#5b8fd6}
 #s-backlog .row.gone{opacity:0}
 
+/* Projects → Track (M14) */
+#s-backlog .trv{margin-top:14px;min-height:420px}
+#s-backlog .tstat{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;font-size:13px;color:#cfd0c4}
+#s-backlog .tstat b{font-size:15px;color:#f1f1e7;font-weight:600;font-variant-numeric:tabular-nums}
+#s-backlog .tstat .u{color:#e4a84a;text-decoration:underline;text-underline-offset:3px}
+#s-backlog .tstat .u b{color:#e4a84a}
+#s-backlog .tstat .u.z{color:#a3a495;text-decoration:none}
+#s-backlog .tstat .u.z b{color:#cfd0c4}
+#s-backlog .tstat .file{font-size:11.5px;color:#a3a495;font-family:var(--mono)}
+#s-backlog .tbtn,#s-backlog .tviews{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px;font-size:12px}
+#s-backlog .tbtn span{color:#cfd0c4;background:#2b2c26;border:1px solid #3a3b33;padding:3px 10px}
+#s-backlog .tviews{padding-top:10px;border-top:1px solid #2e2f28}
+#s-backlog .tviews span{color:#cfd0c4;padding:3px 9px}
+#s-backlog .tviews .on{background:#2f3027;color:#e3cf5a;font-weight:600}
+#s-backlog .tviews .srt{margin-left:auto;border:1px solid #45463e;background:#1b1c17;padding:3px 10px}
+#s-backlog .tviews .cnt{color:#a3a495}
+#s-backlog .titems{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+#s-backlog .ti{background:#24251f;border:1px solid #2e2f28;border-left:3px solid #4fc1d6;padding:8px 10px;cursor:pointer;transition:background .2s}
+#s-backlog .ti:hover{background:#292a23}
+#s-backlog .ti.done{border-left-color:#8f8a3a}
+#s-backlog .ti.open{background:#272820}
+#s-backlog .ti:focus-visible{outline:1px solid #8f8f84}
+#s-backlog .t1{display:flex;flex-wrap:wrap;align-items:center;gap:5px 9px;font-size:13px;color:#e4e4d9}
+#s-backlog .t1 code,#s-backlog .tev .sid,#s-backlog .t2 .sid{font-family:var(--mono);font-size:11px;color:#eeefe6;background:#33342d;padding:1px 6px}
+#s-backlog .stc{font-size:11px;line-height:16px;padding:0 7px;border-radius:8px;border:1px solid}
+#s-backlog .stc.open{color:#4fc1d6;border-color:#2c7584;background:#17292c}
+#s-backlog .stc.done{color:#c2b85a;border-color:#6b6630;background:#26251a}
+#s-backlog .t1 .by{font-size:11.5px;color:#d9d9ce}
+#s-backlog .t1 .sp{font-size:11.5px;color:#a3a495;font-family:var(--mono)}
+#s-backlog .t1 .tt{flex:1 1 220px;min-width:0}
+#s-backlog .ti.done .tt{color:#b9baa9}
+#s-backlog .t1 .sz{font-size:11.5px;color:#a3a495;margin-left:auto}
+#s-backlog .t2{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin-top:6px;font-size:11.5px;color:#a3a495}
+#s-backlog .tn{font-family:var(--mono);color:#cfd0c4}
+#s-backlog .ev{font-size:11px;line-height:16px;padding:0 8px;border-radius:8px;border:1px solid}
+#s-backlog .ev.open{color:#9bd06a;border-color:#4d6b1c;background:#1d2614}
+#s-backlog .ev.touch{color:#e4c76a;border-color:#6b5a1c;background:#29241a}
+#s-backlog .ev.done{color:#c2b85a;border-color:#6b6630;background:#26251a}
+#s-backlog .unc{font-size:11px;color:#e4a84a;border:1px dashed #6b5a1c;padding:0 6px;border-radius:8px}
+#s-backlog .tev{list-style:none;margin:8px 0 0;padding:0 0 0 12px;border-left:1px dashed #45463e;display:grid;gap:8px}
+#s-backlog .tev li{display:flex;flex-wrap:wrap;align-items:center;gap:3px 9px;font-size:11.5px;color:#a3a495;animation:backlog-in .4s ease-out}
+#s-backlog .tev .ear{color:#77786d;font-style:italic}
+#s-backlog .tev .when{color:#cfd0c4;min-width:92px}
+#s-backlog .tev .wh{color:#d9d9ce}
+#s-backlog .tev p{flex-basis:100%;margin:0;font-size:13px;color:#eeefe6;line-height:1.45}
+#s-backlog .tev p::before{content:'“';color:#77786d}
+#s-backlog .tev p::after{content:'”';color:#77786d}
+#s-backlog .tnx{margin:9px 0 0;font-size:12.5px;color:var(--lime);animation:backlog-in .4s ease-out}
+@keyframes backlog-in{from{opacity:0;transform:translateY(4px)}}
+
 /* the points */
 #s-backlog .pts{list-style:none;margin:0;padding:0;display:grid;gap:16px}
 #s-backlog .pts li{position:relative;padding-left:22px;color:#b9baa9;font-size:15px;line-height:1.5}
@@ -99,4 +164,5 @@
 #s-backlog .row .meta{grid-column:4/-1}
 #s-backlog .row .by,#s-backlog .row .par{display:none}
 #s-backlog .chip:nth-child(n+10){display:none}}
-@media (max-width:620px){#s-backlog .pbody{padding:14px 12px 14px}#s-backlog .mtabs span:not(.on){display:none}#s-backlog .row,#s-backlog .ta{font-size:14px}}
+@media (max-width:620px){#s-backlog .pbody{padding:14px 12px 14px}#s-backlog .ptabs span{display:none}#s-backlog .plist .pl{display:none}#s-backlog .tstat .file,#s-backlog .tbtn,#s-backlog .tviews .srt,#s-backlog .tviews span:not(.on):not(.cnt){display:none}#s-backlog .trv{min-height:0}#s-backlog .mtabs span:not(.on){display:none}#s-backlog .row,#s-backlog .ta{font-size:14px}}
+@media (prefers-reduced-motion:reduce){#s-backlog .tev li,#s-backlog .tnx{animation:none}}
