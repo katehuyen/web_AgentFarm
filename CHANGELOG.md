@@ -2,6 +2,15 @@
 
 All notable changes to agentfarm.space. The site follows [semantic versioning](https://semver.org).
 
+## 0.4.0 · 2026-10-11 (preview, not yet on main)
+
+The page now shows everything the farm does, not only the relay.
+
+- New section 03 The whole farm: 63 capabilities as tiles in nine districts (Never stops, Any project, Beyond code, Recipes and triggers, Works as a team, Never forgets, Any brain, Just ask, Yours alone) and a card of the figures under them. Click a tile and the desk below reads it out; a few tile figures follow the live relay, accounts and backlog.
+- Five stories play across the board, one step at a time, with a line following the path: a long video landing in a watched folder, a weekend chain, a thesis chapter, continuing another engine's session by its id, and a recipe set up from one sentence. On phones the tiles become chips and the desk shows the path so far.
+- One list for every capability (`src/data/features.js`), with where each line was checked; the /features and /pricing pages planned next will read the same list.
+- Sections renumbered 01–12; files renamed to match.
+
 ## 0.3.0 · 2026-10-11
 
 The page now says where the work comes from: the project backlog.

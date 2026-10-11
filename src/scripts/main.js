@@ -5,6 +5,7 @@ import './header.js';
 import './sideindex.js';
 import './relay.js';
 import './fleet.js';
+import './atlas.js';
 import './console.js';
 import './backlog.js';
 import './days.js';

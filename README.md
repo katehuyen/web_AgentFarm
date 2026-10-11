@@ -39,15 +39,16 @@ The order was agreed with the product owner: the three v2 prototype heroes first
 |---|---|---|---|
 | 01 | Relay hero: live leg counter, relay track, quota shield, console | `s-relay` | prototype v2.3 Relay Launch |
 | 02 | Fleet wall: six live Agent Farm pages | `s-fleet` | prototype v2.2 Control Room |
-| 03 | Console, exploded and assembled on scroll | `s-console` | prototype v2.1 Command Deck |
-| 04 | Backlog: the project's work list, captured, ordered and worked off | `s-backlog` | new, the owner's Projects → Backlog screenshots (2026-10-11) |
-| 05 | Day and night: one chain across three days and four nights, item by item | `s-days` | prototype v2.3 |
-| 06 | The rules of the relay (real defaults) | `s-rules` | prototype v2.3 |
-| 07 | Never waits: question card, permission, phone, sound | `s-waits` | new, screenshots 004, 021, 023, 060 |
-| 08 | Together: a mission with a lead and a team | `s-together` | new, screenshot 043 |
-| 09 | More: sound, engines, memory, platform, settings | `s-more` | new, screenshots 060, 073, 074 |
-| 10 | Local: nothing goes to us, and the proof | `s-local` | new, plus the v2.1 proof block |
-| 11 | Start: straight answers and the closing band | `s-close` | v2.3 closing band |
+| 03 | The whole farm: every capability as a tile in nine districts, with stories that run across them | `s-atlas` | new (plan v0.7), the extension's source and the owner's Mserisi screenshots |
+| 04 | Console, exploded and assembled on scroll | `s-console` | prototype v2.1 Command Deck |
+| 05 | Backlog: the project's work list, captured, ordered and worked off | `s-backlog` | new, the owner's Projects → Backlog screenshots (2026-10-11) |
+| 06 | Day and night: one chain across three days and four nights, item by item | `s-days` | prototype v2.3 |
+| 07 | The rules of the relay (real defaults) | `s-rules` | prototype v2.3 |
+| 08 | Never waits: question card, permission, phone, sound | `s-waits` | new, screenshots 004, 021, 023, 060 |
+| 09 | Together: a mission with a lead and a team | `s-together` | new, screenshot 043 |
+| 10 | More: sound, engines, memory, platform, settings | `s-more` | new, screenshots 060, 073, 074 |
+| 11 | Local: nothing goes to us, and the proof | `s-local` | new, plus the v2.1 proof block |
+| 12 | Start: straight answers and the closing band | `s-close` | v2.3 closing band |
 
 ## Structure
 
@@ -56,7 +57,7 @@ src/
   pages/index.astro            the page: composes the sections in order
   layouts/Base.astro           <head>, self-hosted fonts, global styles
   components/                  Header, SideIndex, Footer (markup only)
-  components/sections/         S01Relay … S11Close, one file per section (markup only)
+  components/sections/         S01Relay … S12Close, one file per section (markup only)
   styles/base.css              tokens, header, buttons, shared section heading, footer
   styles/sections/*.css        one file per section, every rule scoped by the section id
   scripts/main.js              the page's one script: imports the others in page order
@@ -64,6 +65,7 @@ src/
   scripts/*.js                 one script per section, plus header, side index and sound
   data/facts.js                every stated figure, with its source
   data/backlog.js              the demo backlog: project, the family the chain works, the queue, captures
+  data/features.js             every capability (63), its district and its story steps: the 03 board, later /features and /pricing
   data/site.js                 links, the call to action, the site version
 public/
   assets/sounds/               the extension's own tones (media/sounds, MIT)

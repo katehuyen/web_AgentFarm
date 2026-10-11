@@ -1,4 +1,4 @@
-/* 10 Local (#s-local): the "0 bytes" statement and the machine diagram. The .proof block below it is styled in console.css. */
+/* 11 Local (#s-local): the "0 bytes" statement and the machine diagram. The .proof block below it is styled in console.css. */
 #s-local .lgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,4vw,64px);align-items:center;padding-bottom:clamp(36px,5vw,64px)}
 #s-local .zero{margin:0;font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(72px,10vw,168px);line-height:.82;letter-spacing:-.01em}
 #s-local .zero b{color:var(--lime);font-weight:900;filter:drop-shadow(0 0 30px rgba(168,240,53,.35))}

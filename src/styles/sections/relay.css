@@ -1,4 +1,4 @@
-/* Relay story: 01 hero (#s-relay), 05 days strip (#s-days), 06 rules (#s-rules), 11 close (#s-close).
+/* Relay story: 01 hero (#s-relay), 06 days strip (#s-days), 07 rules (#s-rules), 12 close (#s-close).
    Origin: prototype v2.3 Relay Launch (agentfarm-web/03_prototypes/v2). Colours measured from the real app. */
 :is(#s-relay,#s-days,#s-rules,#s-close) .pre{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin:0 0 10px}
 :is(#s-relay,#s-days,#s-rules,#s-close) em{font-style:normal;color:var(--lime)}

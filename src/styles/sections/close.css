@@ -1,4 +1,4 @@
-/* 11 Start (#s-close): straight answers and the closing band. The band itself (.end) is styled in relay.css. */
+/* 12 Start (#s-close): straight answers and the closing band. The band itself (.end) is styled in relay.css. */
 #s-close .faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 32px;border-top:1px solid var(--rule)}
 #s-close details{border-bottom:1px solid var(--rule)}
 #s-close summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px 0;font-size:17px;font-weight:500;color:var(--ink)}

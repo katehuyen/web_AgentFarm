@@ -1,4 +1,4 @@
-/* 04 Backlog (#s-backlog): the Projects page, Backlog tab, rebuilt (owner's screenshots, 11 Oct 2026) and the points beside it.
+/* 05 Backlog (#s-backlog): the Projects page, Backlog tab, rebuilt (owner's screenshots, 11 Oct 2026) and the points beside it.
    Tab colours and tag pills follow the screenshots; the page itself uses the VS Code dark surfaces of the other rebuilt screens. */
 #s-backlog{--t0:#3d6e73;--t1:#4b536b;--t2:#8a6430;--t3:#4c6e46;--t4:#68732f;--t5:#e3cf5a;--t6:#5f4c80;--t7:#6e5840;--t8:#84405f;--t9:#606f3a;--t10:#40597e;--t11:#4c6e42}
 #s-backlog .bgrid{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);gap:clamp(24px,3.4vw,52px);align-items:start}

@@ -1,4 +1,4 @@
-// 03 Console: the real Agent Farm Console rebuilt (screenshots 004, 035) as an exploded view that assembles on scroll.
+// 04 Console: the real Agent Farm Console rebuilt (screenshots 004, 035) as an exploded view that assembles on scroll.
 // Its working session is the live relay leg from state.js; its own Ouroboros plays when the section is on screen.
 import { ACCT, S, BQ, reduce, wait, on, vis, canOuro, startOuro, nextVer, finishOuro } from './state.js';
 

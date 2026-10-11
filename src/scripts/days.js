@@ -1,4 +1,4 @@
-// 05 Days: one chain drawn across three days and four nights, and the backlog items it worked through.
+// 06 Days: one chain drawn across three days and four nights, and the backlog items it worked through.
 // A seeded simulation of the real relay rules, so it draws the same every visit:
 // hand over at 40% context or at 90% of the 5-hour window; the weekly line at 98% takes an account out;
 // the next leg goes to the emptiest account under the 70% wall; with none left the chain parks until the first reset.

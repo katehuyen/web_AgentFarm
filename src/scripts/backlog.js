@@ -1,4 +1,4 @@
-// 04 Backlog: the Projects page, Backlog tab, running on the page's one queue (state.js BQ).
+// 05 Backlog: the Projects page, Backlog tab, running on the page's one queue (state.js BQ).
 // The relay hero closes the front item when its leg finishes it ('item'); this section shows that, and between closes it
 // files new work: a person types a thought into the capture box, or an agent files something it noticed (#byAI).
 // Rows and chips are re-rendered from the queue and slid into place, so every move reads as the queue changing.
