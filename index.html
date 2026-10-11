@@ -13,7 +13,15 @@
     <meta property="og:description" content="Run Claude Code, Codex, Gemini, Antigravity and OpenCode from one console. Agents work through your project backlog item by item, code or not; relay chains run day and night across accounts, and nothing is sent to us.">
     <meta property="og:url" content="https://agentfarm.space/">
     <meta name="twitter:card" content="summary">
-    <script defer src="assets/site.js?v=0.5.0"></script><link rel="stylesheet" href="assets/site.css?v=0.5.0"></head>
+    <script defer src="assets/site.js?v=0.6.0"></script><!-- Links to a page are written as its folder (features/). A host serves the folder's index.html; opened from disk or in a preview,
+         nothing does, so there a click on such a link goes to the index.html itself. -->
+    <script>
+      if (!/(^|\.)agentfarm\.space$/.test(location.hostname)) addEventListener('click', e => {
+        const a = e.target.closest && e.target.closest('a[href]'), h = a && a.getAttribute('href');
+        const m = h && !/^([a-z]+:|#)/i.test(h) && h.match(/^([^#]*\/)(#.*)?$/);
+        if (m && !e.defaultPrevented) { e.preventDefault(); location.href = m[1] + 'index.html' + (m[2] || ''); }
+      });
+    </script><link rel="stylesheet" href="assets/site.css?v=0.6.0"></head>
   <body>
     
   <div class="wrap">
@@ -24,7 +32,7 @@
     </a>
     <span class="verchip" title="The version running in the demo below"><i></i><span id="af-ver">3.931.0</span></span>
     <nav class="nav" aria-label="Main">
-      <a href="#s-atlas">The farm</a><a href="#ch-relay">Relay</a><a href="#ch-projects">Projects</a><a href="#ch-studio">Studio</a><a href="#ch-memory">Memory</a><a href="#ch-bridge">Just ask</a><a href="#ch-privacy">Local</a>
+      <a href="features/">Features</a><a href="#ch-relay">Relay</a><a href="#ch-projects">Projects</a><a href="#ch-studio">Studio</a><a href="#ch-memory">Memory</a><a href="#ch-bridge">Just ask</a><a href="#ch-privacy">Local</a>
     </nav>
     <a class="cta" href="#s-close">Join early access</a>
   </header>
@@ -208,6 +216,7 @@
         <p class="ct">Never stops</p>
         <p class="cp">Work keeps going through full contexts, full accounts and its own updates.</p>
       </div>
+      <a class="cmore" href="features/never-stops/">Everything about it <i></i></a>
     </div>
     <ul class="ctl">
       <li><button type="button" class="ctile" data-f="relay" data-code="I·1"><span class="n">Baton relay</span><span class="sg" data-sig="relay">⑂ 92</span></button></li><li><button type="button" class="ctile" data-f="quota" data-code="I·2"><span class="n">Quota handover</span><span class="sg" data-sig="quota">acct-c 71%</span></button></li><li><button type="button" class="ctile" data-f="policies" data-code="I·3"><span class="n">Account policies</span><span class="sg" data-sig="policies">4 built in</span></button></li><li><button type="button" class="ctile" data-f="park" data-code="I·4"><span class="n">Park and wake</span><span class="sg" data-sig="park">2 parks</span></button></li><li><button type="button" class="ctile" data-f="ouroboros" data-code="I·5"><span class="n">Ouroboros</span><span class="sg" data-sig="ouroboros">3.931.0</span></button></li><li><button type="button" class="ctile" data-f="sentry" data-code="I·6"><span class="n">Sentry</span><span class="sg" data-sig="sentry">on watch</span></button></li><li><button type="button" class="ctile" data-f="brakes" data-code="I·7"><span class="n">Brakes</span><span class="sg" data-sig="brakes">baton.stop</span></button></li>
@@ -266,6 +275,7 @@
         <p class="ct">Any project</p>
         <p class="cp">One backlog per project, and the project can be anything.</p>
       </div>
+      
     </div>
     <ul class="ctl">
       <li><button type="button" class="ctile" data-f="kinds" data-code="II·1"><span class="n">Any kind of project</span><span class="sg" data-sig="kinds">any kind</span></button></li><li><button type="button" class="ctile" data-f="backlog" data-code="II·2"><span class="n">Backlog</span><span class="sg" data-sig="backlog">38 open</span></button></li><li><button type="button" class="ctile" data-f="track" data-code="II·3"><span class="n">Track</span><span class="sg" data-sig="track">214 closed</span></button></li><li><button type="button" class="ctile" data-f="context" data-code="II·4"><span class="n">Project context</span><span class="sg" data-sig="context">6 documents</span></button></li><li><button type="button" class="ctile" data-f="letter" data-code="II·5"><span class="n">Handover letter</span><span class="sg" data-sig="letter">cold start</span></button></li><li><button type="button" class="ctile" data-f="portfolio" data-code="II·6"><span class="n">Portfolio</span><span class="sg" data-sig="portfolio">4 active</span></button></li><li><button type="button" class="ctile" data-f="cost" data-code="II·7"><span class="n">Cost and analysis</span><span class="sg" data-sig="cost">per item</span></button></li>
@@ -329,6 +339,7 @@
         <p class="ct">Beyond code</p>
         <p class="cp">Agents work as a production team and hand you finished media.</p>
       </div>
+      
     </div>
     <ul class="ctl">
       <li><button type="button" class="ctile" data-f="studio" data-code="III·1"><span class="n">Studio</span><span class="sg" data-sig="studio">6 scenes</span></button></li><li><button type="button" class="ctile" data-f="crecipes" data-code="III·2"><span class="n">Content recipes</span><span class="sg" data-sig="crecipes">3 ready-made</span></button></li><li><button type="button" class="ctile" data-f="judge" data-code="III·3"><span class="n">Judge and triage</span><span class="sg" data-sig="judge">2 to triage</span></button></li><li><button type="button" class="ctile" data-f="premiere" data-code="III·4"><span class="n">Straight to Premiere</span><span class="sg" data-sig="premiere">XML + EDL</span></button></li><li><button type="button" class="ctile" data-f="inbox" data-code="III·5"><span class="n">Media inbox</span><span class="sg" data-sig="inbox">all_in</span></button></li><li><button type="button" class="ctile" data-f="calendar" data-code="III·6"><span class="n">Content calendar</span><span class="sg" data-sig="calendar">Mon 07:00</span></button></li><li><button type="button" class="ctile" data-f="briefing" data-code="III·7"><span class="n">Spoken briefing</span><span class="sg" data-sig="briefing">daily</span></button></li>
@@ -381,6 +392,7 @@
         <p class="ct">Recipes and triggers</p>
         <p class="cp">Work that starts on time, on an event, or from one sentence.</p>
       </div>
+      
     </div>
     <ul class="ctl">
       <li><button type="button" class="ctile" data-f="flows" data-code="IV·1"><span class="n">Workflows</span><span class="sg" data-sig="flows">8 saved</span></button></li><li><button type="button" class="ctile" data-f="schedules" data-code="IV·2"><span class="n">Schedules</span><span class="sg" data-sig="schedules">13 on</span></button></li><li><button type="button" class="ctile" data-f="triggers" data-code="IV·3"><span class="n">Watch triggers</span><span class="sg" data-sig="triggers">2 watching</span></button></li><li><button type="button" class="ctile" data-f="gatekeeper" data-code="IV·4"><span class="n">Gatekeeper</span><span class="sg" data-sig="gatekeeper">shadow</span></button></li><li><button type="button" class="ctile" data-f="words" data-code="IV·5"><span class="n">Say it in words</span><span class="sg" data-sig="words">Runs tab</span></button></li><li><button type="button" class="ctile" data-f="queue" data-code="IV·6"><span class="n">Queue and limits</span><span class="sg" data-sig="queue">1/5 running</span></button></li><li><button type="button" class="ctile" data-f="retries" data-code="IV·7"><span class="n">Retries and rounds</span><span class="sg" data-sig="retries">6 × 40 min</span></button></li><li><button type="button" class="ctile" data-f="forecast" data-code="IV·8"><span class="n">Forecast</span><span class="sg" data-sig="forecast">30 days</span></button></li>
@@ -448,6 +460,7 @@
         <p class="ct">Works as a team</p>
         <p class="cp">Agents on different engines plan, split and check each other.</p>
       </div>
+      
     </div>
     <ul class="ctl">
       <li><button type="button" class="ctile" data-f="missions" data-code="V·1"><span class="n">Missions</span><span class="sg" data-sig="missions">lead + 3</span></button></li><li><button type="button" class="ctile" data-f="shared" data-code="V·2"><span class="n">Shared sessions</span><span class="sg" data-sig="shared">by id</span></button></li><li><button type="button" class="ctile" data-f="notes" data-code="V·3"><span class="n">Agent notes</span><span class="sg" data-sig="notes">a2a</span></button></li><li><button type="button" class="ctile" data-f="steer" data-code="V·4"><span class="n">Steer and veto</span><span class="sg" data-sig="steer">mid-run</span></button></li><li><button type="button" class="ctile" data-f="console" data-code="V·5"><span class="n">Console</span><span class="sg" data-sig="console">2 waiting</span></button></li><li><button type="button" class="ctile" data-f="question" data-code="V·6"><span class="n">Countdown questions</span><span class="sg" data-sig="question">0:42</span></button></li><li><button type="button" class="ctile" data-f="timeline" data-code="V·7"><span class="n">Live Timeline</span><span class="sg" data-sig="timeline">live</span></button></li><li><button type="button" class="ctile" data-f="worktrees" data-code="V·8"><span class="n">Worktrees</span><span class="sg" data-sig="worktrees">git</span></button></li>
@@ -628,6 +641,7 @@
         <p class="ct">Never forgets</p>
         <p class="cp">Every session is kept, and what matters becomes a wiki.</p>
       </div>
+      
     </div>
     <ul class="ctl">
       <li><button type="button" class="ctile" data-f="sessions" data-code="VI·1"><span class="n">Every session kept</span><span class="sg" data-sig="sessions">1,499</span></button></li><li><button type="button" class="ctile" data-f="turns" data-code="VI·2"><span class="n">Any turn, replayed</span><span class="sg" data-sig="turns">replay</span></button></li><li><button type="button" class="ctile" data-f="wiki" data-code="VI·3"><span class="n">Wiki from sessions</span><span class="sg" data-sig="wiki">compile</span></button></li><li><button type="button" class="ctile" data-f="dropbox" data-code="VI·4"><span class="n">Drop box</span><span class="sg" data-sig="dropbox">_RAW_</span></button></li><li><button type="button" class="ctile" data-f="obsidian" data-code="VI·5"><span class="n">Obsidian, the second brain</span><span class="sg" data-sig="obsidian">vault</span></button></li><li><button type="button" class="ctile" data-f="search" data-code="VI·6"><span class="n">Search everything</span><span class="sg" data-sig="search">all engines</span></button></li><li><button type="button" class="ctile" data-f="reports" data-code="VI·7"><span class="n">Reports and digests</span><span class="sg" data-sig="reports">weekly</span></button></li>
@@ -679,6 +693,7 @@
         <p class="ct">Any brain</p>
         <p class="cp">Five engines, and through routes, almost any model.</p>
       </div>
+      
     </div>
     <ul class="ctl">
       <li><button type="button" class="ctile" data-f="engines" data-code="VII·1"><span class="n">Five engines</span><span class="sg" data-sig="engines">5</span></button></li><li><button type="button" class="ctile" data-f="routes" data-code="VII·2"><span class="n">Plug-in brains</span><span class="sg" data-sig="routes">3 routes</span></button></li><li><button type="button" class="ctile" data-f="radar" data-code="VII·3"><span class="n">Free-model radar</span><span class="sg" data-sig="radar">04:30 daily</span></button></li><li><button type="button" class="ctile" data-f="health" data-code="VII·4"><span class="n">Route health</span><span class="sg" data-sig="health">free check</span></button></li><li><button type="button" class="ctile" data-f="vault" data-code="VII·5"><span class="n">Secret vault</span><span class="sg" data-sig="vault">keychain</span></button></li><li><button type="button" class="ctile" data-f="accounts" data-code="VII·6"><span class="n">Many sign-ins</span><span class="sg" data-sig="accounts">4 accounts</span></button></li><li><button type="button" class="ctile" data-f="switch" data-code="VII·7"><span class="n">Switch the model</span><span class="sg" data-sig="switch">mid-session</span></button></li>
@@ -726,6 +741,7 @@
         <p class="ct">Just ask</p>
         <p class="cp">You never have to learn the farm. Tell an agent, it sets it up.</p>
       </div>
+      
     </div>
     <ul class="ctl">
       <li><button type="button" class="ctile" data-f="bridge" data-code="VIII·1"><span class="n">Just ask</span><span class="sg" data-sig="bridge">in chat</span></button></li><li><button type="button" class="ctile" data-f="ops" data-code="VIII·2"><span class="n">~560 operations</span><span class="sg" data-sig="ops">farm.ops</span></button></li><li><button type="button" class="ctile" data-f="mcp" data-code="VIII·3"><span class="n">One command line</span><span class="sg" data-sig="mcp">af.js</span></button></li><li><button type="button" class="ctile" data-f="matrix" data-code="VIII·4"><span class="n">Capability Matrix</span><span class="sg" data-sig="matrix">30 days</span></button></li><li><button type="button" class="ctile" data-f="phone" data-code="VIII·5"><span class="n">Phone app</span><span class="sg" data-sig="phone">anywhere</span></button></li><li><button type="button" class="ctile" data-f="telegram" data-code="VIII·6"><span class="n">Telegram</span><span class="sg" data-sig="telegram">one tap</span></button></li><li><button type="button" class="ctile" data-f="sound" data-code="VIII·7"><span class="n">Sound</span><span class="sg" data-sig="sound">10 tones</span></button></li><li><button type="button" class="ctile" data-f="voice" data-code="VIII·8"><span class="n">Read aloud</span><span class="sg" data-sig="voice">aloud</span></button></li><li><button type="button" class="ctile" data-f="move" data-code="VIII·9"><span class="n">Take it with you</span><span class="sg" data-sig="move">.agentpack</span></button></li>
@@ -955,6 +971,7 @@
         <p class="ct">Yours alone</p>
         <p class="cp">It runs on your machine and keeps its numbers honest.</p>
       </div>
+      
     </div>
     <ul class="ctl">
       <li><button type="button" class="ctile" data-f="local" data-code="IX·1"><span class="n">On your machine</span><span class="sg" data-sig="local">127.0.0.1</span></button></li><li><button type="button" class="ctile" data-f="telemetry" data-code="IX·2"><span class="n">No telemetry</span><span class="sg" data-sig="telemetry">0 bytes</span></button></li><li><button type="button" class="ctile" data-f="honest" data-code="IX·3"><span class="n">Honest numbers</span><span class="sg" data-sig="honest">real zeros</span></button></li><li><button type="button" class="ctile" data-f="superpowers" data-code="IX·4"><span class="n">Superpowers</span><span class="sg" data-sig="superpowers">TDD</span></button></li><li><button type="button" class="ctile" data-f="evals" data-code="IX·5"><span class="n">Evals</span><span class="sg" data-sig="evals">scorecard</span></button></li>
@@ -1057,8 +1074,9 @@
   </main>
   <div class="wrap">
   <footer>
-    <span class="ver">AF-WEB v0.5.0 · screens rebuilt from the real app, with demo data</span>
+    <span class="ver">AF-WEB v0.6.0 · screens rebuilt from the real app, with demo data</span>
     <nav aria-label="Footer">
+      <a href="features/">Features</a>
       <a href="https://marketplace.visualstudio.com/items?itemName=muvusoft.agent-farm">VS Code Marketplace</a>
       <span>Crafted by <a href="https://muvusoft.uk/">Muvusoft</a></span>
     </nav>
