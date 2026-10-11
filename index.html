@@ -13,7 +13,7 @@
     <meta property="og:description" content="Run Claude Code, Codex, Gemini, Antigravity and OpenCode from one console. Agents work through your project backlog item by item, relay chains run day and night across accounts, and nothing is sent to us.">
     <meta property="og:url" content="https://agentfarm.space/">
     <meta name="twitter:card" content="summary">
-    <script defer src="assets/site.js?v=0.3.0"></script><link rel="stylesheet" href="assets/site.css?v=0.3.0"></head>
+    <script defer src="assets/site.js?v=0.4.0"></script><link rel="stylesheet" href="assets/site.css?v=0.4.0"></head>
   <body>
     
   <div class="wrap">
@@ -24,13 +24,13 @@
     </a>
     <span class="verchip" title="The version running in the demo below"><i></i><span id="af-ver">3.931.0</span></span>
     <nav class="nav" aria-label="Main">
-      <a href="#s-relay">Relay</a><a href="#s-fleet">Fleet</a><a href="#s-console">Console</a><a href="#s-backlog">Backlog</a><a href="#s-waits">Never waits</a><a href="#s-local">Local</a>
+      <a href="#s-relay">Relay</a><a href="#s-fleet">Fleet</a><a href="#s-atlas">The farm</a><a href="#s-console">Console</a><a href="#s-backlog">Backlog</a><a href="#s-waits">Never waits</a><a href="#s-local">Local</a>
     </nav>
     <a class="cta" href="#s-close">Join early access</a>
   </header>
 </div>
   <nav class="snav" id="snav" aria-label="Sections">
-  <a href="#s-relay" data-for="s-relay"><span>01 · Relay</span><i></i></a><a href="#s-fleet" data-for="s-fleet"><span>02 · Fleet</span><i></i></a><a href="#s-console" data-for="s-console"><span>03 · Console</span><i></i></a><a href="#s-backlog" data-for="s-backlog"><span>04 · Backlog</span><i></i></a><a href="#s-days" data-for="s-days"><span>05 · Day and night</span><i></i></a><a href="#s-rules" data-for="s-rules"><span>06 · Rules</span><i></i></a><a href="#s-waits" data-for="s-waits"><span>07 · Never waits</span><i></i></a><a href="#s-together" data-for="s-together"><span>08 · Together</span><i></i></a><a href="#s-more" data-for="s-more"><span>09 · More</span><i></i></a><a href="#s-local" data-for="s-local"><span>10 · Local</span><i></i></a><a href="#s-close" data-for="s-close"><span>11 · Start</span><i></i></a>
+  <a href="#s-relay" data-for="s-relay"><span>01 · Relay</span><i></i></a><a href="#s-fleet" data-for="s-fleet"><span>02 · Fleet</span><i></i></a><a href="#s-atlas" data-for="s-atlas"><span>03 · The whole farm</span><i></i></a><a href="#s-console" data-for="s-console"><span>04 · Console</span><i></i></a><a href="#s-backlog" data-for="s-backlog"><span>05 · Backlog</span><i></i></a><a href="#s-days" data-for="s-days"><span>06 · Day and night</span><i></i></a><a href="#s-rules" data-for="s-rules"><span>07 · Rules</span><i></i></a><a href="#s-waits" data-for="s-waits"><span>08 · Never waits</span><i></i></a><a href="#s-together" data-for="s-together"><span>09 · Together</span><i></i></a><a href="#s-more" data-for="s-more"><span>10 · More</span><i></i></a><a href="#s-local" data-for="s-local"><span>11 · Local</span><i></i></a><a href="#s-close" data-for="s-close"><span>12 · Start</span><i></i></a>
 </nav>
   <main>
     <section id="s-relay" aria-label="The baton relay, live demo">
@@ -113,9 +113,98 @@
       <div class="sb" aria-label="Status bar ticker"><span class="hide">⑂ agent master*</span><span>1 active · <span id="f-sbCost">$41.20</span> today</span><span class="q" id="f-sbQ">◷ 2h 40m · 91% / wk 17%</span><span class="leg" id="f-sbLeg">⑂ 92</span><span class="feed"><div id="f-feed"></div></span><span class="hide" id="f-sbVer">Agent Farm 3.931.0</span></div>
   </div>
 </section>
+    <section id="s-atlas" class="gap" aria-label="The whole farm: everything Agent Farm does, on one map">
+  <div class="wrap">
+    <p class="sx"><b>03</b> The whole farm</p>
+    <div class="sh">
+      <h2>That was six screens. <em>Here is the whole farm.</em></h2>
+      <p class="lead">Every tile is something Agent Farm does today, <b>63</b> of them in nine districts. Code is only one part: the same farm cuts videos, writes up a thesis chapter and keeps a weekly channel going. Watch one event travel through the farm, or click any tile.</p>
+    </div>
+    <div class="abar">
+      <span class="lbl">Stories</span>
+      <div class="stories" id="a-stories">
+        <button type="button" data-s="0"><i></i>03:12 · A long video lands</button><button type="button" data-s="1"><i></i>Fri 18:00 · You leave</button><button type="button" data-s="2"><i></i>A thesis chapter</button><button type="button" data-s="3"><i></i>Continue from 7c41d2e9</button><button type="button" data-s="4"><i></i>Just ask</button>
+      </div>
+    </div>
+    <div class="amap" id="a-map">
+      <svg class="lines" id="a-lines" aria-hidden="true"></svg>
+      <div class="dist" style="--c:var(--yellow)">
+          <header><b>I</b><h3>Never stops</h3><span>7</span></header>
+          <p class="k">Work keeps going through full contexts, full accounts and its own updates.</p>
+          <ul>
+            <li><button type="button" class="tile" data-f="relay" data-code="I·1"><span class="n">Baton relay</span><span class="sg" data-sig="relay">⑂ 92</span></button></li><li><button type="button" class="tile" data-f="quota" data-code="I·2"><span class="n">Quota handover</span><span class="sg" data-sig="quota">acct-c 71%</span></button></li><li><button type="button" class="tile" data-f="policies" data-code="I·3"><span class="n">Account policies</span><span class="sg" data-sig="policies">4 built in</span></button></li><li><button type="button" class="tile" data-f="park" data-code="I·4"><span class="n">Park and wake</span><span class="sg" data-sig="park">2 parks</span></button></li><li><button type="button" class="tile" data-f="ouroboros" data-code="I·5"><span class="n">Ouroboros</span><span class="sg" data-sig="ouroboros">3.931.0</span></button></li><li><button type="button" class="tile" data-f="sentry" data-code="I·6"><span class="n">Sentry</span><span class="sg" data-sig="sentry">on watch</span></button></li><li><button type="button" class="tile" data-f="brakes" data-code="I·7"><span class="n">Brakes</span><span class="sg" data-sig="brakes">baton.stop</span></button></li>
+          </ul>
+        </div><div class="dist" style="--c:var(--teal)">
+          <header><b>II</b><h3>Any project</h3><span>7</span></header>
+          <p class="k">One backlog per project, and the project can be anything.</p>
+          <ul>
+            <li><button type="button" class="tile" data-f="kinds" data-code="II·1"><span class="n">Any kind of project</span><span class="sg" data-sig="kinds">any kind</span></button></li><li><button type="button" class="tile" data-f="backlog" data-code="II·2"><span class="n">Backlog</span><span class="sg" data-sig="backlog">38 open</span></button></li><li><button type="button" class="tile" data-f="track" data-code="II·3"><span class="n">Track</span><span class="sg" data-sig="track">214 closed</span></button></li><li><button type="button" class="tile" data-f="context" data-code="II·4"><span class="n">Project context</span><span class="sg" data-sig="context">6 documents</span></button></li><li><button type="button" class="tile" data-f="letter" data-code="II·5"><span class="n">Handover letter</span><span class="sg" data-sig="letter">cold start</span></button></li><li><button type="button" class="tile" data-f="portfolio" data-code="II·6"><span class="n">Portfolio</span><span class="sg" data-sig="portfolio">4 active</span></button></li><li><button type="button" class="tile" data-f="cost" data-code="II·7"><span class="n">Cost and analysis</span><span class="sg" data-sig="cost">per item</span></button></li>
+          </ul>
+        </div><div class="dist" style="--c:var(--claude)">
+          <header><b>III</b><h3>Beyond code</h3><span>7</span></header>
+          <p class="k">Agents work as a production team and hand you finished media.</p>
+          <ul>
+            <li><button type="button" class="tile" data-f="studio" data-code="III·1"><span class="n">Studio</span><span class="sg" data-sig="studio">13 assets</span></button></li><li><button type="button" class="tile" data-f="crecipes" data-code="III·2"><span class="n">Content recipes</span><span class="sg" data-sig="crecipes">3 ready-made</span></button></li><li><button type="button" class="tile" data-f="judge" data-code="III·3"><span class="n">Judge and triage</span><span class="sg" data-sig="judge">15 in triage</span></button></li><li><button type="button" class="tile" data-f="premiere" data-code="III·4"><span class="n">Straight to Premiere</span><span class="sg" data-sig="premiere">→ sequence</span></button></li><li><button type="button" class="tile" data-f="inbox" data-code="III·5"><span class="n">Media inbox</span><span class="sg" data-sig="inbox">all_in</span></button></li><li><button type="button" class="tile" data-f="calendar" data-code="III·6"><span class="n">Content calendar</span><span class="sg" data-sig="calendar">Mon 07:00</span></button></li><li><button type="button" class="tile" data-f="briefing" data-code="III·7"><span class="n">Spoken briefing</span><span class="sg" data-sig="briefing">daily</span></button></li>
+          </ul>
+        </div><div class="dist" style="--c:var(--violet)">
+          <header><b>IV</b><h3>Recipes and triggers</h3><span>8</span></header>
+          <p class="k">Work that starts on time, on an event, or from one sentence.</p>
+          <ul>
+            <li><button type="button" class="tile" data-f="flows" data-code="IV·1"><span class="n">Workflows</span><span class="sg" data-sig="flows">8 saved</span></button></li><li><button type="button" class="tile" data-f="schedules" data-code="IV·2"><span class="n">Schedules</span><span class="sg" data-sig="schedules">13 on</span></button></li><li><button type="button" class="tile" data-f="triggers" data-code="IV·3"><span class="n">Watch triggers</span><span class="sg" data-sig="triggers">2 watching</span></button></li><li><button type="button" class="tile" data-f="gatekeeper" data-code="IV·4"><span class="n">Gatekeeper</span><span class="sg" data-sig="gatekeeper">shadow</span></button></li><li><button type="button" class="tile" data-f="words" data-code="IV·5"><span class="n">Say it in words</span><span class="sg" data-sig="words">Runs tab</span></button></li><li><button type="button" class="tile" data-f="queue" data-code="IV·6"><span class="n">Queue and limits</span><span class="sg" data-sig="queue">1/5 running</span></button></li><li><button type="button" class="tile" data-f="retries" data-code="IV·7"><span class="n">Retries and rounds</span><span class="sg" data-sig="retries">backoff</span></button></li><li><button type="button" class="tile" data-f="forecast" data-code="IV·8"><span class="n">Forecast</span><span class="sg" data-sig="forecast">30 days</span></button></li>
+          </ul>
+        </div><div class="dist" style="--c:var(--cyan)">
+          <header><b>V</b><h3>Works as a team</h3><span>8</span></header>
+          <p class="k">Agents on different engines plan, split and check each other.</p>
+          <ul>
+            <li><button type="button" class="tile" data-f="missions" data-code="V·1"><span class="n">Missions</span><span class="sg" data-sig="missions">lead + 3</span></button></li><li><button type="button" class="tile" data-f="shared" data-code="V·2"><span class="n">Shared sessions</span><span class="sg" data-sig="shared">by id</span></button></li><li><button type="button" class="tile" data-f="notes" data-code="V·3"><span class="n">Agent notes</span><span class="sg" data-sig="notes">a2a</span></button></li><li><button type="button" class="tile" data-f="steer" data-code="V·4"><span class="n">Steer and veto</span><span class="sg" data-sig="steer">mid-run</span></button></li><li><button type="button" class="tile" data-f="console" data-code="V·5"><span class="n">Console</span><span class="sg" data-sig="console">2 waiting</span></button></li><li><button type="button" class="tile" data-f="question" data-code="V·6"><span class="n">Countdown questions</span><span class="sg" data-sig="question">0:42</span></button></li><li><button type="button" class="tile" data-f="timeline" data-code="V·7"><span class="n">Live Timeline</span><span class="sg" data-sig="timeline">live</span></button></li><li><button type="button" class="tile" data-f="worktrees" data-code="V·8"><span class="n">Worktrees</span><span class="sg" data-sig="worktrees">git</span></button></li>
+          </ul>
+        </div><div class="dist" style="--c:var(--agy)">
+          <header><b>VI</b><h3>Never forgets</h3><span>7</span></header>
+          <p class="k">Every session is kept, and what matters becomes a wiki.</p>
+          <ul>
+            <li><button type="button" class="tile" data-f="sessions" data-code="VI·1"><span class="n">Every session kept</span><span class="sg" data-sig="sessions">1,499</span></button></li><li><button type="button" class="tile" data-f="turns" data-code="VI·2"><span class="n">Any turn, replayed</span><span class="sg" data-sig="turns">replay</span></button></li><li><button type="button" class="tile" data-f="wiki" data-code="VI·3"><span class="n">Wiki from sessions</span><span class="sg" data-sig="wiki">compile</span></button></li><li><button type="button" class="tile" data-f="dropbox" data-code="VI·4"><span class="n">Drop box</span><span class="sg" data-sig="dropbox">_RAW_</span></button></li><li><button type="button" class="tile" data-f="obsidian" data-code="VI·5"><span class="n">Obsidian, the second brain</span><span class="sg" data-sig="obsidian">vault</span></button></li><li><button type="button" class="tile" data-f="search" data-code="VI·6"><span class="n">Search everything</span><span class="sg" data-sig="search">all engines</span></button></li><li><button type="button" class="tile" data-f="reports" data-code="VI·7"><span class="n">Reports and digests</span><span class="sg" data-sig="reports">weekly</span></button></li>
+          </ul>
+        </div><div class="dist" style="--c:#7fa0f8">
+          <header><b>VII</b><h3>Any brain</h3><span>7</span></header>
+          <p class="k">Five engines, and any model you can route them to.</p>
+          <ul>
+            <li><button type="button" class="tile" data-f="engines" data-code="VII·1"><span class="n">Five engines</span><span class="sg" data-sig="engines">5</span></button></li><li><button type="button" class="tile" data-f="routes" data-code="VII·2"><span class="n">Plug-in brains</span><span class="sg" data-sig="routes">3 routes</span></button></li><li><button type="button" class="tile" data-f="radar" data-code="VII·3"><span class="n">Free-model radar</span><span class="sg" data-sig="radar">04:30 daily</span></button></li><li><button type="button" class="tile" data-f="health" data-code="VII·4"><span class="n">Route health</span><span class="sg" data-sig="health">free check</span></button></li><li><button type="button" class="tile" data-f="vault" data-code="VII·5"><span class="n">Secret vault</span><span class="sg" data-sig="vault">keychain</span></button></li><li><button type="button" class="tile" data-f="spares" data-code="VII·6"><span class="n">Warm spares</span><span class="sg" data-sig="spares">2 warm</span></button></li><li><button type="button" class="tile" data-f="switch" data-code="VII·7"><span class="n">Switch the model</span><span class="sg" data-sig="switch">mid-session</span></button></li>
+          </ul>
+        </div><div class="dist" style="--c:var(--ink)">
+          <header><b>VIII</b><h3>Just ask</h3><span>7</span></header>
+          <p class="k">You never have to learn the farm. Tell an agent, it sets it up.</p>
+          <ul>
+            <li><button type="button" class="tile" data-f="bridge" data-code="VIII·1"><span class="n">Just ask</span><span class="sg" data-sig="bridge">in chat</span></button></li><li><button type="button" class="tile" data-f="ops" data-code="VIII·2"><span class="n">~560 operations</span><span class="sg" data-sig="ops">farm.ops</span></button></li><li><button type="button" class="tile" data-f="mcp" data-code="VIII·3"><span class="n">MCP and CLI</span><span class="sg" data-sig="mcp">af.js</span></button></li><li><button type="button" class="tile" data-f="matrix" data-code="VIII·4"><span class="n">Capability Matrix</span><span class="sg" data-sig="matrix">30 days</span></button></li><li><button type="button" class="tile" data-f="phone" data-code="VIII·5"><span class="n">Phone and Telegram</span><span class="sg" data-sig="phone">anywhere</span></button></li><li><button type="button" class="tile" data-f="sound" data-code="VIII·6"><span class="n">Sound</span><span class="sg" data-sig="sound">10 tones</span></button></li><li><button type="button" class="tile" data-f="move" data-code="VIII·7"><span class="n">Take it with you</span><span class="sg" data-sig="move">.agentpack</span></button></li>
+          </ul>
+        </div><div class="dist" style="--c:var(--dim)">
+          <header><b>IX</b><h3>Yours alone</h3><span>5</span></header>
+          <p class="k">It runs on your machine and keeps its numbers honest.</p>
+          <ul>
+            <li><button type="button" class="tile" data-f="local" data-code="IX·1"><span class="n">On your machine</span><span class="sg" data-sig="local">127.0.0.1</span></button></li><li><button type="button" class="tile" data-f="telemetry" data-code="IX·2"><span class="n">No telemetry</span><span class="sg" data-sig="telemetry">0 bytes</span></button></li><li><button type="button" class="tile" data-f="honest" data-code="IX·3"><span class="n">Honest numbers</span><span class="sg" data-sig="honest">real zeros</span></button></li><li><button type="button" class="tile" data-f="superpowers" data-code="IX·4"><span class="n">Superpowers</span><span class="sg" data-sig="superpowers">TDD</span></button></li><li><button type="button" class="tile" data-f="evals" data-code="IX·5"><span class="n">Evals</span><span class="sg" data-sig="evals">scorecard</span></button></li>
+          </ul>
+        </div>
+      <div class="nums" aria-label="Agent Farm in numbers">
+        <p class="lbl">Under the tiles</p>
+        <dl>
+          <div><dt>63</dt><dd>things it does</dd></div>
+          <div><dt>602</dt><dd>commands</dd></div>
+          <div><dt>243</dt><dd>settings</dd></div>
+          <div><dt>~560</dt><dd>bridge operations</dd></div>
+          <div><dt>5</dt><dd>engines</dd></div>
+          <div><dt>1,053</dt><dd>releases</dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="adesk" aria-live="polite">
+      <span class="code" id="a-code">63</span>
+      <div class="tx"><b id="a-t">Things it does today.</b><span id="a-s">Nine districts. Click a tile, or pick a story above.</span><ol class="trail" id="a-trail"></ol></div>
+      <div class="act"><a class="ghost" id="a-go" href="#s-atlas" hidden><i></i>See it on this page</a><button type="button" class="ghost nx" id="a-next" hidden>Next step</button></div>
+    </div>
+  </div>
+</section>
     <section id="s-console" class="gap" aria-label="The Agent Farm Console">
   <div class="wrap">
-    <p class="sx"><b>03</b> The console</p>
+    <p class="sx"><b>04</b> The console</p>
     <div class="hero">
       <div>
         <div class="eyebrow"><span class="live"></span><b>Rebuilt from real screenshots</b> · demo data</div>
@@ -202,7 +291,7 @@
 </section>
     <section id="s-backlog" class="gap" aria-label="Backlog: every project runs on a work list that agents work through">
   <div class="wrap">
-    <p class="sx"><b>04</b> Backlog</p>
+    <p class="sx"><b>05</b> Backlog</p>
     <div class="sh">
       <div><p class="pre">Projects · the work list</p><h2>You write the work down. <em>The fleet works it off.</em></h2></div>
       <p class="lead">Every project has its own page: plan, backlog, track, docs, people, cost. The backlog is where the work waits, in one plain Backlog.md file. You put it in order; agents take the top of it, item by item, and tick off what they finish.</p>
@@ -242,7 +331,7 @@
 </section>
     <section id="s-days" class="gap" aria-label="One relay chain across three days and four nights, working through a backlog">
   <div class="wrap">
-    <p class="sx"><b>05</b> Day and night</p>
+    <p class="sx"><b>06</b> Day and night</p>
     <div class="sh">
       <div><p class="pre">chn_7f3a · demo data shaped like the real chain</p><h2 id="d-title">Ninety-two legs. <em>Three days, four nights.</em> Straight off the backlog.</h2></div>
       <p class="lead">Every block is one fresh session, coloured by the account it ran on. The band above it is the backlog item it was given: when an item closes, the next session opens on the next one in your queue. Night or day makes no difference to it. A hatched gap is the chain waiting for a quota reset, then waking by itself. Hover a block to read it.</p>
@@ -271,7 +360,7 @@
 </section>
     <section id="s-rules" class="gap" aria-label="The rules of the relay">
   <div class="wrap">
-    <p class="sx"><b>06</b> The rules of the relay</p>
+    <p class="sx"><b>07</b> The rules of the relay</p>
     <div class="sh">
       <div><p class="pre">Real defaults · every one is a setting</p><h2>Runs <em>without you.</em> Braked so it never runs away.</h2></div>
       <p class="lead">Every number below is a setting you can change. These are the defaults the extension ships with.</p>
@@ -283,7 +372,7 @@
 </section>
     <section id="s-waits" class="gap" aria-label="Never waits: question cards, permissions and the phone">
   <div class="wrap">
-    <p class="sx"><b>07</b> Never waits</p>
+    <p class="sx"><b>08</b> Never waits</p>
     <div class="sh">
       <div><p class="pre">Question cards · your phone · sound</p><h2>Away from the desk. <em>Never in the way.</em></h2></div>
       <p class="lead">An agent with a question doesn't sit idle for hours. A countdown runs, and when it ends the recommended answer goes in. Permissions are different: they wait for you, ring, and show up on your phone.</p>
@@ -336,7 +425,7 @@
 </section>
     <section id="s-together" class="gap" aria-label="Missions: a lead, a team and an honest verdict">
   <div class="wrap">
-    <p class="sx"><b>08</b> Together</p>
+    <p class="sx"><b>09</b> Together</p>
     <div class="sh">
       <div><p class="pre">Missions · four engines, one team</p><h2>A lead, a team, <em>an honest verdict.</em></h2></div>
       <p class="lead">Give a mission to a lead. It plans round by round, hands tasks to agents on different engines, reads what comes back, and ends by saying how it really went. Partial is an answer too.</p>
@@ -412,7 +501,7 @@
 </section>
     <section id="s-more" class="gap" aria-label="More of Agent Farm">
   <div class="wrap">
-    <p class="sx"><b>09</b> More</p>
+    <p class="sx"><b>10</b> More</p>
     <div class="sh">
       <div><p class="pre">Sound · engines · memory · platform</p><h2>Everything a fleet <em>needs around it.</em></h2></div>
       <p class="lead">602 commands is too many to list. These are the parts people ask about next.</p>
@@ -509,7 +598,7 @@
 </section>
     <section id="s-local" class="gap" aria-label="Local: nothing leaves for us, and the proof">
   <div class="wrap">
-    <p class="sx"><b>10</b> Local</p>
+    <p class="sx"><b>11</b> Local</p>
     <div class="lgrid">
       <div class="stmt">
         <p class="zero"><b>0</b> bytes</p>
@@ -580,7 +669,7 @@
 </section>
     <section id="s-close" class="gap" aria-label="Straight answers and how to start">
   <div class="wrap">
-    <p class="sx"><b>11</b> Start</p>
+    <p class="sx"><b>12</b> Start</p>
     <div class="sh">
       <div><p class="pre">Straight answers</p><h2>What it does, <em>and where it stops.</em></h2></div>
       <p class="lead">The limits are stated, not hidden. They follow from what the engines themselves offer.</p>
@@ -600,7 +689,7 @@
   </main>
   <div class="wrap">
   <footer>
-    <span class="ver">AF-WEB v0.3.0 · screens rebuilt from the real app, with demo data</span>
+    <span class="ver">AF-WEB v0.4.0 · screens rebuilt from the real app, with demo data</span>
     <nav aria-label="Footer">
       <a href="https://github.com/katehuyen/vsc_AgentFarm">GitHub</a><a href="https://github.com/katehuyen/vsc_AgentFarm/blob/main/CHANGELOG.md">Changelog</a>
       <span>Crafted by <a href="https://muvusoft.uk/">Muvusoft</a></span>
