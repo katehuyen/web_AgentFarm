@@ -39,14 +39,14 @@ The order lives in `src/data/page.js` (plan v0.7 §5); section numbers and the s
 |---|---|---|---|---|
 | 01 | | Relay hero: live leg counter, relay track, quota shield, console | `s-relay` | prototype v2.3 Relay Launch |
 | 02 | | Fleet wall: six live Agent Farm pages | `s-fleet` | prototype v2.2 Control Room |
-| 03 | | The whole farm: every capability as a tile in ten districts, with stories that run across them | `s-atlas` | plan v0.7, the extension's source, the owner's Mserisi screenshots |
-| 04 | I Never stops | Day and night: one chain across three days and four nights, item by item | `s-days` | prototype v2.3 |
-| 05 | I | The rules of the relay (real defaults) | `s-rules` | prototype v2.3 |
-| 06 | II Any project | Backlog: projects of any kind, the work list, and the Track tab | `s-backlog` | the owner's Projects screenshots (2026-10-11), M14 |
-| 07 | III Beyond code | Studio: a production makes a short film | `s-studio` | M1a, M1b, the extension's `media/studio.js` |
-| 08 | IV Recipes and triggers | Tasks: plan, runs, a watch trigger, Gatekeeper, a recipe | `s-auto` | M7-8-a to d, M15 |
-| 09 | V Works as a team | Console, exploded and assembled on scroll | `s-console` | prototype v2.1 Command Deck |
-| 10 | V | Together: a mission with a lead and a team, and Sentry | `s-together` | screenshot 043 |
+| 03 | | Console, exploded and assembled on scroll | `s-console` | prototype v2.1 Command Deck |
+| 04 | | The whole farm: every capability as a tile in ten districts, with stories that run across them | `s-atlas` | plan v0.7, the extension's source, the owner's Mserisi screenshots |
+| 05 | I Never stops | Day and night: one chain across three days and four nights, item by item | `s-days` | prototype v2.3 |
+| 06 | I | The rules of the relay (real defaults) | `s-rules` | prototype v2.3 |
+| 07 | II Any project | Backlog: projects of any kind, the work list, and the Track tab | `s-backlog` | the owner's Projects screenshots (2026-10-11), M14 |
+| 08 | III Beyond code | Studio: a production makes a short film | `s-studio` | M1a, M1b, the extension's `media/studio.js` |
+| 09 | IV Recipes and triggers | Tasks: plan, runs, a watch trigger, Gatekeeper, a recipe | `s-auto` | M7-8-a to d, M15 |
+| 10 | V Works as a team | Together: a mission with a lead and a team, and Sentry | `s-together` | screenshot 043 |
 | 11 | VI Never forgets | Memory: sessions, a turn kept, the wiki compiled, the vault in Obsidian | `s-memory` | M3, M4, M5, the extension's `_REF/wiki.md` |
 | 12 | VII Any brain | Brains: engines, routes, route health, accounts, secrets | `s-brains` | M9, M9b, M13, Mz2, Mz3a, Mz3b, 073, 074 |
 | 13 | VIII Just ask | The bridge: an agent sets the farm up from one sentence | `s-bridge` | the extension's `_REF/bridge.md` and source |
