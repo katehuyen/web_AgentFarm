@@ -6,6 +6,7 @@
 //   dist/assets/<page>.js    another page's scripts, bundled from src/scripts/pages/<page>.js
 //   dist/assets/fonts/       the three font families
 //   dist/assets/sounds/      the extension's tones
+//   dist/assets/photos/      the photographs (data/photos.js)
 import { build } from 'esbuild';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -51,7 +52,7 @@ for (const htmlPath of pages(DIST)) {
 }
 
 /* 5. nothing else may be left in assets/ */
-const extra = fs.readdirSync(A).filter(f => !['site.css', 'fonts', 'sounds', ...Object.keys(ENTRIES).map(n => `${n}.js`)].includes(f));
+const extra = fs.readdirSync(A).filter(f => !['site.css', 'fonts', 'sounds', 'photos', ...Object.keys(ENTRIES).map(n => `${n}.js`)].includes(f));
 if (extra.length) throw new Error(`unexpected files in ${A}: ${extra.join(', ')}`);
 
 const size = d => fs.readdirSync(d, { withFileTypes: true }).reduce((n, e) => n + (e.isDirectory() ? size(path.join(d, e.name)) : fs.statSync(path.join(d, e.name)).size), 0);

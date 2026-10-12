@@ -24,6 +24,7 @@ import NeverWaits from '../components/sections/NeverWaits.astro';
 import Meter from '../components/sections/Meter.astro';
 import Local from '../components/sections/Local.astro';
 import Close from '../components/sections/Close.astro';
+import Band from '../components/Band.astro';
 import { page } from '../data/page.js';
 
 const SECTION = {
@@ -33,7 +34,7 @@ const SECTION = {
   's-meter': Meter, 's-local': Local, 's-close': Close,
 };
 /* a chapter opener goes in front of the first section of each chapter */
-const blocks = page.map((p, i) => ({ C: SECTION[p.id], opens: p.d !== undefined && page[i - 1]?.d !== p.d ? p.d : undefined }));
+const blocks = page.map((p, i) => ({ C: SECTION[p.id], opens: p.d !== undefined && page[i - 1]?.d !== p.d ? p.d : undefined, band: p.band, after: p.after }));
 ---
 <Base
   title="Agent Farm · Mission control for AI agents in VS Code"
@@ -42,7 +43,7 @@ const blocks = page.map((p, i) => ({ C: SECTION[p.id], opens: p.d !== undefined 
   <Header />
   <SideIndex />
   <main>
-    {blocks.map(({ C, opens }) => <>{opens !== undefined && <Chapter d={opens} />}<C /></>)}
+    {blocks.map(({ C, opens, band, after }) => <>{band && <Band p={band} />}{opens !== undefined && <Chapter d={opens} />}<C />{after && <Band p={after} />}</>)}
   </main>
   <Footer />
 </Base>

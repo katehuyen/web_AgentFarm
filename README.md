@@ -89,10 +89,13 @@ src/
   data/page.js                 the page order and which chapter each section belongs to
   data/backlog.js              the demo backlog: project, the family the chain works, the queue, captures; the other projects and their tracks
   data/features.js             every capability (82), its district, where the page shows it, and the story steps: the board, the chapter openers, later /features and /pricing
+  data/photos.js               the photographs (Unsplash ids, crops) and the human bands' words
+  data/emblems.js              the small moving emblem of each district on /features/
   data/site.js                 links, the call to action, the site version, rootOf (the way back to the top folder from a page)
   data/deep/*.js               what a district's page says beyond its tiles, with the source of each fact
 public/
   assets/sounds/               the extension's own tones (media/sounds)
+  assets/photos/               the photographs, two widths each (-l, -s)
 scripts/
   finish.mjs                   second half of the build: makes dist/ a plain site
   deploy-main.sh               npm run deploy: puts dist/ on the main branch

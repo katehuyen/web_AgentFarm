@@ -3,6 +3,7 @@
 import './state.js';
 import './header.js';
 import './sideindex.js';
+import './bands.js';
 import './relay.js';
 import './fleet.js';
 import './atlas.js';

@@ -10,6 +10,8 @@
 import Base from '../layouts/Base.astro';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
+import Band from './Band.astro';
+import { photos } from '../data/photos.js';
 import '../styles/pages/district.css';
 import '../styles/pages/figs.css';
 import { districts, features, hasPage, Word, LAST } from '../data/features.js';
@@ -33,6 +35,9 @@ const nextHref = hasPage(next) ? `../${next.slug}/` : `../../#ch-${next.id}`;
           <p class="dp">{D.k}</p>
         </div>
       </header>
+    </div>
+    {photos[`d-${D.id}`] && <Band p={`d-${D.id}`} plain />}
+    <div class="wrap">
       <p class="dpromise">{deep.promise}</p>
       <ul class="dtl">
         {F.map((f, j) => <li><a href={`#${f.id}`}><span class="c">{D.r}·{j + 1}</span><span class="n">{f.n}</span><span class="sg">{f.sig}</span></a></li>)}

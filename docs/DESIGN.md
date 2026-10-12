@@ -65,6 +65,15 @@ Screenshots are in the extension repo under `info/screenshots` and `info/Mserisi
 - Each feature block reads in the same order: what it solves, how it works (numbered steps), its settings (the key a user can search in VS Code, the default, one line), a note where the code has a catch, and where to see it.
 - Settings are named by their key, not by a Settings page label, because only the key is certain to match what a user can search.
 
+## Photographs
+
+The rebuilt screens show the farm; photographs show the person it works for (owner, 2026-10-12: the site had become too dark and digital). They are real photographs from Unsplash (free licence, no attribution required; the footer says "Photos from Unsplash"), in full colour, saved in `public/assets/photos` at two widths and listed with their ids in `src/data/photos.js`, so the site still makes no third-party request.
+
+- On the landing, six human bands (`components/Band.astro`) sit between chapters: a time or a place, one line, and what the farm is doing meanwhile (Fri 18:00, Sat 03:12, Mon 08:00 follow the weekend story of the board). A wide photo runs edge to edge and fades into the page's dark; a tall one sits beside its words.
+- Every district page opens with a photo strip under its header.
+- A photo fades in the first time it is seen and drifts (a slow zoom) only while on screen; with reduced motion it stands still.
+- People, hands, desks, rooms and light. Never a screenshot of the app, never a logo, never a face presented as a customer.
+
 ## Motion
 
 - A section animates only while it is on screen (`vis` in `scripts/state.js`).

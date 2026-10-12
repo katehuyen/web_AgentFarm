@@ -4,6 +4,8 @@
 // moves whatever else must move. The first time a figure is seen it plays its steps by itself, one every few
 // seconds, while it is on screen; a click on a step, or on the arrows under the figure, takes over. With reduced
 // motion it opens on its last step. On a phone the figure stays in the flow above the steps and the arrows step it.
+import './bands.js';
+
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export function figures(FIGS) {

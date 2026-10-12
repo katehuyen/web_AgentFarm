@@ -2,6 +2,13 @@
 
 All notable changes to agentfarm.space. The site follows [semantic versioning](https://semver.org).
 
+## Unreleased (0.8.0)
+
+- Photographs: six human bands on the landing between chapters (Fri 18:00 you leave the desk, Sat 03:12 the farm is still at it, a line in a notebook, a projector's beam, a team at a laptop, Mon 08:00 a phone in hand), and a photo strip at the head of every district page. Real photographs from Unsplash, self-hosted; they fade in and drift slowly while on screen.
+- The console ("This is the screen you work in. Take it apart.") is third again, right after the fleet wall.
+- Features moves: a board of every district's cells in the hero on which the whole-farm stories travel, cards that come in with their district, and a small moving emblem for each district.
+- Sounds load from the site's top folder, so any page can play them.
+
 ## 0.7.0 · 2026-10-12
 
 Ten districts, privacy said exactly, and the first district page drawn instead of written.
