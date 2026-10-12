@@ -28,7 +28,7 @@ export const Word = n => word(n)[0].toUpperCase() + word(n).slice(1);
 export const LAST = districts[districts.length - 1].r;
 
 /* the districts whose own page is built (plan v0.8 §6); the others' links go to their chapter on the landing until theirs is */
-const PAGES = new Set(['relay']);
+const PAGES = new Set(['relay', 'privacy']);
 export const hasPage = D => PAGES.has(D.id);
 
 export const features = [
