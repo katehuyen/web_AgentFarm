@@ -57,6 +57,9 @@ Screenshots are in the extension repo under `info/screenshots` and `info/Mserisi
 
 ## Feature pages
 
+- A feature with `fig` in its district's words is drawn beside its text (`scripts/figs/<district>.js`, `styles/pages/figs.css`): a rebuilt screen or a moving diagram in the VS Code dark surfaces, under the district's colour. Its steps are buttons; a step shows itself in the figure (elements marked `data-from`/`data-to` fade in and keep their place, so the figure never jumps). A figure plays its steps once by itself while on screen; a click or the arrows under it take over. A setting worth feeling is a slider (its key in mono, its default as the start), always with an output line that says what it changes. On a phone the figure sits above the steps, not sticky.
+- District IX, Measured, not claimed, is orchid `#de8cf0`; the nine kinds of step keep one colour each in the Measured section.
+
 - `/features/` and the district pages wear the landing's clothes: the district's colour (`--c`), its numeral in Big Shoulders, tiles and buttons with a square border, mono labels.
 - A district page reuses the landing's demos for that chapter as they are (the same components and scripts) and hides their landing section numbers.
 - Each feature block reads in the same order: what it solves, how it works (numbered steps), its settings (the key a user can search in VS Code, the default, one line), a note where the code has a catch, and where to see it.

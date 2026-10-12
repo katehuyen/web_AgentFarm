@@ -3,10 +3,10 @@
 // (publisher muvusoft, name agent-farm in the extension's package.json). The changelog gets its own page with the /features pages.
 
 export const site = {
-  version: '0.6.0',                                        // this website, see CHANGELOG.md
+  version: '0.7.0',                                        // this website, see CHANGELOG.md
   url: 'https://agentfarm.space',
   get: { label: 'Get Agent Farm', href: 'https://marketplace.visualstudio.com/items?itemName=muvusoft.agent-farm' },
-  maker: { name: 'Muvusoft', href: 'https://muvusoft.uk/' },
+  maker: { name: 'MuVuSOFT', href: 'https://muvusoft.uk/' },
 };
 
 /** the way back to the site's top folder from a page: '' on the landing, '../' on /features/, '../../' below it */

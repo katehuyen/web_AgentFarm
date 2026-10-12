@@ -8,6 +8,7 @@
 // agents.pack.export never carries memory or secrets). scripts/bridge.js plays them. Facts: AF-WEB_NOTES_phase2-facts §VIII.
 import '../../styles/sections/bridge.css';
 import { no } from '../../data/page.js';
+import { facts } from '../../data/facts.js';
 const ASKS = [
   ['weekly', 'Make a weekly video for the channel, every Monday at 7.'],
   ['resume', 'Pick up where session 7c41e2a0 left off.'],
@@ -20,7 +21,7 @@ const ASKS = [
   <div class="wrap">
     <p class="sx"><b>{no('s-bridge')}</b> Just ask</p>
     <div class="sh">
-      <div><p class="pre">The bridge · one shell command · ~560 operations</p><h2>You never have to learn any of this. <em>Just ask.</em></h2></div>
+      <div><p class="pre">The bridge · one shell command · {facts.bridgeOps} operations</p><h2>You never have to learn any of this. <em>Just ask.</em></h2></div>
       <p class="lead">Every session is told at its start how to reach the farm. So you say it in one sentence and the agent does it: it reads what the farm can do, then calls it, one command at a time. Each call shows up as a notification. Nothing is done behind your back.</p>
     </div>
     <div class="kgrid">

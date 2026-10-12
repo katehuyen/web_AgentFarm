@@ -2,6 +2,19 @@
 
 All notable changes to agentfarm.space. The site follows [semantic versioning](https://semver.org).
 
+## 0.7.0 · 2026-10-12
+
+Ten districts, privacy said exactly, and the first district page drawn instead of written.
+
+- New district IX, Measured, not claimed, with its own chapter on the landing: the plan of every account (five-hour window and week, the 70% line past which automatic jobs move to haiku, the status bar), where the live leg's money and window went (nine kinds of step arriving one by one, raw and ⚖ weighted figures, the API calls and steps), daily budgets with their 80% warning, a cost alarm against a median, honest zeros, and the judge's ladder judging a check cheap first (a fail climbs, a pass above overturns it and no retry is paid), with evals and Insights. Nine tiles: Live plan usage, Where it went, Budgets, Cheaper, not stopped, Cost alarms, Honest numbers, Judge ladder, Evals, Insights.
+- District IX, Yours alone, becomes X, Safe and yours alone, with five guards as tiles: ShellGuard, BridgeGuard, Permissions as shown, Keys kept out, Browser on a leash.
+- New tiles elsewhere: One switch (IV), Any media model (III), Notices and the queue (V), Other machines (VI), Agents with a home (VIII). Missions, Countdown questions, Schedules, Search, the bridge operations and the phone app say more. 82 things in all.
+- Privacy, said exactly: 0 bytes of your work to us. The free version never contacts us; a paid licence checks its key once a day, and the page shows the whole message (key, a hash of the machine, the version) and the answer, with what is never in it. Without a connection it keeps working 30 days. The diagram draws the licence line beside the cut line of your work, and the optional services you switch on are named. The FAQ, the fleet band, the closing band and the page description follow.
+- Never stops, the district page, is drawn: each feature has a figure beside it, a rebuilt screen or a moving diagram with demo data, and its steps are buttons that show themselves in the figure; a figure plays its steps once by itself when first seen. Three have something to play with: the handover line (contextHandoverPct), the quota line (quotaHandoverPct) and the leg ceiling (batonMaxHops) as sliders, and the sentry leader's mode as buttons. The settings fold away.
+- Facts: the bridge has 579 operations (it only grows; the page reads the number from data/facts.js everywhere). The answer on live hooks follows the Technical DNA: Claude Code and Codex report through their own hooks and Gemini's are forwarded, so all three reach the Live Timeline mid-turn; only Claude Code can be told something back.
+- The maker is written MuVuSOFT.
+- Chapter and district counts ("Chapter IV of X", "ten districts") are computed from the list. The whole-farm board is two rows of five with its figures under them; the Features page's district buttons wrap.
+
 ## 0.6.0 · 2026-10-11
 
 The site has pages behind the landing (plan v0.8).

@@ -6,6 +6,8 @@
 // feature:  id, district index, name, one sentence, sig = the small figure on the tile (demo data; atlas.js makes
 //           some of them live), at = the section of this page that shows it today, src = where it was checked.
 
+import { facts } from './facts.js';
+
 export const districts = [
   { id: 'relay', slug: 'never-stops', r: 'I', n: 'Never stops', k: 'Work keeps going through full contexts, full accounts and its own updates.', c: 'var(--yellow)' },
   { id: 'projects', slug: 'any-project', r: 'II', n: 'Any project', k: 'One backlog per project, and the project can be anything.', c: 'var(--teal)' },
@@ -15,8 +17,15 @@ export const districts = [
   { id: 'memory', slug: 'never-forgets', r: 'VI', n: 'Never forgets', k: 'Every session is kept, and what matters becomes a wiki.', c: 'var(--agy)' },
   { id: 'engines', slug: 'any-brain', r: 'VII', n: 'Any brain', k: 'Five engines, and through routes, almost any model.', c: '#7fa0f8' },
   { id: 'bridge', slug: 'just-ask', r: 'VIII', n: 'Just ask', k: 'You never have to learn the farm. Tell an agent, it sets it up.', c: 'var(--ink)' },
-  { id: 'privacy', slug: 'yours-alone', r: 'IX', n: 'Yours alone', k: 'It runs on your machine and keeps its numbers honest.', c: 'var(--dim)' },
+  { id: 'measure', slug: 'measured-not-claimed', r: 'IX', n: 'Measured, not claimed', k: 'What every step cost, how much plan is left, and whether the work was good, in numbers.', c: '#de8cf0' },
+  { id: 'privacy', slug: 'safe-and-yours-alone', r: 'X', n: 'Safe and yours alone', k: 'Guards stop what an agent should not do, and nothing about your work comes to us.', c: 'var(--dim)' },
 ];
+
+/* the number of districts in words, and the last numeral ("Chapter IV of X") */
+const WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+export const word = n => WORDS[n] ?? String(n);
+export const Word = n => word(n)[0].toUpperCase() + word(n).slice(1);
+export const LAST = districts[districts.length - 1].r;
 
 /* the districts whose own page is built (plan v0.8 §6); the others' links go to their chapter on the landing until theirs is */
 const PAGES = new Set(['relay']);
@@ -48,25 +57,28 @@ export const features = [
   { id: 'premiere', d: 2, n: 'Straight to Premiere', s: 'The scenes become a sequence. Export it as XML and EDL, import it into Adobe Premiere and finish by hand.', sig: 'XML + EDL', at: 's-studio', src: 'src/core/premiere.ts (xmeml v4 + CMX3600); Studio → Assemble' },
   { id: 'inbox', d: 2, n: 'Media inbox', s: 'Drop files in a folder. Agents look at each one, file it by stage and fill in its card; anything unsure is asked, not guessed.', sig: 'all_in', at: 's-studio', src: 'allInIntake.ts' },
   { id: 'calendar', d: 2, n: 'Content calendar', s: 'What gets made lands on a calendar in your vault. Once you approve, the publish step hands it to your own upload flow.', sig: 'Mon 07:00', at: 's-studio', src: 'contentCalendar.ts; publishStep.ts (webhook, approval ask)' },
+  { id: 'media', d: 2, n: 'Any media model', s: 'Images, video and voice from fal.ai and Replicate models, priced per model under a monthly media budget; nine FFmpeg recipes cut, join, subtitle and convert on your machine.', sig: '9 FFmpeg', src: 'mediaRecipes.ts; mediaBudgetMonthUSD; Technical DNA §5–§6; FULL list 19' },
   { id: 'briefing', d: 2, n: 'Spoken briefing', s: 'The daily digest read aloud: by this computer for free, or by a voice model you choose.', sig: 'daily', at: 's-studio', src: 'briefing.ts; digestTtsModel' },
 
   // IV · Recipes and triggers
   { id: 'flows', d: 3, n: 'Workflows', s: 'A chain where each step gets the last one\'s output. A step can be an agent, an API call, a render, a browser, or a stop to ask you.', sig: '8 saved', src: 'Tasks → Edit workflow (M7-8-c)' },
-  { id: 'schedules', d: 3, n: 'Schedules', s: 'Daily, weekly or once at a date and hour. A missed run can run late, be skipped, or ask you.', sig: '13 on', src: 'schedules.add (missed: skip | run | ask)' },
+  { id: 'schedules', d: 3, n: 'Schedules', s: 'Daily, weekly or once at a date and hour. A missed run can run late, be skipped, or ask you. With VS Code closed, a small service on Windows still runs them.', sig: '13 on', src: 'schedules.add (missed: skip | run | ask)' },
   { id: 'triggers', d: 3, n: 'Watch triggers', s: 'A file lands in a folder and an agent wakes up. Hooks and webhooks work the same way.', sig: '2 watching', src: 'triggers.add (watch | hook | webhook)' },
   { id: 'gatekeeper', d: 3, n: 'Gatekeeper', s: 'Before anyone wakes, Jev, a model that never chats and only decides, says whether there is real work. Off, watching in the shadow, or on.', sig: 'shadow', src: 'Settings → Gatekeeper (M15); src/core/kapici/providers/jev.ts; owner (12:18); agentFarm.kapici.*' },
   { id: 'words', d: 3, n: 'Say it in words', s: 'Type "run the filing batch on manager now". A cheap model turns it into a task, a schedule or a workflow and shows it to you before anything runs.', sig: 'Runs tab', src: 'Tasks → Runs (M7-8-d); commandbar.ts' },
   { id: 'queue', d: 3, n: 'Queue and limits', s: 'Runs wait their turn under concurrency ceilings, and the next one starts as one finishes.', sig: '1/5 running', src: 'agentFarm.maxConcurrentTasks; Automation strip' },
   { id: 'retries', d: 3, n: 'Retries and rounds', s: 'A run stopped by a session limit tries again by itself, every 40 minutes or on a growing pause. A big job runs in rounds inside one conversation.', sig: '6 × 40 min', src: 'retry.ts defaults; taskRounds.ts' },
+  { id: 'mainswitch', d: 3, n: 'One switch', s: 'Stop every automation at once, pause it until an hour you name, or keep quiet hours in which nothing wakes unattended.', sig: 'quiet hours', src: 'automation.ts (master switch, pause-until, quiet hours); Technical DNA §5' },
   { id: 'forecast', d: 3, n: 'Forecast', s: 'How long the next run should take and how likely it is to pass, from the last 30 days.', sig: '30 days', src: 'schedules.forecast' },
 
   // V · Works as a team
-  { id: 'missions', d: 4, n: 'Missions', s: 'A lead plans round by round and hands work to a team on different engines until the goal is met, or honestly isn\'t.', sig: 'lead + 3', at: 's-together', src: 'missions.start; screenshot 043' },
+  { id: 'missions', d: 4, n: 'Missions', s: 'A lead that cannot write plans round by round and hands the work to a team on different engines, one writer per folder, until the goal is met or one of five caps is reached.', sig: 'lead + 3', at: 's-together', src: 'missions.start; screenshot 043' },
   { id: 'shared', d: 4, n: 'Shared sessions', s: 'Any agent can open any session by its id, whichever engine wrote it, see what was and wasn\'t done, and carry on.', sig: 'by id', src: 'sessions.find, sessions.read' },
   { id: 'notes', d: 4, n: 'Agent notes', s: 'Agents leave each other notes and hand tasks over, with a guard against loops.', sig: 'a2a', src: 'a2a notes and tasks' },
   { id: 'steer', d: 4, n: 'Steer and veto', s: 'Your steer, veto or new constraint changes a running team\'s course at once.', sig: 'mid-run', src: 'workflows.steer; mission supervisor' },
   { id: 'console', d: 4, n: 'Console', s: 'Every session in one column: who is working, whose turn it is, which leg of which chain.', sig: '2 waiting', at: 's-console', src: 'Console (screenshots 004, M11)' },
-  { id: 'question', d: 4, n: 'Countdown questions', s: 'An agent\'s question picks the suggested answer when time runs out. A permission request always waits for you.', sig: '0:42', at: 's-console', src: 'question card auto-answer' },
+  { id: 'question', d: 4, n: 'Countdown questions', s: 'An agent\'s question picks the suggested answer when time runs out. A permission request always waits for you, with every stuck session, in Needs You.', sig: '0:42', at: 's-console', src: 'question card auto-answer' },
+  { id: 'notices', d: 4, n: 'Notices and the queue', s: 'Agents report, remind and ask on one board, by level, and your answer becomes work in the queue. Your side of it: leave a job for an agent, now or when its group fills.', sig: '4 levels', src: 'notices.ts, workqueue.ts, noticeToQueue.ts; Technical DNA §5' },
   { id: 'timeline', d: 4, n: 'Live Timeline', s: 'Every running session on one axis. Jump to one tool call among thousands; a stall raises a flag.', sig: 'live', at: 's-fleet', src: 'Live Timeline (032, 035)' },
   { id: 'worktrees', d: 4, n: 'Worktrees', s: 'Parallel jobs work in separate git worktrees, so they never step on each other.', sig: 'git', src: 'worktree support' },
 
@@ -76,7 +88,8 @@ export const features = [
   { id: 'wiki', d: 5, n: 'Wiki from sessions', s: 'Mark a whole session or only the answers that matter. An agent compiles them into wiki pages, one concept per page.', sig: 'compile', src: 'wiki.candidates.*, wiki.compile; _REF/wiki.md' },
   { id: 'dropbox', d: 5, n: 'Drop box', s: 'Save a chat from any browser into the drop folder and it becomes wiki material by itself.', sig: '_RAW_', src: '_REF/wiki.md (drop box)' },
   { id: 'obsidian', d: 5, n: 'Obsidian, the second brain', s: 'Obsidian is the IDE, the model is the programmer, the wiki is the codebase. You curate, agents write.', sig: 'vault', src: 'vault rules (M5)' },
-  { id: 'search', d: 5, n: 'Search everything', s: 'Search every transcript of every engine. A memory graph shows how each agent\'s notes link up, and which it actually recalled.', sig: 'all engines', src: 'search.transcripts; memgraph.ts' },
+  { id: 'search', d: 5, n: 'Search everything', s: 'Search every transcript of every engine, by its words or by what it meant. A memory graph shows how each agent\'s notes link up, and which it actually recalled.', sig: 'all engines', src: 'search.transcripts; memgraph.ts' },
+  { id: 'machines', d: 5, n: 'Other machines', s: 'Sessions synced from your other computers show up in the same lists, with a machine badge on each.', sig: '⇄ badge', src: 'agentFarm.extraClaudeDirs; Blueprint (multiple machines)' },
   { id: 'reports', d: 5, n: 'Reports and digests', s: 'Daily and weekly digests and fleet reports, written into your vault.', sig: 'weekly', src: 'settings → Reports' },
 
   // VII · Any brain
@@ -90,21 +103,36 @@ export const features = [
 
   // VIII · Just ask
   { id: 'bridge', d: 7, n: 'Just ask', s: 'Say "make me a weekly video recipe" in a chat. The agent sets it up through the bridge; you never open a form.', sig: 'in chat', at: 's-bridge', src: '_REF/bridge.md' },
-  { id: 'ops', d: 7, n: '~560 operations', s: 'What you can do with a click, an agent can do with a call; only the secret vault stays off it, on purpose. It reads the list from farm.ops, so new abilities show up by themselves.', sig: 'farm.ops', at: 's-bridge', src: 'Technical DNA: ~560 ops in ~75 namespaces' },
+  { id: 'ops', d: 7, n: `${facts.bridgeOps} operations`, s: 'What you can do with a click, an agent can do with a call: a button with no operation fails the build. Only the secret vault stays off it, on purpose. New abilities show up in farm.ops by themselves.', sig: 'farm.ops', at: 's-bridge', src: 'owner 2026-10-12: 579 ops (Technical DNA 3.923.0: ~560 in ~75 namespaces)' },
   { id: 'mcp', d: 7, n: 'One command line', s: 'The bridge is a single shell command, so any agent that can run a command can use the farm. Gatekeeper also comes as an MCP server.', sig: 'af.js', src: 'src/service/af.ts; src/mcp/kapici' },
+  { id: 'agents', d: 7, n: 'Agents with a home', s: 'Each agent keeps its own identity, duties that run every turn or session, and tools. The Toolbox edits skills, MCP servers, hooks and plugins for all of them in one form.', sig: 'duties', src: 'Agents tree, duties, Toolbox (Blueprint §Agents Tree; FULL list 14)' },
   { id: 'matrix', d: 7, n: 'Capability Matrix', s: 'Which agent has which skill, MCP server and memory file, and which of them were actually used in 30 days.', sig: '30 days', src: 'Toolbox → Capability Matrix (Mz1)' },
-  { id: 'phone', d: 7, n: 'Phone app', s: 'Start a session, approve with a button and watch the fleet from your pocket, in the Agent Farm phone app.', sig: 'anywhere', at: 's-waits', src: 'Mobile page; Now page (021, 023); Android' },
+  { id: 'phone', d: 7, n: 'Phone app', s: 'Start a session, approve with a button and watch the fleet from your pocket, in the Agent Farm phone app, or on a read-only web page on any device you allow.', sig: 'anywhere', at: 's-waits', src: 'Mobile page; Now page (021, 023); Android' },
   { id: 'telegram', d: 7, n: 'Telegram', s: 'A Telegram chat talks to your agents. A card arrives when a turn ends or asks, and one tap answers it. Only the chats you allow, within a daily budget.', sig: 'one tap', at: 's-waits', src: 'Settings → Remote Access (Mz5); agentFarm.telegram.*; telegramDigest.ts' },
   { id: 'sound', d: 7, n: 'Sound', s: 'A tone for every event, for one agent or for one session: ten made for it and room for ten of your own, with quiet hours and a reminder for an unanswered question.', sig: '10 tones', at: 's-waits', src: 'Sound page (060, Mz4); agentFarm.alerts.*; alertVoices.ts (CUSTOM_LIMIT 10)' },
   { id: 'voice', d: 7, n: 'Read aloud', s: 'An answer, a selection or the daily briefing read aloud, each in its own language, and whoever is asking named after the tone.', sig: 'aloud', at: 's-waits', src: 'Sound page › Voice (Mz4); reader.ts, readSelection.ts, speech.ts, readingPrefs.ts' },
   { id: 'move', d: 7, n: 'Take it with you', s: 'Pack an agent as an .agentpack: its rules, tools, workflows and schedules, never its memory or secrets. Unpack it on another machine.', sig: '.agentpack', src: 'agentpack.ts; agents.pack.export / import' },
 
-  // IX · Yours alone
-  { id: 'local', d: 8, n: 'On your machine', s: 'No server of ours. The live hooks listen on 127.0.0.1 only.', sig: '127.0.0.1', at: 's-local', src: 'agentFarm.livePort 8377' },
-  { id: 'telemetry', d: 8, n: 'No telemetry', s: 'Nothing about you or your work is sent to us.', sig: '0 bytes', at: 's-local', src: 'package.json: no telemetry' },
+  // IX · Measured, not claimed (owner, 2026-10-12: the FULL list's A6 cost and quota, and C15 quality)
+  { id: 'planuse', d: 8, n: 'Live plan usage', s: 'How full each account\'s five-hour window and week are, and when they reset, in the status bar and on the Dashboard. Every engine\'s limit apart.', sig: '5h · week', src: 'planUsageBar.ts, planusage.ts; Blueprint (Status Bar)' },
+  { id: 'steps', d: 8, n: 'Where it went', s: 'Every turn split into nine kinds of step, from the model\'s thinking, billed as output, to local tools that cost nothing to run but make the next call bigger. Every figure is shown raw and weighted.', sig: '9 kinds', src: 'stepkind.ts, pricing.ts; Blueprint (What Work Costs, nine kinds of step)' },
+  { id: 'budgets', d: 8, n: 'Budgets', s: 'A daily budget per agent or for the whole fleet, a cap per workflow and per mission, a monthly media budget. A warning at 80%, an error past 100%.', sig: '80% warn', src: 'agentFarm.budgets; runSpendCap.ts; mediaBudgetMonthUSD; Blueprint (budget alerts)' },
+  { id: 'downgrade', d: 8, n: 'Cheaper, not stopped', s: 'As a window fills, automatic jobs wait for it to loosen, or move to a cheaper model. Sessions you opened by hand are left alone.', sig: '→ haiku', src: 'quotaGuardPercent, quotaDowngradePercent, quotaDowngradeModel (Blueprint)' },
+  { id: 'anomaly', d: 8, n: 'Cost alarms', s: 'A run that costs far more than its usual, or a week that jumps, raises a flag. The usual is a median of real runs, not a guess.', sig: 'median', src: 'anomaly.ts (median + MAD), costAnomalyMinUsd, trendAlertFactor' },
   { id: 'honest', d: 8, n: 'Honest numbers', s: 'Costs come from your own transcripts. A free model\'s zero is a real zero; a missing figure is shown as missing.', sig: 'real zeros', src: 'cost code comments (extension.ts)' },
-  { id: 'superpowers', d: 8, n: 'Superpowers', s: 'Engineering disciplines on disk, such as tests first and systematic debugging, with quality gates.', sig: 'TDD', src: 'Superpowers toggle (Console)' },
-  { id: 'evals', d: 8, n: 'Evals', s: 'Agents\' work measured on a scorecard, not on how sure they sound.', sig: 'scorecard', src: 'evals' },
+  { id: 'ladder', d: 8, n: 'Judge ladder', s: 'A check is judged by a cheap model first. Only a fail climbs to a stronger one, and a pass there overturns it, so no retry is paid for nothing.', sig: 'cheap first', src: 'agentFarm.judgeLadder (A-27, 3.710.0; Blueprint)' },
+  { id: 'evals', d: 8, n: 'Evals', s: 'Saved cases replayed after a change of model or instructions: accuracy, tests passed and what got worse, on a scorecard, not on how sure an agent sounds.', sig: 'scorecard', src: 'evals; Blueprint (Evals); FULL list 15' },
+  { id: 'insights', d: 8, n: 'Insights', s: 'Repeated corrections turn into suggested rules. A finding is fixed, handed to its agent or dismissed, and whether the fix held is tracked.', sig: 'findings', src: 'Insights tree (Blueprint); FULL list 15' },
+
+  // X · Safe and yours alone
+  { id: 'local', d: 9, n: 'On your machine', s: 'It runs inside VS Code and your work stays on your disk. The live hooks listen on 127.0.0.1 only.', sig: '127.0.0.1', at: 's-local', src: 'agentFarm.livePort 8377' },
+  { id: 'telemetry', d: 9, n: 'No telemetry', s: 'No analytics, no usage statistics: we don\'t know which features you use, how often or on what. Free never contacts us; a paid licence only checks its key.', sig: '0 bytes', at: 's-local', src: 'package.json: no telemetry' },
+  { id: 'shellguard', d: 9, n: 'ShellGuard', s: 'Before a shell command runs, the shapes that garble or hide it are refused: non-ASCII, backticks, long heredocs, long quoted text. The agent is told the safe way: write the text to a file.', sig: '4 rules', src: 'shellGuard.ts (X-439); Technical DNA §6' },
+  { id: 'bridgeguard', d: 9, n: 'BridgeGuard', s: 'An agent that goes searching the disk for a session by its id is stopped and sent to the bridge, which reads it properly.', sig: 'to the bridge', src: 'bridgeGuard.ts (B-23); Technical DNA §6' },
+  { id: 'permissions', d: 9, n: 'Permissions as shown', s: 'The permission a card shows is the one in force; if a policy forbids it, the session is refused, never quietly downgraded. A lint finds blanket allows and dangerous patterns.', sig: 'enforced', src: 'permissionmode.ts (K-22), permlint.ts; Technical DNA §6' },
+  { id: 'masking', d: 9, n: 'Keys kept out', s: 'Route keys are scrubbed from whatever a run prints, and Gatekeeper\'s log keeps only a hash and a length of what it read.', sig: 'scrubbed', src: 'secretScrub.ts (X-115), kapici/audit.ts; Technical DNA §6' },
+  { id: 'browser', d: 9, n: 'Browser on a leash', s: 'A browser step opens only the sites on its allow list, or fails without running, and asks you before each run unless you chose otherwise.', sig: 'allow list', src: 'agentFarm.browserAllowHosts, browserApproval (Blueprint)' },
+  { id: 'superpowers', d: 9, n: 'Superpowers', s: 'Engineering disciplines on disk, such as tests first and systematic debugging, with quality gates.', sig: 'TDD', src: 'Superpowers toggle (Console)' },
 ];
 
 /* Stories: one event travels through the farm, lighting tiles in several districts (plan v0.7 §4).

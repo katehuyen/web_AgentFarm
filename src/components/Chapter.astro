@@ -4,17 +4,16 @@
 // Clicking a tile reads it out under the row (scripts/chapters.js); a demo in the chapter that can show the tile switches to it.
 // Once the district has its own page (plan v0.8), the opener links to it.
 import '../styles/chapter.css';
-import { districts, features, hasPage } from '../data/features.js';
+import { districts, features, hasPage, Word, LAST } from '../data/features.js';
 const { d } = Astro.props;
 const D = districts[d], F = features.filter(f => f.d === d);
-const WORDS = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
 ---
-<header class="chap" id={`ch-${D.id}`} style={`--c:${D.c}`} data-d={d} aria-label={`Chapter ${D.r} of IX: ${D.n}`}>
+<header class="chap" id={`ch-${D.id}`} style={`--c:${D.c}`} data-d={d} aria-label={`Chapter ${D.r} of ${LAST}: ${D.n}`}>
   <div class="wrap">
     <div class="chd">
       <span class="cr" aria-hidden="true">{D.r}</span>
       <div class="cn">
-        <p class="ck"><span>Chapter {D.r} of IX</span><span>{F.length} things</span></p>
+        <p class="ck"><span>Chapter {D.r} of {LAST}</span><span>{F.length} things</span></p>
         <p class="ct">{D.n}</p>
         <p class="cp">{D.k}</p>
       </div>
@@ -25,7 +24,7 @@ const WORDS = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight
     </ul>
     <div class="crd" aria-live="polite">
       <span class="cc">{D.r}</span>
-      <span class="cx">{WORDS[F.length] ? WORDS[F.length][0].toUpperCase() + WORDS[F.length].slice(1) : F.length} things in this chapter. Pick one to read it, or scroll on and watch them work.</span>
+      <span class="cx">{Word(F.length)} things in this chapter. Pick one to read it, or scroll on and watch them work.</span>
       <a class="cgo" href="#top" hidden>See it <i></i></a>
     </div>
   </div>

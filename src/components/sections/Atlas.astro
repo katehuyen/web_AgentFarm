@@ -1,10 +1,10 @@
 ---
-// The whole farm (plan v0.7 §2–§4): everything Agent Farm does, as tiles on one map of nine districts. Click a tile
+// The whole farm (plan v0.7 §2–§4): everything Agent Farm does, as tiles on one map of its districts. Click a tile
 // to read it on the desk below, or let a story run: one event travels across districts, lighting the tiles it touches.
 // Tiles, districts and stories come from data/features.js, the list the /features pages and /pricing will share;
 // the numbers card from data/facts.js.
 import '../../styles/sections/atlas.css';
-import { districts, features, stories } from '../../data/features.js';
+import { districts, features, stories, word, Word } from '../../data/features.js';
 import { facts } from '../../data/facts.js';
 import { no } from '../../data/page.js';
 const byD = districts.map((_, i) => features.filter(f => f.d === i));
@@ -14,7 +14,7 @@ const byD = districts.map((_, i) => features.filter(f => f.d === i));
     <p class="sx"><b>{no('s-atlas')}</b> The whole farm</p>
     <div class="sh">
       <h2>That was six screens. <em>Here is the whole farm.</em></h2>
-      <p class="lead">Every tile is something Agent Farm does today, <b>{features.length}</b> of them in nine districts. Code is only one part: the same farm cuts videos, writes up a thesis chapter and keeps a weekly channel going. Watch one event travel through the farm, or click any tile.</p>
+      <p class="lead">Every tile is something Agent Farm does today, <b>{features.length}</b> of them in {word(districts.length)} districts. Code is only one part: the same farm cuts videos, writes up a thesis chapter and keeps a weekly channel going. Watch one event travel through the farm, or click any tile.</p>
     </div>
     <div class="abar">
       <span class="lbl">Stories</span>
@@ -47,7 +47,7 @@ const byD = districts.map((_, i) => features.filter(f => f.d === i));
     </div>
     <div class="adesk" aria-live="polite">
       <span class="code" id="a-code">{features.length}</span>
-      <div class="tx"><b id="a-t">Things it does today.</b><span id="a-s">Nine districts. Click a tile, or pick a story above.</span><ol class="trail" id="a-trail"></ol></div>
+      <div class="tx"><b id="a-t">Things it does today.</b><span id="a-s">{Word(districts.length)} districts. Click a tile, or pick a story above.</span><ol class="trail" id="a-trail"></ol></div>
       <div class="act"><a class="ghost" id="a-go" href="#s-atlas" hidden><i></i>See it on this page</a><button type="button" class="ghost nx" id="a-next" hidden>Next step</button></div>
     </div>
   </div>

@@ -18,5 +18,6 @@ import './brains.js';
 import './bridge.js';
 import './waits.js';
 import './soundpage.js';
+import './meter.js';
 import './local.js';
 import './close.js';

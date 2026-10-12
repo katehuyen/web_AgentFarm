@@ -1,19 +1,19 @@
 ---
-// /features/: everything Agent Farm does, the 65 tiles of the whole-farm board as cards in their nine districts (plan v0.8 §2).
+// /features/: everything Agent Farm does, the tiles of the whole-farm board as cards in their districts (plan v0.8 §2).
 // Search and the district buttons filter the cards (scripts/pages/features.js). A card leads to its district's page once
 // that page is built, and to the district's chapter on the landing until then.
 import Base from '../../layouts/Base.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import '../../styles/pages/features.css';
-import { districts, features, hasPage } from '../../data/features.js';
+import { districts, features, hasPage, word } from '../../data/features.js';
 
 const total = features.length;
 const href = (D, f) => hasPage(D) ? `${D.slug}/${f ? '#' + f.id : ''}` : `../#ch-${D.id}`;
 ---
 <Base
   title="Features · Agent Farm"
-  description={`Everything Agent Farm does: ${total} things in nine districts, from relay chains that never stop to agents that make films, each one checked against the extension's source.`}
+  description={`Everything Agent Farm does: ${total} things in ${word(districts.length)} districts, from relay chains that never stop to agents that make films, each one checked against the extension's source.`}
   script="features"
 >
   <Header />
@@ -22,7 +22,7 @@ const href = (D, f) => hasPage(D) ? `${D.slug}/${f ? '#' + f.id : ''}` : `../#ch
       <nav class="crumb" aria-label="You are here"><a href="../">Agent Farm</a><span>Features</span></nav>
       <div class="sh">
         <h1>Everything<br /><em>the farm does.</em></h1>
-        <p class="lead">{total} things in nine districts. Each one is something Agent Farm does today, checked against its source. Search them, or pick a district.</p>
+        <p class="lead">{total} things in {word(districts.length)} districts. Each one is something Agent Farm does today, checked against its source. Search them, or pick a district.</p>
       </div>
       <div class="fbar">
         <label class="fq"><span>Search</span><input type="search" id="fh-q" placeholder="relay, Telegram, Premiere, quota…" autocomplete="off" spellcheck="false" /><span class="fn" id="fh-n" aria-live="polite">{total} shown</span></label>

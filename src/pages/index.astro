@@ -21,6 +21,7 @@ import Memory from '../components/sections/Memory.astro';
 import Brains from '../components/sections/Brains.astro';
 import Bridge from '../components/sections/Bridge.astro';
 import NeverWaits from '../components/sections/NeverWaits.astro';
+import Meter from '../components/sections/Meter.astro';
 import Local from '../components/sections/Local.astro';
 import Close from '../components/sections/Close.astro';
 import { page } from '../data/page.js';
@@ -29,14 +30,14 @@ const SECTION = {
   's-relay': Relay, 's-fleet': Fleet, 's-atlas': Atlas, 's-days': Days, 's-rules': Rules, 's-backlog': Backlog,
   's-studio': Studio, 's-auto': Auto, 's-console': Console, 's-together': Together, 's-memory': Memory, 's-brains': Brains, 's-bridge': Bridge,
   's-waits': NeverWaits,
-  's-local': Local, 's-close': Close,
+  's-meter': Meter, 's-local': Local, 's-close': Close,
 };
 /* a chapter opener goes in front of the first section of each chapter */
 const blocks = page.map((p, i) => ({ C: SECTION[p.id], opens: p.d !== undefined && page[i - 1]?.d !== p.d ? p.d : undefined }));
 ---
 <Base
   title="Agent Farm · Mission control for AI agents in VS Code"
-  description="Run Claude Code, Codex, Gemini, Antigravity and OpenCode from one console. Agents work through your project backlog item by item, code or not; relay chains run day and night across accounts, and nothing is sent to us."
+  description="Run Claude Code, Codex, Gemini, Antigravity and OpenCode from one console. Agents work through your project backlog item by item, code or not; relay chains run day and night across accounts, and nothing about your work is sent to us."
 >
   <Header />
   <SideIndex />

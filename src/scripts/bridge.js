@@ -5,6 +5,7 @@
 // the extension's own (_REF/bridge.md, extension.ts, contentRecipes.ts, agentpack.ts); ids, names and outputs are demo data.
 // The counts in the farm.ops view are the extension's op names per namespace, counted in its source (Oct 2026).
 import { vis, reduce, on, emit } from './state.js';
+import { facts } from '../data/facts.js';
 
 const $ = id => document.getElementById('bg-' + id);
 const log = $('log'), asks = $('asks'), dview = $('view'), dt = $('dt'), toasts = $('toasts');
@@ -24,7 +25,7 @@ const VIEWS = {
   resume: () => ['Sessions', desk.found ? `<div class="dc nw"><b>Storm shots keep losing the beam</b><span>🤖 showrunner · Claude · 6 turns · 2h ago · $0.84</span><span class="mono">id 7c41e2a0 · transcript found by the bridge</span></div>${desk.read ? '<div class="dc"><b>Read: turns 4 to 6</b><span>4 · It passed. What exactly changed?</span><span>5 · Write that line into the recipe\'s scene step.</span><span>6 · Queue scene 5.</span></div>' : ''}` : '<p class="dim">Looking it up…</p>'],
   route: () => ['Engines · Providers', `<div class="dr"><b>Kimi K2</b><span>kimi · KIMI_KEY · tested</span></div><div class="dr"><b>OpenRouter free</b><span>openrouter · OPENROUTER_FREE · tested 9h ago</span></div>${desk.route ? '<div class="dr nw"><b>OpenRouter free 2</b><span>openrouter · OPENROUTER_FREE · available · never tested</span></div>' : ''}${desk.notice ? '<p class="dn">🔔 Notices · A key name was bound: <b>OPENROUTER_FREE</b> → a route at openrouter.ai</p>' : ''}`],
   pack: () => ['Your desktop', desk.pack ? `<div class="dc nw"><b>📦 showrunner.agentpack</b><span>one file, for another machine or another person</span></div><ul class="pk"><li class="y">its rules and duties</li><li class="y">its tools and skills</li><li class="y">3 workflows, 1 schedule, 1 trigger: they arrive switched off</li><li class="n">its memory: the agent starts fresh</li><li class="n">secrets: only their names travel</li></ul>` : '<p class="dim">Packing…</p>'],
-  ops: () => ['farm.ops', `<p class="dim">~560 operations in ~75 areas. A few of them:</p><div class="ns">${[['projects', 59], ['sessions', 30], ['a2a', 26], ['workflows', 21], ['alerts', 21], ['queue', 20], ['console', 19], ['accounts', 19], ['tasks', 18], ['missions', 17], ['studio', 15], ['memory', 14], ['wiki', 13], ['agents', 13], ['providers', 11], ['sentry', 11], ['kapici', 10], ['remote', 10], ['baton', 9], ['schedules', 7], ['triggers', 6], ['telegram', 6]].map(([n, c]) => `<span>${n}<i>${c}</i></span>`).join('')}<span class="more">and more</span></div>`],
+  ops: () => ['farm.ops', `<p class="dim">${facts.bridgeOps} operations in ${facts.namespaces} areas. A few of them:</p><div class="ns">${[['projects', 59], ['sessions', 30], ['a2a', 26], ['workflows', 21], ['alerts', 21], ['queue', 20], ['console', 19], ['accounts', 19], ['tasks', 18], ['missions', 17], ['studio', 15], ['memory', 14], ['wiki', 13], ['agents', 13], ['providers', 11], ['sentry', 11], ['kapici', 10], ['remote', 10], ['baton', 9], ['schedules', 7], ['triggers', 6], ['telegram', 6]].map(([n, c]) => `<span>${n}<i>${c}</i></span>`).join('')}<span class="more">and more</span></div>`],
 };
 let view = 'weekly';
 function drawDesk() { const [t, h] = VIEWS[view](); dt.textContent = t; dview.innerHTML = h; }
@@ -39,7 +40,7 @@ const S = {
   weekly: [
     { u: 'Make a weekly video for the channel, every Monday at 7. It\'s the lighthouse history channel.' },
     { a: 'Setting it up. First, what the farm can do today.' },
-    { c: 'farm.ops', o: '{"ok":true,"result":[{"op":"agents.list",…}, … 561 ops]}' },
+    { c: 'farm.ops', o: `{"ok":true,"result":[{"op":"agents.list",…}, … ${facts.bridgeOps} ops]}` },
     { c: 'workflows.recipes', o: '{"ok":true,"result":[{"id":"long-to-shorts",…},{"id":"weekly-rhythm","describe":"the week\'s idea from the calendar, a script, the shots rendered and joined, your approval, then the publishing package",…}, … 6 recipes]}' },
     { c: 'workflows.addRecipe recipe=weekly-rhythm', o: '{"ok":true,"result":{"id":"wf_k3x9","title":"Weekly channel rhythm","steps":6,"inputs":["channel*","calendar","shots"]}}', fx: () => { desk.plan.Workflows.unshift(['🔗', 'Weekly channel rhythm', '6 steps · added just now', 1]); } },
     { f: 'weekly.json', j: '{ "agent": "showrunner", "title": "Weekly channel rhythm",\n  "kind": "weekly", "dow": 1, "hour": 7, "minute": 0, "missed": "ask",\n  "prompt": "Run the workflow \\"Weekly channel rhythm\\" (workflows.run) with channel = lighthouse history, for curious adults." }' },
@@ -68,8 +69,8 @@ const S = {
   ],
   ops: [
     { u: 'What can you do in the farm?' },
-    { c: 'farm.ops', o: '{"ok":true,"result":[{"op":"a2a.notes.post",…},{"op":"accounts.list",…}, … 561 ops]}' },
-    { a: 'Nearly anything you can click: about 560 operations. Tasks, schedules, triggers and workflows; missions and the queue; sessions, transcripts and search; the wiki; projects and their backlogs; routes, accounts and Gatekeeper; notices and your phone. I read the list fresh each time, so new abilities show up by themselves. Two things I won\'t do: see a key\'s value, or start paid work you did not ask for.' },
+    { c: 'farm.ops', o: `{"ok":true,"result":[{"op":"a2a.notes.post",…},{"op":"accounts.list",…}, … ${facts.bridgeOps} ops]}` },
+    { a: `Nearly anything you can click: ${facts.bridgeOps} operations. Tasks, schedules, triggers and workflows; missions and the queue; sessions, transcripts and search; the wiki; projects and their backlogs; routes, accounts and Gatekeeper; notices and your phone. I read the list fresh each time, so new abilities show up by themselves. Two things I won't do: see a key's value, or start paid work you did not ask for.` },
   ],
 };
 function line(it) {

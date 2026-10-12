@@ -1,7 +1,8 @@
 // District I, Never stops: the words of its page (/features/never-stops/). Names, sentences and tile figures are in
 // data/features.js; this file holds what the page says beyond them. Every default and every quoted line was read in the
 // extension's source at 19187ad (notes: AF-WEB_NOTES_district-I_v1.0); the citations are the comments.
-// how and note may hold <code>; everything else is plain text.
+// how and note may hold <code>; everything else is plain text. fig: a short label per step of how, shown on the
+// step and under the feature's figure (scripts/figs/relay.js draws the figures and what each step shows).
 
 export default {
   description: 'Relay chains that hand over before the context fills, move to the account with room, wait for the reset when every account is full, and stop when they should. Every default is the extension\'s own.',
@@ -9,6 +10,7 @@ export default {
 
   features: {
     relay: {
+      fig: ['Watching', 'The two lines', 'The baton', 'A fresh leg', 'Failsafe'],
       why: 'A long session gets worse as its context fills: it loses the start, repeats itself and begins to guess. Starting over by hand means explaining everything again.',
       how: [
         // contextGuard.ts:72-96, 121-132, 378-401; package.json:9299, 9306
@@ -33,6 +35,7 @@ export default {
     },
 
     quota: {
+      fig: ['Its account', 'The quota line', 'Staying put', 'The next account', 'The ceiling'],
       why: 'A plan\'s five-hour window runs out in the middle of the work. When it does, the session stops dead and whatever was half done stays half done.',
       how: [
         // contextGuard.ts:414-479; quotaWeek.ts:33-46; package.json:9320, 9327
@@ -57,6 +60,7 @@ export default {
     },
 
     policies: {
+      fig: ['Four built in', 'Your own rule', 'Rules in rules', 'Decided at launch'],
       why: 'Which account a session runs on is a decision. Making it by hand at every launch is how the wrong plan gets drained.',
       how: [
         // accountPolicy.ts:49-54, 73-78
@@ -77,6 +81,7 @@ export default {
     },
 
     park: {
+      fig: ['Parked', 'Told', 'Woken', 'Your call'],
       why: 'With every account full, a chain left alone would either fail or keep knocking on a closed door.',
       how: [
         // accountPlacement.ts:268-291; batonDoor.ts:110-112, 202-203; package.json:10295
@@ -95,6 +100,7 @@ export default {
     },
 
     ouroboros: {
+      fig: ['Asked', 'Armed', 'The new build', 'Taken up', 'Runs resumed'],
       why: 'An agent that improves Agent Farm itself needs the new build running. Restarting VS Code\'s extensions would normally cut off every session, its own included.',
       how: [
         // extension.ts:19632-19669; selfRestart.ts:107, 317-396
@@ -113,6 +119,7 @@ export default {
     },
 
     sentry: {
+      fig: ['Rounds', 'Its mode', 'The leader', 'The leash', 'When it stops'],
       why: 'A fixed rule keeps a chain going but cannot tell a round that went nowhere from one that worked. Paying a large model to watch every round is a waste.',
       how: [
         // sentryDriver.ts:158, 226-372; sentryRun.ts:214-326
@@ -138,6 +145,7 @@ export default {
     },
 
     brakes: {
+      fig: ['Leg ceiling', 'Barren chain', 'Your brakes', 'Spend cap', 'Kept'],
       why: 'Anything that runs without you has to know when to stop, or it spends your quota on nothing.',
       how: [
         // batonBrake.ts:37-42; package.json:9382

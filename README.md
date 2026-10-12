@@ -2,9 +2,9 @@
 
 > **Türkçe not:** Bu dal sitenin kaynak kodu. Yüklenecek bitmiş site `main` dalında; açmak ve Hostinger'a yüklemek için oradaki README'ye bak.
 
-The website of **Agent Farm**, mission control for AI agents in VS Code (publisher Muvusoft, extension id `muvusoft.agent-farm`).
+The website of **Agent Farm**, mission control for AI agents in VS Code (publisher MuVuSOFT, extension id `muvusoft.agent-farm`).
 
-A long landing page and, behind it, the feature pages (plan v0.8): `/features/` with all 65 things, and one page per district of the board as each is written. Built as a static site with [Astro](https://astro.build). Every screen on it is rebuilt from real screenshots of the extension and runs on demo data. Every number it states comes from the extension's source or a real screen, and `src/data/facts.js` says where.
+A long landing page and, behind it, the feature pages (plan v0.8): `/features/` with all 82 things, and one page per district of the board as each is written. Built as a static site with [Astro](https://astro.build). Every screen on it is rebuilt from real screenshots of the extension and runs on demo data. Every number it states comes from the extension's source or a real screen, and `src/data/facts.js` says where.
 
 ## Commands
 
@@ -33,13 +33,13 @@ To look at a build, open `dist/index.html` straight from disk; no server is need
 
 ## The page, in order
 
-The order lives in `src/data/page.js` (plan v0.7 §5); section numbers and the side index are computed from it. After the three v2 prototype heroes and the whole-farm board, the page is read in nine chapters, one per district of the board (`districts` in `src/data/features.js`). Each chapter starts with an opener (`src/components/Chapter.astro`, id `ch-<district id>`) showing the district's tiles.
+The order lives in `src/data/page.js` (plan v0.7 §5); section numbers and the side index are computed from it. After the three v2 prototype heroes and the whole-farm board, the page is read in ten chapters, one per district of the board (`districts` in `src/data/features.js`). Each chapter starts with an opener (`src/components/Chapter.astro`, id `ch-<district id>`) showing the district's tiles.
 
 | # | Chapter | Section | Id | From |
 |---|---|---|---|---|
 | 01 | | Relay hero: live leg counter, relay track, quota shield, console | `s-relay` | prototype v2.3 Relay Launch |
 | 02 | | Fleet wall: six live Agent Farm pages | `s-fleet` | prototype v2.2 Control Room |
-| 03 | | The whole farm: every capability as a tile in nine districts, with stories that run across them | `s-atlas` | plan v0.7, the extension's source, the owner's Mserisi screenshots |
+| 03 | | The whole farm: every capability as a tile in ten districts, with stories that run across them | `s-atlas` | plan v0.7, the extension's source, the owner's Mserisi screenshots |
 | 04 | I Never stops | Day and night: one chain across three days and four nights, item by item | `s-days` | prototype v2.3 |
 | 05 | I | The rules of the relay (real defaults) | `s-rules` | prototype v2.3 |
 | 06 | II Any project | Backlog: projects of any kind, the work list, and the Track tab | `s-backlog` | the owner's Projects screenshots (2026-10-11), M14 |
@@ -51,17 +51,18 @@ The order lives in `src/data/page.js` (plan v0.7 §5); section numbers and the s
 | 12 | VII Any brain | Brains: engines, routes, route health, accounts, secrets | `s-brains` | M9, M9b, M13, Mz2, Mz3a, Mz3b, 073, 074 |
 | 13 | VIII Just ask | The bridge: an agent sets the farm up from one sentence | `s-bridge` | the extension's `_REF/bridge.md` and source |
 | 14 | VIII | Never waits: question card, permission, phone app and Telegram, the Sound page (events, sessions, voice) | `s-waits` | screenshots 004, 021, 023, 060, Mz4, Mz5 |
-| 15 | IX Yours alone | Local: nothing goes to us, and the proof | `s-local` | the v2.1 proof block |
-| 16 | | Start: straight answers and the closing band | `s-close` | v2.3 closing band |
+| 15 | IX Measured, not claimed | Plan of every account, where the money and the window went, budgets, the judge's ladder, evals | `s-meter` | the Technical DNA §4–§6, the Blueprint (What Work Costs, judge ladder, budgets) |
+| 16 | X Safe and yours alone | Local: nothing about your work comes to us, the licence check's whole message, and the proof | `s-local` | the v2.1 proof block; the owner's licence plan (2026-10-12) |
+| 17 | | Start: straight answers and the closing band | `s-close` | v2.3 closing band |
 
 ## The feature pages
 
 | Address | Page | Made from |
 |---|---|---|
-| `/features/` | All 65 things as cards in their nine districts; search and district buttons, kept in the address (`?q=…&d=…`) | `src/pages/features/index.astro`, `src/data/features.js` |
-| `/features/never-stops/` | District I: the landing's Days and Rules demos, then each feature: what it solves, how it works, its settings and defaults, where to see it; questions; the next district | `src/pages/features/never-stops.astro`, `src/components/District.astro`, `src/data/deep/relay.js` |
+| `/features/` | All 82 things as cards in their ten districts; search and district buttons, kept in the address (`?q=…&d=…`) | `src/pages/features/index.astro`, `src/data/features.js` |
+| `/features/never-stops/` | District I: the landing's Days and Rules demos, then each feature beside its figure: what it solves, its steps (a step clicked shows itself in the figure; some figures have a setting to slide), the settings folded, where to see it; questions; the next district | `src/pages/features/never-stops.astro`, `src/components/District.astro`, `src/data/deep/relay.js` |
 
-A district gets its page by a page file, a `data/deep/<district id>.js` with its words, a `scripts/pages/<slug>.js` with its demos' scripts, and its id in `PAGES` (`src/data/features.js`). Until then its links go to its chapter on the landing. The words on a district page were checked in the extension's source; the citations are comments in its `data/deep` file.
+A district gets its page by a page file, a `data/deep/<district id>.js` with its words (and `fig`, a label per step, for a feature drawn beside its text), a `scripts/figs/<district id>.js` that draws its figures, a `scripts/pages/<slug>.js` with its demos' scripts that calls `figures()` from `scripts/district.js`, and its id in `PAGES` (`src/data/features.js`). Until then its links go to its chapter on the landing. The words on a district page were checked in the extension's source; the citations are comments in its `data/deep` file.
 
 ## Structure
 
@@ -74,18 +75,20 @@ src/
   components/sections/         Relay … Close, one file per section (markup only)
   styles/base.css              tokens, header, buttons, shared section heading, footer
   styles/chapter.css           the chapter openers
-  styles/pages/*.css           the feature pages
+  styles/pages/*.css           the feature pages; figs.css: the figures beside a district's features
   styles/sections/*.css        one file per section, every rule scoped by the section id
   scripts/main.js              the page's one script: imports the others in page order
   scripts/state.js             the shared demo farm: accounts, relay leg, backlog queue, version, event bus
   scripts/*.js                 one script per section, plus header, side index, chapters and sound
   scripts/film.js              the Studio demo's short film, painted on a canvas
   scripts/pages/*.js           the script of each page but the landing
+  scripts/district.js          a district page's figures: steps, autoplay once, arrows
+  scripts/figs/*.js            the figures of each district, drawn with demo data
   scripts/soundpage.js         the Sound page under Never waits: events, sessions, and answers read aloud with the browser's on-device voice
   data/facts.js                every stated figure, with its source
   data/page.js                 the page order and which chapter each section belongs to
   data/backlog.js              the demo backlog: project, the family the chain works, the queue, captures; the other projects and their tracks
-  data/features.js             every capability (65), its district, where the page shows it, and the story steps: the board, the chapter openers, later /features and /pricing
+  data/features.js             every capability (82), its district, where the page shows it, and the story steps: the board, the chapter openers, later /features and /pricing
   data/site.js                 links, the call to action, the site version, rootOf (the way back to the top folder from a page)
   data/deep/*.js               what a district's page says beyond its tiles, with the source of each fact
 public/
@@ -112,4 +115,5 @@ docs/DESIGN.md                 palette, type, motion and demo-data rules
 - Hosting: Hostinger (decided 2026-10-11).
 - The extension's repository is closing (plan v0.7 §8), so nothing links to it. The call to action goes to the Marketplace listing (`src/data/site.js`); check that the listing is live on the day the extension is published. The changelog gets its own page with the /features pages.
 - The header's "Join early access" goes to the closing band until an early access list exists.
+- Licence: the free version never contacts us; a paid licence checks its key once a day and keeps working 30 days offline (owner, 2026-10-12; `licence` in `src/data/facts.js`). Change the figures there when the extension ships its own.
 - An Open Graph image and the extra product pages (plan §6).

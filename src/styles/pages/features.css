@@ -33,10 +33,12 @@
 .fhub .fnone[hidden]{display:none}
 .fhub .fnone button{font:inherit;color:var(--lime);background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
 @media (max-width:1360px){
-  .fhub .fbar{grid-template-columns:minmax(0,420px)}
-  .fhub .fds{overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1 * clamp(16px,3vw,40px));padding-inline:clamp(16px,3vw,40px)}
+  .fhub .fbar{grid-template-columns:minmax(0,1fr)}
+  .fhub .fq{max-width:420px}
+  .fhub .fds{flex-wrap:wrap}
 }
 @media (max-width:620px){
+  .fhub .fds{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(-1 * clamp(16px,3vw,40px));padding-inline:clamp(16px,3vw,40px)}
   .fhub .fdh{grid-template-columns:auto minmax(0,1fr);gap:0 14px}
   .fhub .fgo{grid-column:1/-1;justify-self:start;margin-top:14px}
   .fhub .fr{font-size:54px}
